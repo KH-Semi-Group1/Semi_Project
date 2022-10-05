@@ -21,7 +21,7 @@
 
 <div class="text-center" style="padding-top:20px;">
 	<a href="/">
-	<img src="/resources/img/logo.png" alt="logo">
+	<img src="/resources/img/logo.jpg" alt="logo">
 	</a>
 </div>
 
