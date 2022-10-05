@@ -49,8 +49,8 @@
     <div class="collapse navbar-collapse" id="midmenu">
       <ul class="nav navbar-nav">
         <li><a href="/">뮤지컬</a></li>
-        <li><a href="/">공지사항</a></li>
-        <li><a href="/">이벤트</a></li>
+        <li><a href="/notice/list">공지사항</a></li>
+        <li><a href="/review/list">관람후기</a></li>
         <li><a href="/">이용안내</a></li>
         <li><a href="/">My티켓</a></li>
       </ul>
