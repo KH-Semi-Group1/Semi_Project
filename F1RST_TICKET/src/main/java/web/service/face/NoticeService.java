@@ -1,0 +1,28 @@
+package web.service.face;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import util.Paging;
+import web.dto.Notice;
+
+public interface NoticeService {
+
+	/**
+	 * 게시글 페이징 객체 생성
+	 * 
+	 * @param req - 요청 정보 객체
+	 * @return Paging - 페이징 계산이 완료된 객체
+	 */
+	public Paging getPaing(HttpServletRequest req);
+
+	/**
+	 * 게시판의 전체 목록을 조회한다
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return List<Notice> - 조회된 게시판의 목록을 List로 반환한다
+	 */
+	public List<Notice> getList(Paging paging);
+
+}

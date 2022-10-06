@@ -1,8 +1,11 @@
+<%@page import="web.dto.Notice"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp" %>
+
+<%	List<Notice> noticeList = (List) request.getAttribute("noticeList"); %>
 
 <style type="text/css">
 
@@ -15,14 +18,6 @@ td:nth-child(2) {
 }
 
 </style>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#btnWrite").click(function() {
-		location.href = "./write"
-	})
-})
-</script>
 
 <h1 class="text-center">공지사항</h1>
 <hr>
@@ -38,16 +33,21 @@ $(document).ready(function() {
 	</thead>
 	
 	<tbody>
+	<%	for( int i=0; i<noticeList.size(); i++) { %>
+	<tr>
+		<td><%=noticeList.get(i).getNotitype() %></td>
+		<td><%=noticeList.get(i).getNotititle() %></td>
+		<td><%=noticeList.get(i).getOpendate() %></td>
+		<td><%=noticeList.get(i).getNotihit() %></td>
+			
+	</tr>
+	<%	} %>
 	</tbody>
 	
 </table>
 
-<div id="btnBox" class="pull-right">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
-</div>
-
 <div class="clearfix"></div>
 
-<%-- <%@	include file="../layout/paging.jsp" %> --%>
+<%@	include file="../layout/paging.jsp" %>
 
 <%@	include file="../layout/footer.jsp" %>
