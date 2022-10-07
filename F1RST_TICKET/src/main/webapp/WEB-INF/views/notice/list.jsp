@@ -22,7 +22,7 @@ td:nth-child(2) {
 <h1 class="text-center">공지사항</h1>
 <hr>
 
-<table class="table table-hover table-striped table-condensed">
+<table class="table table-hover table-condensed">
 	<thead>
 		<tr>
 			<th style="width: 10%;">구분</th>
@@ -36,7 +36,11 @@ td:nth-child(2) {
 	<%	for( int i=0; i<noticeList.size(); i++) { %>
 	<tr>
 		<td><%=noticeList.get(i).getNotitype() %></td>
-		<td><%=noticeList.get(i).getNotititle() %></td>
+		<td>
+			<a href="./view?notino=<%=noticeList.get(i).getNotino() %>">
+				<%=noticeList.get(i).getNotititle() %>
+			</a>
+		</td>
 		<td><%=noticeList.get(i).getOpendate() %></td>
 		<td><%=noticeList.get(i).getNotihit() %></td>
 			

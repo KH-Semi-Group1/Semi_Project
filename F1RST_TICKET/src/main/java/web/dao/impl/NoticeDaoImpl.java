@@ -102,4 +102,71 @@ public class NoticeDaoImpl implements NoticeDao {
 		return noticeList;
 
 	}
+	
+	@Override
+	public int updateHit(Connection conn, Notice notino) {
+		
+		String sql = "";
+		sql += "UPDATE notice";
+		sql += "	SET notihit = notihit + 1";
+		sql += " WHERE notino = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, notino.getNotino());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public Notice selectNoticeByNotino(Connection conn, Notice notino) {
+		
+		String sql = "";
+		sql += "SELECT";
+		sql += "	notino, adminid, notitype, notititle";
+		sql += "	, notidate, noticontent, notihit, opendate";
+		sql += " FROM notice";
+		sql += " WHERE notino = ?";
+		
+		Notice notice = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, notino.getNotino());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				notice = new Notice();
+				
+				notice.setNotino( rs.getInt("notino") );
+				notice.setAdminid( rs.getString("adminid") );
+				notice.setNotitype( rs.getString("notitype") );
+				notice.setNotititle( rs.getString("notititle") );
+				notice.setNotidate( rs.getDate("notidate") );
+				notice.setNoticontent( rs.getString("noticontent") );
+				notice.setNotihit( rs.getInt("notihit") );
+				notice.setOpendate( rs.getDate("opendate") );
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return notice;
+	}
+	
 }

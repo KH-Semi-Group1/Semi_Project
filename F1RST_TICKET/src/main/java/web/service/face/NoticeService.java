@@ -25,4 +25,21 @@ public interface NoticeService {
 	 */
 	public List<Notice> getList(Paging paging);
 
+	/**
+	 * 전달파라미터를 Board DTO로 저장하여 반환
+	 * 
+	 * @param req - 요정 정보 객체
+	 * @return Notice - 전달파라미터 notino를 저장한 객체
+	 */
+	public Notice getnotino(HttpServletRequest req);
+
+	/**
+	 * 전달된 notino를 이용하여 게시글을 조회한다
+	 * 조회된 게시글의 조회수를 1 증가 시킨다
+	 * 
+	 * @param notino - 조회할 notino를 가진 DTO객체
+	 * @return Notice - 조회된 게시글 정보
+	 */
+	public Notice view(Notice notino);
+
 }

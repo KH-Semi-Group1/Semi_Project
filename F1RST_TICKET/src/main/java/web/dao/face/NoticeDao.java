@@ -25,4 +25,22 @@ public interface NoticeDao {
 	 */
 	public List<Notice> selectAll(Connection conn, Paging paging);
 
+	/**
+	 * 조회된 게시글의 조회수 증가시키기
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param notino - 조회할 게시글의 notino를 가진 DTO 객체
+	 * @return int - UPDATE 수행 결과
+	 */
+	public int updateHit(Connection conn, Notice notino);
+
+	/**
+	 * 지정된 notino의 게시글 조회하기
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param notino - 조회할 게시글의 noticeno를 가진 DTO 객체
+	 * @return Notice - 조회된 게시글의 상세정보 DTO객체
+	 */
+	public Notice selectNoticeByNotino(Connection conn, Notice notino);
+
 }

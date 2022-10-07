@@ -1,5 +1,6 @@
 package web.service.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,9 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	//DAO객체
 	private NoticeDao noticeDao = new NoticeDaoImpl();
+	
+	//conn연결
+	private Connection conn = JDBCTemplate.getConnection();
 	
 	@Override
 	public Paging getPaing(HttpServletRequest req) {
@@ -39,6 +43,39 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<Notice> getList(Paging paging) {
 		return noticeDao.selectAll(JDBCTemplate.getConnection(), paging);
+	}
+	
+	@Override
+	public Notice getnotino(HttpServletRequest req) {
+		
+		//전달 파라미터를 저장할 객체 생성
+		Notice notice = new Notice();
+		
+		String param = req.getParameter("notino");
+		
+		if( param != null && !"".equals(param) ) {
+			notice.setNotino( Integer.parseInt(param) );
+		} else {
+			System.out.println("[WARN] BoardService getBoardno() - boardno값이 null이거나 비어있음");
+		}
+		
+		return notice;
+	}
+	
+	@Override
+	public Notice view(Notice notino) {
+		
+		//조회수 증가
+		if( noticeDao.updateHit(conn, notino) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//게시글 조회
+		Notice notice = noticeDao.selectNoticeByNotino(conn, notino);
+		
+		return notice;
 	}
 
 }

@@ -8,9 +8,9 @@
 	<ul class="pagination">
 	
 		<%-- 첫 페이지로 이동 --%>
-		<%	if(paging.getCurPage() != 1) { %>
-		<li><a href="./list">&larr; 처음</a>
-		<%	} %>
+<%-- 		<%	if(paging.getCurPage() != 1) { %> --%>
+<!-- 		<li><a href="./list">&larr; 처음</a> -->
+<%-- 		<%	} %> --%>
 		
 		<%-- 이전 페이징 리스트로 이동 --%>
 		<%	if(paging.getStartPage() != 1) { %>
@@ -41,9 +41,9 @@
 		<%	} %>
 		
 		<%-- 마지막 페이지 이동 --%>
-		<%	if(paging.getCurPage() != paging.getTotalPage()) { %>
-		<li><a href="./list?curPage=<%=paging.getTotalPage() %>">끝 &rarr;</a>
-		<%	} %>
+<%-- 		<%	if(paging.getCurPage() != paging.getTotalPage()) { %> --%>
+<%-- 		<li><a href="./list?curPage=<%=paging.getTotalPage() %>">끝 &rarr;</a> --%>
+<%-- 		<%	} %> --%>
 		
 	</ul>
 </div>
