@@ -1,7 +1,6 @@
 package web.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,38 +8,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.Paging;
 import web.dto.Review;
+import web.dto.ReviewFile;
 import web.service.face.ReviewService;
 import web.service.impl.ReviewServiceImpl;
 
-@WebServlet("/review/list")
-public class ReviewListController extends HttpServlet {
+@WebServlet("/review/view")
+public class ReviewViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	//서비스객체
 	private ReviewService reviewService = new ReviewServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/review/list [GET]");
 		
-		//페이징 객체 계산
-		Paging paging = reviewService.getPaging(req);
+		//전달파라미터 저장 객체 얻기
+		Review reviewno = reviewService.getReviewno(req);
 		
-		//게시글 페이징 목록 조회
-		List<Review> reviewList = reviewService.getList( paging );
+		//상세보기 결과 조회
+		Review viewReview = reviewService.view(reviewno);
 		
-		//조회결과 View 반환
-		req.setAttribute("reviewList", reviewList);
+		//조회결과 MODEL값 전달
+		req.setAttribute("viewReview", viewReview);
 		
-		//페이징 객체 MODEL값 전달
-		req.setAttribute("paging", paging);
+		//첨부파일 정보 조회
+		ReviewFile reviewFile = reviewService.viewFile(viewReview);
 		
+		//첨부파일 MODEL값 전달
+		req.setAttribute("reviewFile", reviewFile);
 		
-		//리뷰리스트 페이지로 응답
-		req.getRequestDispatcher("/WEB-INF/views/review/list.jsp").forward(req, resp);
+		//View 지정응답
+		req.getRequestDispatcher("/WEB-INF/views/review/view.jsp").forward(req, resp);
+		
 		
 	}
-	
+
 }

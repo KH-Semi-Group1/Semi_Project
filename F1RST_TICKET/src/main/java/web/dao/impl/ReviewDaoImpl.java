@@ -1,0 +1,156 @@
+package web.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import common.JDBCTemplate;
+import util.Paging;
+import web.dao.face.ReviewDao;
+import web.dto.Review;
+import web.dto.ReviewFile;
+
+public class ReviewDaoImpl implements ReviewDao {
+
+	//SQL수행 ,결과 객체 생성
+	private PreparedStatement ps = null;
+	private ResultSet rs = null;
+	
+	@Override
+	public int selectCntAll(Connection conn) {
+		//SQL 작성
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM review";
+		
+		//총 게시글 수
+		int count = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return count;
+	}
+	
+	@Override
+	public List<Review> selectAll(Connection conn, Paging paging) {
+		
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, N.* FROM (";
+		sql += "		SELECT";
+		sql += "			reviewno, userid, nuserno, mcno, reviewtitle";
+		sql += "			, reviewcontent, reviewscope, writedate";
+		sql += "		FROM review";
+		sql += "		ORDER BY reviewno DESC";
+		sql += "	) N";
+		sql += " ) REVIEW";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		List<Review> reviewList = new ArrayList<>();
+		
+		try {
+			
+			//--- SQL 수행 객체 생성 ---
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
+			
+			//--- SQL 수행 및 결과 저장 ---
+			rs = ps.executeQuery();
+			
+			//--- 조회 결과 처리 ---
+			while( rs.next() ) {
+				Review r = new Review();
+				
+				r.setReviewno( rs.getInt("reviewno") );
+				r.setUserid( rs.getString("userid") );
+				r.setNuserno( rs.getInt("nuserno") );
+				r.setMcno( rs.getInt("mcno") );
+				r.setReviewtitle( rs.getString("reviewtitle") );
+				r.setReviewcontent( rs.getString("reviewcontent") );
+				r.setReviewscope( rs.getInt("reviewscope") );
+				r.setWritedate( rs.getDate("writedate") );
+				
+				reviewList.add(r);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		//--- 최종 결과 반환 ---
+		return reviewList;		
+		
+	}
+	
+	@Override
+	public Review selectReviewByReviewno(Connection conn, Review reviewno) {
+		
+		String sql = "";
+		sql += "SELECT";
+		sql += "	reviewno, userid, nuserno, mcno, reviewtitle";
+		sql += "	, reviewcontent, reviewscope, writedate";
+		sql += " FROM review";
+		sql += " WHERE reviewno = ?";
+		
+		Review review = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, reviewno.getReviewno());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				review = new Review();
+				
+				review.setReviewno( rs.getInt("reviewno") );
+				review.setUserid( rs.getString("userid") );
+				review.setNuserno( rs.getInt("nuserno") );
+				review.setMcno( rs.getInt("mcno") );
+				review.setReviewtitle( rs.getString("reviewtitle") );
+				review.setReviewcontent( rs.getString("reviewcontent") );
+				review.setReviewscope( rs.getInt("reviewscope") );
+				review.setWritedate( rs.getDate("writedate") );
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return review;		
+		
+	}
+	
+	@Override
+	public ReviewFile selectFile(Connection conn, Review viewReview) {
+		
+		
+		
+		return null;
+	}
+	
+}

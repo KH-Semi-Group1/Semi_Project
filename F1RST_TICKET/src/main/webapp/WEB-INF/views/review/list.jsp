@@ -1,6 +1,9 @@
+<%@page import="web.dto.Review"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%	List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
 
 <%@ include file="../layout/header.jsp" %>
 
@@ -12,6 +15,23 @@ th, td {
 
 td:nth-child(2) {
 	text-align: justify;
+}
+
+img {
+	transform: scale(0.95);
+	-webkit-transform: scale(0.95);
+	-moz-transform: scale(0.95);
+	-ms-transform: scale(0.95);
+	-o-transform: scale(0.95);
+	transition: all 0.2s ease-in-out;
+}
+
+img:hover {
+	transform: scale(1);
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
 }
 
 </style>
@@ -27,28 +47,30 @@ $(document).ready(function() {
 <h1 class="text-center">관람후기</h1>
 <hr>
 
-<table class="table table-hover table-striped table-condensed">
-	<thead>
-		<tr>
-			<th style="width: 15%;">글번호</th>
-			<th style="width: 30%;">제목</th>
-			<th style="width: 20%;">작성자 아이디</th>
-			<th style="width: 15%;">조회수</th>
-			<th style="width: 20%;">최초작성일</th>
-		</tr>
-	</thead>
-	
-	<tbody>
-	</tbody>
-	
-</table>
-
-<div id="btnBox" class="pull-right">
-	<button id="btnWrite" class="btn btn-primary">글쓰기</button>
+<div class="row">
+<%	for( int i=0; i<reviewList.size(); i++ ) { %>
+	<div class="col-sm-6 col-md-4">
+	<a href="./view?reviewno=<%=reviewList.get(i).getReviewno() %>">
+		<div class="thumbnail">
+			<img src="../resources/img/jes.jpg" alt="...">
+			<div class="caption">
+				<h3><%=reviewList.get(i).getReviewtitle() %></h3>
+				
+				<p><%	for( int j=0; j < reviewList.get(i).getReviewscope(); j++ ) { %>
+					<%	 %>
+					<%	} %>
+					<%=reviewList.get(i).getReviewscope() %>점
+				</p>
+				<p><%=reviewList.get(i).getReviewcontent() %></p>
+			</div>
+		</div>
+	</a>
+	</div>
+<%	} %>
 </div>
 
 <div class="clearfix"></div>
 
-<%-- <%@	include file="../layout/paging.jsp" %> --%>
+<%@	include file="../layout/paging.jsp" %>
 
 <%@	include file="../layout/footer.jsp" %>

@@ -21,7 +21,7 @@ public class NoticeServiceImpl implements NoticeService {
 	private Connection conn = JDBCTemplate.getConnection();
 	
 	@Override
-	public Paging getPaing(HttpServletRequest req) {
+	public Paging getPaging(HttpServletRequest req) {
 		//전달파라미터 curPage 추출하기
 		String param = req.getParameter("curPage");
 		int curPage = 0;

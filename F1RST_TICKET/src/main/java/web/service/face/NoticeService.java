@@ -15,7 +15,7 @@ public interface NoticeService {
 	 * @param req - 요청 정보 객체
 	 * @return Paging - 페이징 계산이 완료된 객체
 	 */
-	public Paging getPaing(HttpServletRequest req);
+	public Paging getPaging(HttpServletRequest req);
 
 	/**
 	 * 게시판의 전체 목록을 조회한다
