@@ -11,11 +11,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<style type="text/css">
- #header nav ul li {
- 	font-size: 20px;
- }
-</style>
+<script type="text/javascript">
+
+</script>
 
 <!-- layout.css -->
 <link rel="stylesheet" href="/resources/css/layout.css">
@@ -25,32 +23,33 @@
 
 <header id="header">
 
-  <!-- navbar 위에 메뉴 만들기 -->
   <div class="topmenu">
 	<ul style="list-style-type: none">
-		<li style="display:inline"><a href="/user/login">로그인</a></li>
-		<li style="display:inline"><a href="/">회원가입</a></li>
+		<li style="display:inline"><a href="/">로그인</a></li>
 		<li style="display:inline"><a href="/">마이페이지</a></li>
 		<li style="display:inline"><a href="/">고객센터</a></li>
 	</ul>    
   </div>
-    
+
 <!-- <nav class="navbar navbar-default"> -->
-<nav class="navbar navbar-expend-md">
+<nav class="navbar navbar-expend-md" >
   <div class="container-fluid">
-    <div class="navbar-header">
+<!--     <div class="navbar-header">
       <a class="navbar-brand" href="/">      
-      	<img alt="logo" src ="/resources/img/logo.jpg" style="width: 100%; height: 100%; ">
+      	<img alt="logo" src ="/resources/img/logo.jpg" style="height: 50px;">
       </a>
-    </div>
+    </div> -->
     
 
 	<!-- 각페이지 링크 지정. -->
     <div class="collapse navbar-collapse" id="midmenu">
+    <a class="navbar-brand" href="/">      
+      	<img alt="logo" src ="/resources/img/logo.jpg" style="height: 60px; position: relative; bottom: 15px;">
+     </a>
       <ul class="nav navbar-nav">
-        <li><a href="/">뮤지컬</a></li>
+        <li><a href="/musical/mcList">뮤지컬</a></li>
         <li><a href="/">공지사항</a></li>
-        <li><a href="/">이벤트</a></li>
+        <li><a href="/">관람후기</a></li>
         <li><a href="/">이용안내</a></li>
         <li><a href="/">My티켓</a></li>
       </ul>
@@ -73,5 +72,4 @@
 </header>
 
 <!-- footer에 사용할 부트스트랩 -->
-<nav class="navbar navbar-default navbar-fixed-bottom">
-<div class = "container">
+<div class="container">
