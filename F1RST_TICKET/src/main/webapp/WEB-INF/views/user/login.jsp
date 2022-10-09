@@ -40,7 +40,7 @@ $(document).ready(function(){
 <div class="form-group">
 	<label for="userid" class="col-sm-4 control-label"></label>
 	<div class="col-sm-4">
-		<input type="text" name="userid" id="userid" class="form-control" placeholder="아이디(이메일)"> <br>
+		<input type="text" name="userid" id="userid" class="form-control" placeholder="아이디"> <br>
 	</div>
 </div>
 
@@ -56,9 +56,9 @@ $(document).ready(function(){
 	<div class="text-center">
 		<ul style="list-style-type: none; padding:0px;">
 			<li style="display:inline;"><a href="/lost/id">아이디 찾기</a></li>
-			<li style="display:inline;">|</li>
-			<li style="display:inline;"><a href="/">비밀번호 찾기</a></li>
-			<li style="display:inline">|</li>
+			<li style="display:inline;">&nbsp;|&nbsp;</li>
+			<li style="display:inline;"><a href="/lost/pw">비밀번호 찾기</a></li>
+			<li style="display:inline">&nbsp;|&nbsp;</li>
 			<li style="display:inline;"><a href="/">회원가입</a></li>
 		</ul>  
 	</div> 
@@ -77,11 +77,11 @@ $(document).ready(function(){
 	
 
 <div class="col-sm-4 col-sm-offset-4">
-	<button type="button" class="form-control btn btn-block" style="background-color: #D4DFE6;" id="btnNoLogin">비회원 로그인</button><br>
+	<button type="button" class="form-control btn btn-block" style="background-color: #D4DFE6;" id="btnNoLogin">카카오 로그인 자리</button><br>
 </div>
 
 <div class="col-sm-4 col-sm-offset-4">
-	<button type="button" class="form-control btn btn-block" style="border:1px solid black;" id="btnNoTicket">비회원 티켓 예매 조회</button>
+	<button type="button" class="form-control btn btn-block" style="border:1px solid black;" id="btnNoTicket">네이버 로그인 자리</button>
 </div>
 
 </div>
