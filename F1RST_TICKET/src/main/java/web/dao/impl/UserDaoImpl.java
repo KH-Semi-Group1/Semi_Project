@@ -1,4 +1,4 @@
-package web.dao.Impl;
+package web.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

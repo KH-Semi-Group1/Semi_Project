@@ -1,12 +1,12 @@
-package web.service.Impl;
+package web.service.impl;
 
 import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
 
 import common.JDBCTemplate;
-import web.dao.Impl.UserDaoImpl;
 import web.dao.face.UserDao;
+import web.dao.impl.UserDaoImpl;
 import web.dto.User;
 import web.service.face.UserService;
 
