@@ -54,7 +54,7 @@ $(document).ready(function(){
 <div class="form-group" id="loginJoin">
 	<div class="text-center">
 		<ul style="list-style-type: none; padding:0px;">
-			<li style="display:inline;"><a href="/user/findpw">비밀번호 찾기</a></li>
+			<li style="display:inline;"><a href="/lost/pw">비밀번호 찾기</a></li>
 			<li style="display:inline">&nbsp;|&nbsp;</li>
 			<li style="display:inline;"><a href="/user/login">로그인</a></li>
 			<li style="display:inline">&nbsp;|&nbsp;</li>

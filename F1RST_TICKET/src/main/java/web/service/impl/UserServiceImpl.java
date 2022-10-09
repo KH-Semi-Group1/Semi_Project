@@ -130,25 +130,6 @@ public class UserServiceImpl implements UserService {
 		return userDao.selectUserByUseridUsernameEmail(JDBCTemplate.getConnection(), user);
 	}
 	
-	
 }
 
 // 안되는거 주석처리 중
-// 아이디 중복체크
-//	@Override
-//	public User getUserId(HttpServletRequest req) {
-//		User user = new User();
-//		
-//		user.setUserid(req.getParameter("userid"));
-//		
-//		return user;
-//	}
-//	@Override
-//	public int idCheck(User user) {
-//		// 회원 정보 찾기 성공
-//		if(userDao.selectCntUserByUserid(JDBCTemplate.getConnection(), user) > 0 ) {
-//			return 1;
-//		}
-//		// 회원 정보 찾기 실패
-//		return 0;
-//	}

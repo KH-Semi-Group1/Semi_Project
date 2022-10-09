@@ -75,14 +75,7 @@ public interface UserDao {
 	 */
 	public User selectUserByUseridUsernameEmail(Connection conn, User user);
 
-	
-	// 아이디 중복 체크
-//	int IdCheckController(User u);
-
-
 }
 
 // 안되는거 주석 처리
-// 아이디 중복 체크
-//	public int selectCntUserByUserid(Connection conn, User user);
 

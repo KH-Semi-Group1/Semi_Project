@@ -87,12 +87,10 @@ public interface UserService {
 	 */
 	public User infoUserpw(User user);
 
-
-
+	
 }
 
 // 안되는거 주석처리 해놓음
-// 아이디 중복 체크
-//	public User getUserId(HttpServletRequest req);
+
 //
-//	public int idCheck(User user);
+//

@@ -269,63 +269,7 @@ public class UserDaoImpl implements UserDao {
 		
 		return res;
 	}
-	// 아이디 중복 체크
-//	@Override
-//	public int IdCheckController(User u) {
-//		Connection conn = JDBCTemplate.getConnection();
-//		String sql = "";
-//		sql += "SELECT * FROM USERTABLE WHERE userid = ?";
-//	
-//		try {
-//			ps = conn.prepareStatement(sql);
-//			ps.setString(1, u.getUserid());
-//			rs = ps.executeQuery();
-//			if(rs.next()) {
-//				return 0;
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(rs);
-//			JDBCTemplate.close(ps);
-//		}
-//		return 1;
-//
-//
-//	}
-		
-
 }
 
 
 // 안되는거 주석처리
-// 아이디 중복 체크
-//	@Override
-//	public int selectCntUserByUserid(Connection conn, User user) {
-//
-//		String sql = "";
-//		sql += "SELECT * FROM user_table WHERE userid =?";
-//		
-//		int chk = 0;
-//		
-//		try {
-//			ps=conn.prepareStatement(sql);
-//			ps.setString(1, user.getUserid());
-//			
-//			rs = ps.executeQuery();
-//			
-//			if(rs.next() || user.getUserid().equals("")) {
-//				chk = 0;
-//			} else {
-//				chk = 1;
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(rs);
-//			JDBCTemplate.close(ps);
-//		}
-//		
-//		
-//		return chk;
-//	}
