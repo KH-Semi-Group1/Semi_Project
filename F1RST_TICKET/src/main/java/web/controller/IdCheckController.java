@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.dao.Impl.UserDaoImpl;
 import web.dao.face.UserDao;
-import web.dao.impl.UserDaoImpl;
 import web.dto.User;
+import web.service.Impl.UserServiceImpl;
 import web.service.face.UserService;
-import web.service.impl.UserServiceImpl;
 
 @WebServlet("/idCheck")
 public class IdCheckController extends HttpServlet {
