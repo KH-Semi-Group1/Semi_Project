@@ -269,6 +269,29 @@ public class UserDaoImpl implements UserDao {
 		
 		return res;
 	}
+	
+	// 아이디 중복
+	@Override
+	public int IdCheckController(User u) {
+		Connection conn = JDBCTemplate.getConnection();
+		String sql = "";
+		sql += "SELECT * FROM USERTABLE WHERE userid = ?";
+	
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getUserid());
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				return 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return 1;
+	}
 }
 
 

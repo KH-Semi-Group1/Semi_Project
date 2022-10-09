@@ -3,42 +3,84 @@
 
 <%@ include file = "../layout/header_login.jsp" %>
 <title>F1RST TICKET</title>
+<script type="text/javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+
+
+<style>
+#joinform{
+    padding-top: 0;
+    position: relative;
+    bottom: 115px;
+    left: 60px;
+}
+#jcbutton {
+	position: relative;
+	right: 45px;	
+}
+</style>
 <script type="text/javascript">
 function joinCheck() {
 	if (document.joinform.userid.value.length < 4) {
-		alert("아이디는 4글자 이상이어야 합니다.");
-		document.joinform.name.focus();
+		alert("아이디는 4자 이상, 16자 이하로 입력해주세요.");
+		document.joinform.userid.focus();
 		return false;
 	}
-	if (document.joinform.reid.value == "") {
-		alert("아이디 중복체크를 하지 않았습니다.");
-		return false;
-	}
-
 	if (document.joinform.userpw.value != document.joinform.userpw2.value) {
 		alert("패스워드가 일치하지 않습니다.");
 		document.joinform.userpw2.focus();
 		return false;
 	}
-
-	return true;
-}
-
-function idCheck() {
-	if (document.joinform.userid.value == "") {
-		alert("사용자 아이디를 입력해주세요.");
+	
+	if (document.joinform.userid.value.length < 4) {
+		alert("아이디는 4자 이상, 16자 이하로 입력해주세요.");
 		document.joinform.userid.focus();
 		return false;
-	
 	}
+	if (document.joinform.idCheckBtn == false) {
+		return false;	
+	}
+	return true;
+}
+/* if()
+$("#btnJoin").prop("disabled",true); */
+function check(){
+	var userid = $("#userid").val();
+	
+	$.ajax({
+		type: 'POST',
+		url: '${pageContext.request.contextPath}/idCheck?userid='+userid,
+		data: {userid:userid},
+		success: function(result){
+			console.log("로그: ["+result+"]")
+			if(result == 1){
+				$("#result").text("사용이 가능한 아이디 입니다.");
+				$("#result").css("color","blue");
+				$("#btnJoin").prop("disabled",false);
+			}
+			else{
+				$("#result").text("사용중인 아이디 입니다.");
+				$("#result").css("color","red");
+				$("#btnJoin").prop("disabled",true);
+			}
+	},
+	error: function(a,b,c){ // 요청 보낸 곳(서블릿)에서 에러가 발생할 시 실행
+			console.log("상태코드: "+a);
+			console.log("메세지: "+b);
+			console.log("에러설명: "+c);
+		}
+		
+	})
 }
 </script>
 
 <hr>
 <div class = "container">
 
-<form action="/join" method="post" class="form-horizontal" name="joinform" onSubmit="return check()">
+<form action="/join" method="post" class="form-horizontal" id="joinform" name="joinform" onsubmit="return check2()" >
 
 	<div class="form-group">
 		<label for="username" class="col-xs-2 control-label">이름</label>
@@ -50,14 +92,14 @@ function idCheck() {
 	<div class="form-group">
 		<label for="userid" class="col-xs-2 control-label" required>아이디</label>
 		<div class="col-xs-7">
-			<input type="text" id="userid" name="userid" class="form-control" placeholder="아이디를 입력하세요" required>
+			<input type="text" id="userid" name="userid" class="form-control" placeholder="아이디를 입력하세요" maxlength="16" required>
 		</div>
-		
-		<input type="hidden" name="reid" value="0">
-		
+
 		<div>
-			<button type="button" class="btn btn-sm" style="background-color: #6AAFE6; color:#fff;" onclick="return idCheck()">중복확인</button>
+			<button type="button" class="btn btn-sm" value="중복확인" name="idCheckBtn" id="idCheckBtn" style="background-color: #6AAFE6; color:#fff;" onclick="check()">중복체크</button>
 		</div>
+		<div id="result"></div>
+		<input type="hidden" name="idc" value="">
 	</div>
 
 	<div class="form-group">
@@ -74,39 +116,6 @@ function idCheck() {
 		</div>
 	</div>
 	
-<!-- 	<div class="form-group">
-		<label for="yy" class="col-xs-2 control-label">생년월일</label>
-	 	<div class="bir_yy">
-			<span class="col-xs-2">
-				<input type="text" class="form-control" id="yy" name="yy" placeholder="년(4자)" maxlength="4">
-			</span>
-		</div>
-		<div class="bir_mm">
-			<div class="col-xs-2">
-				<select class="form-control" id="mm" name="mm">
-		    	<option value="">월</option>
-		   	 	<option value="01">1</option>
-		   	 	<option value="02">2</option>
-		   	 	<option value="03">3</option>
-		   	 	<option value="04">4</option>
-		   	 	<option value="05">5</option>
-		   	 	<option value="06">6</option>
-		   	 	<option value="07">7</option>
-		   	 	<option value="08">8</option>
-		   	 	<option value="09">9</option>
-		   	 	<option value="10">10</option>
-		   	 	<option value="11">11</option>
-		   	 	<option value="12">12</option>
-            </select>
-			</div>
-		</div>
-		<div class="bir_dd">
-			<span class="col-xs-3">
-				<input type="text" class="form-control" id="dd" name="dd" placeholder="일" maxlength="2">
-			</span>
-		</div>
-	</div> -->
-	
 	<div class="form-group">
 		<label for="userbirth" class="col-xs-2 control-label">생년월일</label>
 		<div class="col-xs-7">
@@ -117,7 +126,7 @@ function idCheck() {
 	<div class="form-group">
     	<label for="uphone" class="col-xs-2 control-label">휴대 전화</label>
     	<div class="col-xs-7">
-    		<input type="tel" class="form-control" id="uphone" name="uphone" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+    		<input type="tel" class="form-control" id="uphone" name="uphone" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11" required>
     	</div>
     </div>
 	
@@ -145,9 +154,9 @@ function idCheck() {
 		</div>
 	</div>
 
-	<div class="text-center">
-		<input type="submit" value="회원가입" class="btn" style="background-color: #6AAFE6; color:#fff;" id="btnJoin" onclick="return joinCheck()"></button>
+	<div class="text-center" id=jcbutton>
+		<input type="submit" value="회원가입" class="btn" style="background-color: #6AAFE6; color:#fff;" id="btnJoin" onclick="return joinCheck()">
 		<button type="reset" class="btn" style="background-color: #D4DFE6;" id="btnCancel">취소</button>
 	</div>
 </form>
-
+</div>
