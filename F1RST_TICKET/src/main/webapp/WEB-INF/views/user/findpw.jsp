@@ -5,11 +5,11 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	// 이름 포커스
+	// 아이디 포커스
 	$("input").eq(0).focus()
 	
 	// 이메일 입력창에 엔터키 입력시 submit
-	$("input").eq(1).keydown(function(e) {
+	$("input").eq(2).keydown(function(e) {
 		if( e.keyCode == 13 ) { //엔터키
 			$("#btnFindPw").click();
 		}
