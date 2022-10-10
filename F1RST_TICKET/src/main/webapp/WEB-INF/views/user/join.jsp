@@ -1,20 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file = "../layout/header_login.jsp" %>
-<title>F1RST TICKET</title>
-<script type="text/javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
+<!-- header include -->
+<%@ include file = "../layout/header.jsp" %>
 
 <style>
 #joinform{
     padding-top: 0;
     position: relative;
-    bottom: 115px;
     left: 60px;
 }
 
@@ -84,7 +77,6 @@ function check(){
 
 </script>
 
-<hr>
 <div class = "container">
 
 <form action="/join" method="post" class="form-horizontal" id="joinform" name="joinform" onsubmit="return check2()" >
@@ -100,12 +92,12 @@ function check(){
 		<label for="userid" class="col-xs-2 control-label" required>아이디</label>
 		<div class="col-xs-7">
 			<input type="text" id="userid" name="userid" class="form-control" placeholder="아이디를 입력하세요" maxlength="16" required>
+			<div id="result"></div>
 		</div>
 
 		<div>
-			<button type="button" class="btn btn-sm" value="중복확인" name="idCheckBtn" id="idCheckBtn" style="background-color: #6AAFE6; color:#fff;" onclick="check()">중복체크</button>
+			<button type="button" class="btn btn-sm" value="중복확인" name="idCheckBtn" id="idCheckBtn" style="background-color: #6AAFE6; color:#fff; margin-right: 220px;" onclick="check()">중복체크</button>
 		</div>
-		<div id="result"></div>
 		<input type="hidden" name="idc" value="">
 	</div>
 
@@ -167,3 +159,6 @@ function check(){
 	</div>
 </form>
 </div>
+
+<!-- footer include -->
+<%@ include file = "../layout/footer.jsp" %> 

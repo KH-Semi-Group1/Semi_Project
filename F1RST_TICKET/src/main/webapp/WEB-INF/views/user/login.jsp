@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file = "../layout/header_login.jsp" %>
+<%@ include file = "../layout/header.jsp" %>
 <script type="text/javascript">
 $(document).ready(function(){
 	// 아이디 포커스
@@ -88,6 +88,4 @@ $(document).ready(function(){
 
 </form>
 
-
-<!-- 해결될때까지 잠시 주석처리 -->
-<%-- <%@ include file = "../layout/footer.jsp" %> --%>
+<%@ include file = "../layout/footer.jsp" %>

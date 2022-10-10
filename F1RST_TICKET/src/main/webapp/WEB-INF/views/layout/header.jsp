@@ -4,64 +4,165 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>F1RST TICKET</title>
+<title>Test Header</title>
 
 <script type="text/javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
+<style type="text/css">
+body {
+	height:3000px; color : #fff;text-align:center; margin:0; padding:0;
+}
 
-</script>
+nav {
+	position : fixed; width:100%; height:40px; background : #6AAFE6; 
+	color : white; text-align : center;top:0;left:0;}
+	
+.all {
+display:flex; flex-flow : row wrap; min-width:280px;margin-top:50px;
+}
 
-<!-- layout.css -->
-<link rel="stylesheet" href="/resources/css/layout.css">
+header {
+	flex:1 1 100%; height:85px; background:white;
+}
+	
+main {
+	flex: 1 1 100%;height:70%;
+}
+
+footer{
+	position : fixed; width:100%;
+}
+
+.header1{
+	display: inline-block;
+}
+
+.header2{
+	display: inline-block;
+	padding-top: 10px;
+	font-size: 20px;
+}
+
+.header3{
+	float: right;
+	padding-top: 10px;
+	font-size: 20px; */
+}
+
+.topmenu {
+	float:right;
+	padding: .4% 3% 0 0;
+	z-index: 10;
+}
+
+.topmenu>ul>li{
+
+	margin-left: 18px;
+	font-size: 14px;
+}
+
+.topmenu a {
+	text-decoration: none;
+	color:#fff;
+}
+
+.topmenu a:hover{
+	text-decoration: none;
+	color: black;
+} 
+
+header li a {
+	color : black;
+	
+}
+
+header li a:hover{
+	border-bottom: 2px solid black;
+	color : black !important;
+	background-color: #fff !important;
+}
+
+footer a:hover {
+	text-decoration: none;
+}
+
+.topcon {
+	padding-left: 20px;
+}
+
+
+html, body{
+	height:100%;
+}
+
+.footer-wrap {
+	background:#6AAFE6;
+	width:100%;
+	height:50px;
+	z-index: 2;
+}
+
+.empty {
+	background:white;
+	height:200px;
+	width:100%;
+	z-index: 1;
+	position:relative;
+	transform: translatY(-100%);
+	
+}
+</style>
 
 </head>
 <body>
 
-<header id="header">
+<nav class="topmenu">
 
-<!-- <nav class="navbar navbar-default"> -->
-<nav class="navbar navbar-expend-md" >
-  <div class="container-fluid">
-<!--     <div class="navbar-header">
-      <a class="navbar-brand" href="/">      
-      	<img alt="logo" src ="/resources/img/logo.jpg" style="height: 50px;">
-      </a>
-    </div> -->
-    
+<!--  비 로그인  --> 
+<% if(session.getAttribute("login") == null )  { %>
+  <div class="topmenu">
+	<ul style="list-style-type: none">
+		<li type="button" style="display:inline"><a href="/user/login">로그인</a></li> 
+		<li type="button" style="display:inline"><a href="/join">회원가입</a></li>  
+		<li type="button" style="display:inline"><a href="/">고객센터</a></li>
+	</ul>    
+  </div>
+<% }  %>
 
-	<!-- 각페이지 링크 지정. -->
-    <div class="collapse navbar-collapse" id="midmenu">
-    <a class="navbar-brand" href="/">      
-      	<img alt="logo" src ="/resources/img/logo.jpg" style="height: 60px; position: relative; bottom: 15px;">
-     </a>
-      <ul class="nav navbar-nav">
-        <li><a href="/">뮤지컬</a></li>
-        <li><a href="/">공지사항</a></li>
-        <li><a href="/">관람후기</a></li>
-        <li><a href="/">이용안내</a></li>
-        <li><a href="/">My티켓</a></li>
-      </ul>
-      
-      <!-- 검색창 -->
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="">
-        </div>
-        
-        <!-- 검색 버튼 -->
-        <button type="submit" class="btn">
-         	<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 
-        </button>
-      </form>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+<!--  로그인  -->
+<% if(session.getAttribute("login") != null  && (boolean)session.getAttribute("login"))  { %>
+  <div class="topmenu">
+	<ul style="list-style-type: none">
+		<li style="display:inline; color: #fff;"><%=session.getAttribute("loginid") %>님, 환영합니다.</li>
+		<li style="display:inline"><a href="/user/logout">로그아웃</a></li>
+		<li style="display:inline"><a href="/">마이페이지</a></li>
+		<li style="display:inline"><a href="/">고객센터</a></li>
+	</ul>    
+  </div>
+<% }  %>
 </nav>
 
-</header>
+<div class="all">  
+	<div class="collapse navbar-collapse header1 topcon" id="midmenu">
+		<a href="#"><img src="/resources/img/logo.jpg" style="height:65px;"></a>
+	</div>
+	<div>
+	<header>
+		<div class="header2">
+	      <ul class="nav navbar-nav nav-pills topcon" data-bs-target="#navbarToggleExternalContent">
+	        <li><a href="/">뮤지컬</a></li>
+	        <li><a href="/">공지사항</a></li>
+	        <li><a href="/">관람후기</a></li>
+	        <li><a href="/">이용안내</a></li>
+	        <li><a href="/">My티켓</a></li>
+	      </ul>
+		</div>
+	</header>
+	</div>
+</div>
 
-<!-- footer에 사용할 부트스트랩 -->
-<div class="container">
+<!-- ----------------------------Header end---------------------------- -->
+<main>
