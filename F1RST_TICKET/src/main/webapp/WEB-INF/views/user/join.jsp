@@ -29,7 +29,7 @@
 <hr>
 <div class = "container">
 
-<form action="/join" method="post" class="form-horizontal">
+<form action="/user/join" method="post" class="form-horizontal">
 	<div class="form-group">
 		<label for="userid" class="col-xs-2 control-label">이름</label>
 		<div class="col-xs-7">
@@ -131,5 +131,7 @@
 		<button type="button" class="btn btn-info" id="btnJoin">회원가입</button>
 		<button type="button" class="btn btn-warning" id="btnCancel">취소</button>
 	</div>
+	
 </form>
+</div>
 

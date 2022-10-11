@@ -1,49 +1,58 @@
 @charset "UTF-8";
 
+/* body { */
+/* 	height:3000px; color : #fff;text-align:center; margin:0; padding:0; */
+/* } */
 
-header{
-	margin: 0 auto;
-	min-width : 1000px;
-/* 	padding: 0px 50px 0px 50px; */
+nav {
+	position : fixed; width:100%; height:40px; background : #6AAFE6; 
+	color : white; text-align : center;top:0;left:0;}
 	
+.all {
+display:flex; flex-flow : row wrap; min-width:280px;margin-top:50px;
 }
 
-label:hover {
+header {
+	flex:1 1 100%; height:85px; background:white;
+}
 	
-	text-decoration: none;
-	
+main {
+	flex: 1 1 100%;height:70%;
 }
 
-nav li a {
-	color : black;
+footer{
+	position : fixed; width:100%;
 }
 
-nav li a:hover{
-	border-bottom: 2px solid black;
-	color : black !important;
-	background-color: #fff !important;
+.header1{
+	display: inline-block;
 }
 
-/* .container{
-	
-	padding-top: 50px;
-	padding-bottom: 50px;
-	
-} */
-
-.topmenu{
-	background-color : #6AAFE6;
-	text-align: right;
-	height : 30px;
-	
+.header2{
+	display: inline-block;
+	padding-top: 10px;
+	font-size: 20px;
 }
 
-.topmenu ul li{
-	padding : 0px 10px 0px 10px;
-	vertical-align: middle;
+.header3{
+	float: right;
+	padding-top: 10px;
+	font-size: 20px; */
 }
 
-.topmenu a{
+.topmenu {
+	float:right;
+	padding: .4% 3% 0 0;
+	z-index: 10;
+}
+
+.topmenu>ul>li{
+
+	margin-left: 18px;
+	font-size: 14px;
+}
+
+.topmenu a {
 	text-decoration: none;
 	color:#fff;
 }
@@ -53,21 +62,59 @@ nav li a:hover{
 	color: black;
 } 
 
-/* header_login.jsp CSS */
-
-#loginJoin > ul{
+header li a {
+	color : black;
 	
-	text-decoration: none !important; 
-	color: black !important;
-	
-} 
+}
 
-#lostId ul li {
-	font-size: 28px;
-	text-decoration: none ;
-	color : black; 
+header li a:hover{
+	border-bottom: 2px solid black;
+	color : black !important;
+	background-color: #fff !important;
+}
+
+footer a:hover {
+	text-decoration: none;
+}
+
+.topcon {
+	padding-left: 20px;
 }
 
 
-body { padding-bottom: 70px; }
+html, body{
+	height:100%;
+}
+
+.footer-wrap {
+	background:#6AAFE6;
+	width:100%;
+	height:50px;
+	z-index: 2;
+}
+
+.empty {
+	background:white;
+	height:200px;
+	width:100%;
+	z-index: 1;
+	position:relative;
+	transform: translatY(-100%);
+	
+}
+
+#botmenuid ul li a{
+
+	text-decoration: none;
+	color : #fff;
+
+}
+
+#botmenuid ul li a:hover{
+
+	text-decoration: none;
+	color : black;
+	background-color: #6AAFE6 !important;
+	
+}
 
