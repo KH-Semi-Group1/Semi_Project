@@ -38,9 +38,30 @@ img:hover {
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#btnWrite").click(function() {
-		location.href = "./write"
+	
+	$('.caption').each(function() {
+		
+		var content = $(this).children('.content');
+		var content_txt = content.text();
+		var content_txt_short = content_txt.substring(0,10) + "...";
+		var btn_more = $('<small><a href="javascript:void(0)" class="more">더보기</a></small>');
+		
+		
+		$(this).append(btn_more);
+		
+		if(content_txt.length >= 10){
+			content.html(content_txt_short)
+		}else{
+			btn_more.hide()
+		}
+		
+		
+		
+		
+
 	})
+	
+	
 })
 </script>
 
@@ -61,7 +82,7 @@ $(document).ready(function() {
 					<%	} %>
 					<%=reviewList.get(i).getReviewscope() %>점
 				</p>
-				<p><%=reviewList.get(i).getReviewcontent() %></p>
+				<p class="content"><%=reviewList.get(i).getReviewcontent() %></p>
 			</div>
 		</div>
 	</a>

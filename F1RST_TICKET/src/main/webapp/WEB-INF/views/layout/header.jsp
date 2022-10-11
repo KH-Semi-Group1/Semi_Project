@@ -158,7 +158,7 @@ html, body{
 
 <div class="all">  
 	<div class="collapse navbar-collapse header1 topcon" id="midmenu">
-		<a href="#"><img src="/resources/img/logo.jpg" style="height:65px;"></a>
+		<a href="/"><img src="/resources/img/logo.jpg" style="height:65px;"></a>
 	</div>
 	<div>
 	<header>
