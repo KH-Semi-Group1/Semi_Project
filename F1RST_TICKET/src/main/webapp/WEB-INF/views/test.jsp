@@ -15,6 +15,8 @@
  
 <!-- Slick 불러오기 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 <link rel="stylesheet" href="/resources/css/layout.css">
@@ -38,7 +40,7 @@ body {
 }
 
 .slider-wrap {
-    width: 1200px;
+    width: 1350px;
     position: absolute;
     height: 430px;
     top: 60px;
@@ -52,34 +54,16 @@ body {
     margin-left: -78px;
 }
 
-.slide-txt {
-	position: absolute;
-    text-align: center;
-    bottom: 20px;
-    width: 100%;
-    transition: 0.3s all;
+.slick-next:before, .slick-prev:before {
+    font-family: slick;
+    font-size: 25px;
+    line-height: 1;
+    opacity: .75;
+    color: #6AAFE6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.slide-txt p {
-	color: #fff;
-    line-height: 34px;
-    padding: 0 20px;
-    font-family: 'Noto Sans KR','NanumBarunGothic','맑은 고딕','Malgun Gothic',sans-serif;
-    font-weight: 300;
-}
-
-.slide-txt-title {
-	font-size: 30px;
-    letter-spacing: -0.03em;
-}
-
-
-.slide-txt-sub {
-	font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 
 .sec1 {
        border: 1px;
@@ -100,14 +84,18 @@ section {
     font-size: inherit;
     font-style: normal;
     vertical-align: baseline;
-    height:600px;
+    height:700px;
 }
 
 .main-sec2 {
     background: #f6f6f6;
-    padding: 15px 0;
+    padding: 85px 0;
 }
 
+.more {
+	float: right;
+	margin-top: 35px;
+ 	}
 
 /* what's hot */
 
@@ -117,33 +105,44 @@ section {
     border: 1px solid #ddd;
     background: #fff;
     position: relative;
-    margin-left: 100px;
+    margin-left: 110px;
     
 	display: grid; 
 	grid-template-columns: 200px 200px 200px; 
-	grid-template-rows: 300px; 
+	grid-template-rows:   80px 280px 70px 70px; 
 	gap: 0px 3em; 
 	grid-template-areas: 
     ". . ."; 
     justify-content: center; 
  	align-content: start; 
  	width: 800px; 
- 	height: 400px; 
+ 	height: 500px; 
 }
 
 .hot-tit {
-	text-align: left;
-	width: 600px;
-}
-
-.hot-tit span {
-	display: inline-block;
-    padding-left: 425px;
-    margin-top: 60px;
-    font-size: 26px;
+	background: fff;
+	font-size: 30px;
+	text-align: center;
     color: #333;
     font-family: 'Noto Sans KR','NanumBarunGothic','맑은 고딕','Malgun Gothic',sans-serif;
     font-weight: 700;
+    justify-content: center;
+    padding-left: -10px;
+    margin-top: 40px;
+}
+
+.hot-tit-sub {
+	font-size: 15px;
+	background: fff;
+	color: #333;
+	text-align: center;
+	font-weight: bold;
+}
+
+.hot-tit-sub2 {
+	font-size: 12px;
+    color: #999;
+    text-align: center;
 }
 
 /* what's new */
@@ -158,30 +157,43 @@ section {
     
 	display: grid; 
 	grid-template-columns: 200px 200px 200px; 
-	grid-template-rows: 300px; 
+	grid-template-rows:   80px 300px 70px 70px; 
 	gap: 0px 3em; 
 	grid-template-areas: 
     ". . ."; 
     justify-content: center; 
  	align-content: start; 
  	width: 800px; 
- 	height: 400px; 
+ 	height: 550px; 
 
 }
 
 .new-tit {
-	text-align: right;
-}
-
-.new-tit span {
-    display: inline-block;
-    padding-right: 440px;
-    margin-top: -100px;
-    font-size: 26px;
+	background: fff;
+	font-size: 30px;
+	text-align: center;
     color: #333;
     font-family: 'Noto Sans KR','NanumBarunGothic','맑은 고딕','Malgun Gothic',sans-serif;
     font-weight: 700;
+    justify-content: center;
+    padding-left: -10px;
+    margin-top: 40px;
 }
+
+.new-tit-sub {
+	font-size: 15px;
+	background: fff;
+	color: #333;
+	text-align: center;
+	font-weight: bold;
+}
+
+.new-tit-sub2 {
+	font-size: 12px;
+    color: #999;
+    text-align: center;
+}
+
 
 .main-sec3 {
 	background: #fff;
@@ -195,12 +207,16 @@ section {
     width: 800px;
     height: 400px;
     border: 1px solid #ddd;
-    background: #fff;
+    background: #f6f6f6;
     position: relative;
-    margin-left: 100px;
-    margin-top: 80px;
+    margin-left: 110px;
+    margin-top: 120px;
 }
 
+.more-rank {
+	margin-top: -30px;
+	margin-left: 290px;
+}
 .rank-tit {
 	font-size: 26px;
     width: 370px;
@@ -244,17 +260,55 @@ ul.rank-txt > li > a {
     color: #000;
 }
 
-/* MD's Best */
 
-.best {
+
+/* MD's Pick */
+
+.pickmain {
 	float: right;
-    width: 800px;
-    height: 400px;
     border: 1px solid #ddd;
-    background: #fff;
+    background: #f6f6f6;
     position: relative;
     margin-right: 100px;
-    margin-top: 80px;
+    margin-top: 65px;
+    
+	display: grid; 
+	grid-template-columns: 200px 200px 200px; 
+	grid-template-rows:   80px 300px 60px 60px; 
+	gap: 0px 3em; 
+	grid-template-areas: 
+    ". . ."; 
+    justify-content: center; 
+ 	align-content: start; 
+ 	width: 800px; 
+ 	height: 500px; 
+}
+
+.pick-tit {
+	background: fff;
+	font-size: 30px;
+	text-align: center;
+    color: #333;
+    font-family: 'Noto Sans KR','NanumBarunGothic','맑은 고딕','Malgun Gothic',sans-serif;
+    font-weight: 700;
+    justify-content: center;
+    padding-left: -10px;
+    margin-top: 40px;
+}
+
+.pick-tit-sub {
+	font-size: 15px;
+	background: fff;
+	color: #333;
+	text-align: center;
+	font-weight: bold;
+	margin-top: -20px;
+}
+
+.pick-tit-sub2 {
+	font-size: 12px;
+    color: #999;
+    text-align: center;
 }
 
 
@@ -264,13 +318,13 @@ ul.rank-txt > li > a {
    $(function(){
         $('.center').slick({
           centerMode: true,
-          centerPadding: '60px',
+          centerPadding: '100px',
           slidesToShow: 3,
           responsive: [
             {
               breakpoint: 768,
               settings: {
-                arrows: false,
+                arrows: true,
                 centerMode: true,
                 centerPadding: '40px',
                 slidesToShow: 3
@@ -279,7 +333,7 @@ ul.rank-txt > li > a {
             {
               breakpoint: 480,
               settings: {
-                arrows: false,
+                arrows: true,
                 centerMode: true,
                 centerPadding: '40px',
                 slidesToShow: 1
@@ -345,48 +399,55 @@ ul.rank-txt > li > a {
 
 <div class="slider-hidden">
 <div class="slider-wrap">
-<div class="slider">
-	
-	<div class="center slick_slider">
-		<div class="slide"><a href='#'><img src="./resources/img/poster/jes.jpg" class="sec1"></a><div class="slide-txt"><p class="slide-txt-title">뮤지컬 (지저스)</p><p class="slide-txt-sub">asdasd</p></div></div>
-		<div class="slide"><a href='#'><img src="./resources/img/poster/ale.jpg" class="sec1"></a></div>
-		<div class="slide"><a href='#'><img src="./resources/img/poster/bru.jpg" class="sec1"></a></div>
-		<div class="slide"><a href='#'><img src="./resources/img/poster/sam.jpg" class="sec1"></a></div>
-		<div class="slide"><a href='#'><img src="./resources/img/poster/seo.jpg" class="sec1"></a></div>
 
+	<div class="slider">
+	
+		<div class="center slick_slider">
+			<div class="slide"><a href='#'><img src="./resources/img/poster/jes.jpg" class="sec1"></a></div>
+			<div class="slide"><a href='#'><img src="./resources/img/poster/hap.jpg" class="sec1"></a></div>
+			<div class="slide"><a href='#'><img src="./resources/img/poster/ale.jpg" class="sec1"></a></div>
+			<div class="slide"><a href='#'><img src="./resources/img/poster/bru.jpg" class="sec1"></a></div>
+			<div class="slide"><a href='#'><img src="./resources/img/poster/hook.jpg" class="sec1"></a></div>
+			<div class="slide"><a href='#'><img src="./resources/img/poster/seo.jpg" class="sec1"></a></div>
+			<div class="slide"><a href='#'><img src="./resources/img/poster/pri.jpg" class="sec1"></a></div>
+			<div class="slide"><a href='#'><img src="./resources/img/poster/per.jpg" class="sec1"></a></div>
+		</div>
 
 	</div>
 	
-</div>
 </div>
 </div>
 
 <section class="main-sec2">
 
-		<div class="hot-tit">
-			<span>What's Hot</span>
-<!-- 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-<!-- 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-<!-- 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-<!-- 			<button type="button" class="btn btn-default">전체보기</button> -->
-		</div>
 	<div class="hotmain">
-		<img src="./resources/img/poster/jes.jpg" style="width:180px; height:260px;">
-		<img src="./resources/img/poster/ale.jpg" style="width:180px; height:260px;">
-		<img src="./resources/img/poster/bru.jpg" style="width:180px; height:260px;">
-		
+		<div class="hotitem"></div>
+		<div class="hot-tit">What's Hot </div>
+		<div class="hotitem"><a href='#'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="hotitem"><a href='#'><img src="./resources/img/poster/sam.jpg" title="뮤지컬 <삼총사>" style="width:200px; height:260px;"></a></div>
+		<div class="hotitem"><a href='#'><img src="./resources/img/poster/pri.jpg" title="뮤지컬 <프리즌>" style="width:200px; height:260px;"></a></div>
+		<div class="hotitem"><a href='#'><img src="./resources/img/poster/hap.jpg" title="뮤지컬 <우연히 행복해지다>" style="width:200px; height:260px;"></a></div>
+		<div class="hot-tit-sub">뮤지컬 <삼총사></div>
+		<div class="hot-tit-sub">뮤지컬 <프리즌></div>
+		<div class="hot-tit-sub">뮤지컬 <우연히 행복해지다></div>
+		<div class="hot-tit-sub2">학생 할인 30%</div>
+		<div class="hot-tit-sub2">평일 22,000원</div>
+		<div class="hot-tit-sub2">평일 할인 40%</div>
 	</div>
 
-		<div class="new-tit">
-			<span>What's New</span>
-<!-- 			<button type="button" class="btn btn-default">Default</button> -->
-<!-- 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-<!-- 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-		</div>
-	<div class="newmain">
-		<img src="./resources/img/poster/jes.jpg" style="width:180px; height:260px;">
-		<img src="./resources/img/poster/ale.jpg" style="width:180px; height:260px;">
-		<img src="./resources/img/poster/bru.jpg" style="width:180px; height:260px;">
+	<div class="hotmain">
+		<div class="newitem"></div>
+		<div class="new-tit">What's New </div>
+		<div class="newitem"><a href='#'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="newitem"><a href='#'><img src="./resources/img/poster/hook.jpg" title="뮤지컬 <더 훅 The Hook>" style="width:200px; height:260px;"></a></div>
+		<div class="newitem"><a href='#'><img src="./resources/img/poster/per.jpg" title="뮤지컬 <사람은 무엇으로 사는가>" style="width:200px; height:260px;"></a></div>
+		<div class="newitem"><a href='#'><img src="./resources/img/poster/dre.jpg" title="뮤지컬 <드리머스 Dreamers>" style="width:200px; height:260px;"></a></div>
+		<div class="new-tit-sub">뮤지컬 <더 훅 The Hook></div>
+		<div class="new-tit-sub">뮤지컬 <사람은 무엇으로 사는가></div>
+		<div class="new-tit-sub">뮤지컬 <드리머스 Dreamers></div>
+		<div class="new-tit-sub2">평일 할인 30%</div>
+		<div class="new-tit-sub2">학생 할인 40%</div>
+		<div class="new-tit-sub2">평일 20,000원</div> 
 	</div>
 
 </section>
@@ -394,27 +455,59 @@ ul.rank-txt > li > a {
 <section class="main-sec3">
 
 	<div class="rank">
-		<p class="rank-tit">
-		Weekly Ranking
-		</p>
+	
+		<div class="rank-tit">
+			Weekly Ranking
+			<a href='#'><div class="more-rank"><img src="resources/img/more.png"></div></a>
+		</div>
+		
 		<ul class="rank-txt">
-		<br>
-		<li><a href='#'>1위. 뮤지컬 〈킹키부츠〉 - 부산 </li></a><br>
-		<li><a href='#'>2위. 더뮤지컬 콘서트 〈할로윈 더 뮤지컬〉</li></a><br>
-		<li><a href='#'>3위. 뮤지컬 〈서편제〉</li></a><br>
-		<li><a href='#'>4위. 뮤지컬 〈안나, 차이코프스키〉</li></a><br>
-		<li><a href='#'>5위. 뮤지컬 〈삼총사〉</li></a>
+			<li><a href='#'>1위. 뮤지컬 〈킹키부츠〉 - 부산 </li></a><br>
+			<li><a href='#'>2위. 더뮤지컬 콘서트 〈할로윈 더 뮤지컬〉</li></a><br>
+			<li><a href='#'>3위. 뮤지컬 〈서편제〉</li></a><br>
+			<li><a href='#'>4위. 뮤지컬 〈안나, 차이코프스키〉</li></a><br>
+			<li><a href='#'>5위. 뮤지컬 〈삼총사〉</li></a>
 		</ul>
 		
 	</div>
 
-<div class="best">
-</div>
+	<div class="pickmain">
+		<div class="pickitem"></div>
+		<div class="pick-tit">MD's Pick</div>
+		<div class="pickitem"><a href='#'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="pickitem"><a href='#'><img src="./resources/img/poster/ale.jpg" title="뮤지컬 <엘그리아 Alegria>" style="width:200px; height:260px;"></a></div>
+		<div class="pickitem"><a href='#'><img src="./resources/img/poster/seo.jpg" title="뮤지컬 <서편제>" style="width:200px; height:260px;"></a></div>
+		<div class="pickitem"><a href='#'><img src="./resources/img/poster/pri.jpg" title="뮤지컬 <프리즌>" style="width:200px; height:260px;"></a></div>
+		<div class="pick-tit-sub">뮤지컬 <엘그리아 Alegria></div>
+		<div class="pick-tit-sub">뮤지컬 <서편제></div>
+		<div class="pick-tit-sub">뮤지컬 <프리즌></div>
+		<div class="pick-tit-sub2">평일 20,000원</div> 
+		<div class="pick-tit-sub2">평일 할인 30%</div>
+		<div class="pick-tit-sub2">학생 할인 40%</div>
+	</div>
+	
 </section>
 
-
-
-
-<%@ include file = "./layout/footer.jsp" %>
-
+<!-- Footer start -->
+<footer class="py-5 bg-dark mt-auto" id="footer">
+	<div class="empty">
+		<div class="footer-wrap">
+<!-- 			<div class="collapse navbar-collapse" id="bottm-logo" style= "float:right; display:inline-block;"> -->
+<!-- 				<a class="navbar-brand navbar-right" href="/"> -->
+<%-- 					<img alt="logo" src="<%=request.getContextPath()%>/resources/img/logo.jpg"> --%>
+<!-- 				</a> -->
+<!-- 			</div> -->
+			<div class="collapse navbar-collapse botmenu"  id="botmenuid">
+				<ul class="nav navbar-nav">
+					<li><a href="/">회사소개</a></li>
+					<li><a href="/">개인정보 처리방침</a></li>
+					<li><a href="/">이용약관</a></li>
+					<li><a href="/">고객센터</a></li>
+					<li><a href="/">티켓판매안내</a></li>
+					<li><a href="/">광고안내</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>	
+</footer> <!-- Footer end -->
 

@@ -43,6 +43,6 @@
 		</div>
 	</div>	
 </footer> <!-- Footer end -->
-
+</div>
 </body>
 </html>
