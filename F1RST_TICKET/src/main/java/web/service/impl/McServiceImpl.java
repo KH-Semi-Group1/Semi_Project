@@ -2,6 +2,8 @@ package web.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import common.JDBCTemplate;
 import web.dao.face.McDao;
 import web.dao.impl.McDaoImpl;
@@ -36,4 +38,25 @@ public class McServiceImpl implements McService {
 
 		return adminDao.selectMd(JDBCTemplate.getConnection());
 	}
+	
+	@Override
+	public Musical getMcno(HttpServletRequest req) {
+		//전달파라미터를 저장할 객체 생성
+		Musical musical = new Musical();
+		
+		String param = req.getParameter("mcno");
+		if( param != null && !"".equals(param) ) {
+			musical.setMcno( Integer.parseInt(param) );
+		} else {
+			System.out.println("mcno값 null이거나 비어있음");
+		}
+		return musical;
+	}
+	
+	@Override
+	public Musical view(Musical mcno) {
+
+		return adminDao.selectMusicalByMusical(JDBCTemplate.getConnection(), mcno);
+	}
+
 }

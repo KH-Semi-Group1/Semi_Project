@@ -39,4 +39,13 @@ public interface McDao {
 	 */
 	List<Musical> selectMd(Connection conn);
 
+	/**
+	 * 지정된 mcno의 뮤지컬 조회하기
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param mcno - 조회할 뮤지컬의 mcno를 가진 DTO객체
+	 * @return Musical - 조회된 뮤지컬의 상세정보 DTO객체
+	 */
+	public Musical selectMusicalByMusical(Connection conn, Musical mcno);
+
 }

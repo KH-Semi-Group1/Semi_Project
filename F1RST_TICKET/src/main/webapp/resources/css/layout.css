@@ -1,61 +1,69 @@
 @charset "UTF-8";
 
+body {
+	color : black;text-align:center; margin:0; padding:0;
+}
 
-header{
-	margin: 0 auto;
-	min-width : 1000px;
-	z-index:10;
-	padding-top:30px;
-	height: 20px;
-	position: fixed;
+.wrap{
+	position: relative;
+  	min-height: 100%;
+  	
+}
+
+nav {
+	position : fixed; width:100%; height:40px; background : #6AAFE6; 
+	color : white; text-align : center;top:0;left:0;}
 	
+.all {
+	display:flex; flex-flow : row wrap; min-width:280px; margin-top:50px;
 }
 
-label:hover {
+header {
+	flex:1 1 100%; height:85px; background:white;
+}
 	
-	text-decoration: none;
-	
+main {
+	flex: 1 1 100%;
+	min-height: 100%;
+	padding: 35px 0 35px 0;
 }
 
-nav li a {
-	color : black;
+footer{
+	position : absolute; 
+	width:100%;
+	flex: 1 1 100%;
+	padding: 35px 0 0 0;
 }
 
-nav li a:hover{
-	border-bottom: 2px solid black;
-	color : black !important;
-	background-color: #fff !important;
+.header1{
+	display: inline-block;
 }
 
-.container{
-	left:0;
-	right:0;
-	z-index: -10;
-	padding-top: 10%;
+.header2{
+	display: inline-block;
+	padding-top: 10px;
+	font-size: 20px;
 }
 
- #header nav ul li {
- 	font-size: 20px;
- }
- 	
- 	
- .topmenu{
- 	height: 30px;
- 	position: fixed;
-	width: 100%;
-	background-color : #6AAFE6;
-	text-align: right;
-	height : 30px;
- }
- 
-
-
-.topmenu ul li{
-	padding : 0px 10px 0px 10px;
-	vertical-align: middle;
+.header3{
+	float: right;
+	padding-top: 10px;
+	font-size: 20px; */
 }
 
-.topmenu a{
+.topmenu {
+	float:right;
+	padding: .4% 3% 0 0;
+	z-index: 10;
+}
+
+.topmenu>ul>li{
+
+	margin-left: 18px;
+	font-size: 14px;
+}
+
+.topmenu a {
 	text-decoration: none;
 	color:#fff;
 }
@@ -65,25 +73,43 @@ nav li a:hover{
 	color: black;
 } 
 
-
-/* header_login.jsp CSS */
-
-#loginJoin > ul{
+header li a {
+	color : black;
 	
-	text-decoration: none !important; 
-	color: black !important;
-	
-} 
+}
 
-#lostId ul li {
-	font-size: 28px;
-	text-decoration: none ;
-	color : black; 
+header li a:hover{
+	border-bottom: 2px solid black;
+	color : black !important;
+	background-color: #fff !important;
+}
+
+footer a:hover {
+	text-decoration: none;
+}
+
+.topcon {
+	padding-left: 20px;
 }
 
 
-body { 
-	padding-bottom: 70px; 
+html, body{
+	height:100%;
 }
 
+.footer-wrap {
+	background:#6AAFE6;
+	width:100%;
+	
+	z-index: 2;
+}
 
+.empty {
+	background:white;
+	height:100px;
+	width:100%;
+	z-index: 1;
+	position:relative;
+	transform: translatY(-100%);
+	
+}

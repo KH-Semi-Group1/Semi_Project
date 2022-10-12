@@ -206,4 +206,45 @@ public class McDaoImpl implements McDao {
 		//결과값 반환
 		return mcMdList;
 	}
+	
+	@Override
+	public Musical selectMusicalByMusical(Connection conn, Musical mcno) {
+		String sql = "";
+		sql += "SELECT * FROM musical WHERE mcno = ?";
+		
+		Musical viewMC = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, mcno.getMcno());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				viewMC = new Musical();
+				
+				viewMC.setMcno(rs.getInt("mcno"));
+				viewMC.setMcname(rs.getString("mcname"));
+				viewMC.setMcage(rs.getString("mcage"));
+				viewMC.setMctime(rs.getString("mctime"));
+				viewMC.setMcstart(rs.getString("mcstart"));
+				viewMC.setMcend(rs.getString("mcend"));
+				viewMC.setMcact(rs.getString("mcact"));
+				viewMC.setMcloc(rs.getString("mcloc"));
+				viewMC.setMclike(rs.getInt("mclike"));
+				viewMC.setMcimg(rs.getString("mcimg"));
+				viewMC.setMcimgcas(rs.getString("mcimgcas"));
+				viewMC.setMcimginfo(rs.getString("mcimginfo"));
+				viewMC.setMcimgchk(rs.getString("mcimgchk"));
+				viewMC.setMcimgsale(rs.getString("mcimgsale"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return viewMC;
+	}
 }

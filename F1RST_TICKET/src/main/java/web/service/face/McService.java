@@ -2,6 +2,8 @@ package web.service.face;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import web.dto.Musical;
 
 public interface McService {
@@ -33,5 +35,21 @@ public interface McService {
 	 * @return List<Musical> - 뮤지컬 MD-pick 조회 결과 목록
 	 */
 	List<Musical> getMdMusical();
+
+	/**
+	 * 전달파라미터를 Musical DTO로 저장하여 반환
+	 * 
+	 * @param req - 요청 정보 객체
+	 * @return Musical - 전달파라미터 mcno를 저장한 객체
+	 */
+	public Musical getMcno(HttpServletRequest req);
+
+	/**
+	 * 전달된 mcno를 이용하여 뮤지컬을 조회한다
+	 * 
+	 * @param mcno - mcno - 조회할 mcno를 가진 DTO객체
+	 * @return Musical - 조회된 뮤지컬 정보
+	 */
+	public Musical view(Musical mcno);
 
 }

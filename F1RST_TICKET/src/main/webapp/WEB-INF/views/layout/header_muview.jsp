@@ -11,8 +11,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<!-- Datepicker -->
+<link rel="stylesheet" href="resources/css/plugin/datepicker/bootstrap-datepicker.css">
+<script src="resources/js/plugin/datepicker/bootstrap-datepicker.js"></script>
+<!--한국어  달력 쓰려면 추가 로드-->
+<script src="resources/js/plugin/datepicker/bootstrap-datepicker.ko.min.js"></script> 
 
 <link rel="stylesheet" href="/resources/css/layout.css">
+
+<!-- mcView.css -->
+<link rel="stylesheet" href="/resources/css/view_mu.css">
 
 
 </head>
