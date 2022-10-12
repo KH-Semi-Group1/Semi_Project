@@ -6,7 +6,6 @@ public class Review {
 	
 	private int reviewno;
 	private String userid;
-	private int nuserno;
 	private int mcno;
 	private String reviewtitle;
 	private String reviewcontent;
@@ -15,12 +14,11 @@ public class Review {
 	
 	public Review() {}
 
-	public Review(int reviewno, String userid, int nuserno, int mcno, String reviewtitle, String reviewcontent,
+	public Review(int reviewno, String userid, int mcno, String reviewtitle, String reviewcontent,
 			int reviewscope, Date writedate) {
 		super();
 		this.reviewno = reviewno;
 		this.userid = userid;
-		this.nuserno = nuserno;
 		this.mcno = mcno;
 		this.reviewtitle = reviewtitle;
 		this.reviewcontent = reviewcontent;
@@ -30,9 +28,9 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [reviewno=" + reviewno + ", userid=" + userid + ", nuserno=" + nuserno + ", mcno=" + mcno
-				+ ", reviewtitle=" + reviewtitle + ", reviewcontent=" + reviewcontent + ", reviewscope=" + reviewscope
-				+ ", writedate=" + writedate + "]";
+		return "Review [reviewno=" + reviewno + ", userid=" + userid + ", mcno=" + mcno + ", reviewtitle=" + reviewtitle
+				+ ", reviewcontent=" + reviewcontent + ", reviewscope=" + reviewscope + ", writedate=" + writedate
+				+ "]";
 	}
 
 	public int getReviewno() {
@@ -49,14 +47,6 @@ public class Review {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
-	}
-
-	public int getNuserno() {
-		return nuserno;
-	}
-
-	public void setNuserno(int nuserno) {
-		this.nuserno = nuserno;
 	}
 
 	public int getMcno() {
@@ -98,5 +88,5 @@ public class Review {
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
 	}
-	
+
 }

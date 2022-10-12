@@ -16,10 +16,12 @@ $(document).ready(function() {
 
 <h1 class="text-center">공지사항</h1>
 
+<div class="container">
+
 <table class="table">
 	<thead>
 		<th><%=viewNotice.getNotitype() %></th>
-		<th><%=viewNotice.getNotititle() %></th>
+		<th colspan="3"><%=viewNotice.getNotititle() %></th>
 	</thead>
 	
 	<tbody>
@@ -37,6 +39,8 @@ $(document).ready(function() {
 
 <div class="text-center">
 	<button id="btnList" class="btn btn-info">목록</button>
+</div>
+
 </div>
 
 <%@ include file = "../layout/footer.jsp" %>

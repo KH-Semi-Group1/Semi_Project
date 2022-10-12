@@ -44,7 +44,7 @@ $(document).ready(function() {
 		var content = $(this).children('.content');
 		var content_txt = content.text();
 		var content_txt_short = content_txt.substring(0,10) + "...";
-		var btn_more = $('<small><a href="javascript:void(0)" class="more">더보기</a></small>');
+		var btn_more = $('<div class="small" class="more"></div>');
 		
 		
 		$(this).append(btn_more);
@@ -54,10 +54,6 @@ $(document).ready(function() {
 		}else{
 			btn_more.hide()
 		}
-		
-		
-		
-		
 
 	})
 	

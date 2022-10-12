@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import web.dto.Comment;
 import web.dto.Review;
 import web.dto.ReviewFile;
 import web.service.face.ReviewService;

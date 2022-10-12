@@ -53,7 +53,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		sql += "SELECT * FROM (";
 		sql += "	SELECT rownum rnum, N.* FROM (";
 		sql += "		SELECT";
-		sql += "			reviewno, userid, nuserno, mcno, reviewtitle";
+		sql += "			reviewno, userid, mcno, reviewtitle";
 		sql += "			, reviewcontent, reviewscope, writedate";
 		sql += "		FROM review";
 		sql += "		ORDER BY reviewno DESC";
@@ -80,7 +80,6 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				r.setReviewno( rs.getInt("reviewno") );
 				r.setUserid( rs.getString("userid") );
-				r.setNuserno( rs.getInt("nuserno") );
 				r.setMcno( rs.getInt("mcno") );
 				r.setReviewtitle( rs.getString("reviewtitle") );
 				r.setReviewcontent( rs.getString("reviewcontent") );
@@ -108,7 +107,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		String sql = "";
 		sql += "SELECT";
-		sql += "	reviewno, userid, nuserno, mcno, reviewtitle";
+		sql += "	reviewno, userid, mcno, reviewtitle";
 		sql += "	, reviewcontent, reviewscope, writedate";
 		sql += " FROM review";
 		sql += " WHERE reviewno = ?";
@@ -126,7 +125,6 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				review.setReviewno( rs.getInt("reviewno") );
 				review.setUserid( rs.getString("userid") );
-				review.setNuserno( rs.getInt("nuserno") );
 				review.setMcno( rs.getInt("mcno") );
 				review.setReviewtitle( rs.getString("reviewtitle") );
 				review.setReviewcontent( rs.getString("reviewcontent") );
@@ -148,9 +146,128 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public ReviewFile selectFile(Connection conn, Review viewReview) {
 		
+		String sql = "";
+		sql += "SELECT"; 
+		sql += "	fileno, reviewno, originname, storedname, filesize, fileimg, writedate";
+		sql += " FROM reviewfile";
+		sql += " WHERE reviewno = ?";
+		sql += " ORDER BY fileno";
 		
+		ReviewFile reviewFile = null;
 		
-		return null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, viewReview.getReviewno());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				reviewFile = new ReviewFile();
+				
+				reviewFile.setFileno( rs.getInt("fileno") );
+				reviewFile.setReviewno( rs.getInt("reviewno") );
+				reviewFile.setOriginname( rs.getString("originname") );
+				reviewFile.setStoredname( rs.getString("storedname") );
+				reviewFile.setFilesize( rs.getInt("filesize") );
+				reviewFile.setWritedate( rs.getDate("writedate") );
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return reviewFile;		
+	}
+	
+	@Override
+	public int selectNextReviewno(Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT review_seq.nextval FROM dual";
+
+		int nextReviewno = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				nextReviewno = rs.getInt("nextval");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return nextReviewno;
+		
+	}
+	
+	@Override
+	public int insert(Connection conn, Review review) {
+		
+		String sql = "";
+		sql += "INSERT INTO review ( reviewno, userid, mcno, reviewtitle, reviewcontent, reviewscope ) ";
+		sql += " VALUES ( ?, ?, ?, ?, ?, ? )";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, review.getReviewno());
+			ps.setString(2, review.getUserid());
+			ps.setInt(3, review.getMcno());
+			ps.setString(4, review.getReviewtitle());
+			ps.setString(5, review.getReviewcontent());
+			ps.setInt(6, review.getReviewscope());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+
+	}
+	
+	@Override
+	public int insertFile(Connection conn, ReviewFile reviewFile) {
+		
+		String sql = "";
+		sql += "INSERT INTO reviewFile ( fileno, reviewno, originname, storedname, filesize )";
+		sql += " VALUES ( reviewfile_seq.nextval, ?, ?, ?, ? )";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, reviewFile.getReviewno());
+			ps.setString(2, reviewFile.getOriginname());
+			ps.setString(3, reviewFile.getStoredname());
+			ps.setInt(4, reviewFile.getFilesize());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;		
+		
 	}
 	
 }

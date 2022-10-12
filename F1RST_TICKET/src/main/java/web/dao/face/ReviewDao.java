@@ -44,4 +44,30 @@ public interface ReviewDao {
 	 */
 	public ReviewFile selectFile(Connection conn, Review viewReview);
 
+	/**
+	 * 시퀀스테이블 이용해서 다음 게시글 번호 조회하기
+	 * 
+	 * @param conn - DB연결 객체
+	 * @return int - 다음 게시글 번호
+	 */
+	public int selectNextReviewno(Connection conn);
+
+	/**
+	 * 게시글 입력
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param review - 삽입될 게시글 내용
+	 * @return int - INSERT 수행 결과
+	 */
+	public int insert(Connection conn, Review review);
+
+	/**
+	 * 첨부파일 삽입
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param reviewFile - 첨부파일 정보
+	 * @return int - INSERT 수행 결과
+	 */
+	public int insertFile(Connection conn, ReviewFile reviewFile);
+
 }
