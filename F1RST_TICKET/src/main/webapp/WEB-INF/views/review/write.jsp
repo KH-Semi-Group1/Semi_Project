@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file = "../layout/header.jsp" %>
 
+<link rel="stylesheet" href="/resources/css/reviewWrite.css">
+
 <!-- 스마트 에디터2 설치 -->
 <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js"></script>
 
@@ -32,8 +34,8 @@ function updateContents() {
 </script>
 
 <div class="page-header">
-<h1>공연 후기</h1>
-<small>관람하신 공연에 대해서 얼마나 만족하시나요?</small>
+	<h1>공연 후기</h1>
+	<small>관람하신 공연에 대해서 얼마나 만족하시나요?</small>
 </div>
 
 <div class="container-fluid row">
@@ -50,19 +52,19 @@ function updateContents() {
 
 <form action="./write" method="post" enctype="multipart/form-data">
 
-<table class="table table-bordered">
+	<table class="table table-bordered">
 
-<tr><td style="background-color: #8EC0E4; color: #fff">제목</td><td><input type="text" name="reviewtitle" style="width: 100%;"></td></tr>
-<tr><td style="background-color: #8EC0E4; color: #fff">상세리뷰</td><td><textarea id="reviewcontent" name="reviewcontent" style="width: 100%;"></textarea></td></tr>
-<tr><td style="background-color: #8EC0E4; color: #fff">사진 첨부</td><td><input type="file" name="file"></td></tr>
+		<tr><td>제목</td><td><input type="text" name="reviewtitle" style="width: 100%;"></td></tr>
+		<tr><td>상세리뷰</td><td><textarea id="reviewcontent" name="reviewcontent" style="width: 100%;"></textarea></td></tr>
+		<tr><td>사진 첨부</td><td><input type="file" name="file"></td></tr>
 
-</table>
+	</table>
 
 </form>
 
 <div class="text-center">
-	<button id="btnWrite" class="btn btn-md" style="background-color: #6AAFE6; color: #fff">작성하기</button>
-	<button id="btnCancel" class="btn btn-md" style="background-color: #D4DFE6;">취소하기</button>
+	<button id="btnWrite" class="btn btn-md">작성하기</button>
+	<button id="btnCancel" class="btn btn-md">취소하기</button>
 </div>
 
 <script type="text/javascript">

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+td:nth-child(1) {
+	background-color: #8EC0E4;
+	color: #fff;
+}
+
+#btnWrite {
+	background-color: #6AAFE6;
+	color: #fff;
+}
+
+#btnCancel {
+	background-color: #D4DFE6;
+}

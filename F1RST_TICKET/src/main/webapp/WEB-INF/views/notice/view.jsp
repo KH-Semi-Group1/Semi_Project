@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 <table class="table">
 	<thead>
-		<th><%=viewNotice.getNotitype() %></th>
+		<th><span class="label label-info"><%=viewNotice.getNotitype() %></span></th>
 		<th colspan="3"><%=viewNotice.getNotititle() %></th>
 	</thead>
 	
