@@ -177,7 +177,7 @@ function nextCalendar(){
 
 <div id="btns">
 <button id="tick"><a href="/">예매하기</a></button>
-<button id="bag"><a href="/musical/bag">장바구니</a></button>
+<button id="bag"><a href="/">장바구니</a></button>
 </div>
 
 

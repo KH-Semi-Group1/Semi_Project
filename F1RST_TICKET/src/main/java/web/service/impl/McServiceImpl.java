@@ -13,30 +13,30 @@ import web.service.face.McService;
 public class McServiceImpl implements McService {
 
 	//DAO 객체 생성
-	private McDao adminDao = new McDaoImpl();
+	private McDao mcDao = new McDaoImpl();
 	
 	@Override
 	public List<Musical> getAllMusical() {
 		
-		return adminDao.selectAll(JDBCTemplate.getConnection());
+		return mcDao.selectAll(JDBCTemplate.getConnection());
 	}
 
 	@Override
 	public List<Musical> getNewMusical() {
 		
-		return adminDao.selectNew(JDBCTemplate.getConnection());
+		return mcDao.selectNew(JDBCTemplate.getConnection());
 	}
 	
 	@Override
 	public List<Musical> getLikeMusical() {
 
-		return adminDao.selectLike(JDBCTemplate.getConnection());
+		return mcDao.selectLike(JDBCTemplate.getConnection());
 	}
 	
 	@Override
 	public List<Musical> getMdMusical() {
 
-		return adminDao.selectMd(JDBCTemplate.getConnection());
+		return mcDao.selectMd(JDBCTemplate.getConnection());
 	}
 	
 	@Override
@@ -56,7 +56,11 @@ public class McServiceImpl implements McService {
 	@Override
 	public Musical view(Musical mcno) {
 
-		return adminDao.selectMusicalByMusical(JDBCTemplate.getConnection(), mcno);
+		return mcDao.selectMusicalByMusical(JDBCTemplate.getConnection(), mcno);
 	}
 
+	@Override
+	public List<Musical> getSearchList(String keyword) {
+		return mcDao.searchList(JDBCTemplate.getConnection(), keyword);
+	}
 }

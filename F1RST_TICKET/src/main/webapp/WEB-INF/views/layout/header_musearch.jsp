@@ -14,8 +14,8 @@
 
 <link rel="stylesheet" href="/resources/css/layout.css">
 
-<!-- list.css -->
-<link rel="stylesheet" href="/resources/css/list_mu.css">
+<!-- search.css -->
+<link rel="stylesheet" href="/resources/css/search_mu.css">
 
 
 </head>
@@ -89,7 +89,10 @@
 	
   });
   
-</script>
+</script>   
+
+
+
 
 <!-- 뮤지컬 검색창 -->
       <form style="margin-right:50px;" class="navbar-form navbar-right" role="search"

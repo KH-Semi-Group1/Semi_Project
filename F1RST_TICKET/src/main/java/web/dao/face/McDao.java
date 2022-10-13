@@ -48,4 +48,15 @@ public interface McDao {
 	 */
 	public Musical selectMusicalByMusical(Connection conn, Musical mcno);
 
+	/**
+	 * keyword 검색 뮤지컬 조회하기
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param keyword - 뮤지컬 검색어
+	 * @return List<Musical> - 검색된 뮤지컬 목록
+	 */
+	List<Musical> searchList(Connection conn, String keyword);
+
+
+
 }

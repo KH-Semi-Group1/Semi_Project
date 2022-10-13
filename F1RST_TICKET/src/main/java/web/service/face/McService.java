@@ -52,4 +52,12 @@ public interface McService {
 	 */
 	public Musical view(Musical mcno);
 
+	/**
+	 * 전달된 keyword를 이용하여 뮤지컬을 검색한다
+	 * 
+	 * @param keyword - 검색어
+	 * @return List<Musical> - 검색결과 뮤지컬 목록
+	 */
+	List<Musical> getSearchList(String keyword);
+
 }
