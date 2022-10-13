@@ -13,7 +13,13 @@
 
 <style type="text/css">
 body {
-	height:3000px; color : #fff;text-align:center; margin:0; padding:0;
+	color : black;text-align:center; margin:0; padding:0;
+}
+
+.wrap{
+	position: relative;
+  	min-height: 100%;
+  	
 }
 
 nav {
@@ -21,7 +27,7 @@ nav {
 	color : white; text-align : center;top:0;left:0;}
 	
 .all {
-display:flex; flex-flow : row wrap; min-width:280px;margin-top:50px;
+	display:flex; flex-flow : row wrap; min-width:280px; margin-top:50px;
 }
 
 header {
@@ -29,11 +35,16 @@ header {
 }
 	
 main {
-	flex: 1 1 100%;height:70%;
+	flex: 1 1 100%;
+	min-height: 100%;
+	padding: 35px 0 35px 0;
 }
 
 footer{
-	position : fixed; width:100%;
+	position : absolute; 
+	width:100%;
+	flex: 1 1 100%;
+	padding: 35px 0 0 0;
 }
 
 .header1{
@@ -101,13 +112,13 @@ html, body{
 .footer-wrap {
 	background:#6AAFE6;
 	width:100%;
-	height:50px;
+	
 	z-index: 2;
 }
 
 .empty {
 	background:white;
-	height:200px;
+	height:100px;
 	width:100%;
 	z-index: 1;
 	position:relative;
@@ -118,7 +129,7 @@ html, body{
 
 </head>
 <body>
-
+<div class="wrap">
 <nav class="topmenu">
 
 <!--  비 로그인  --> 
@@ -164,5 +175,7 @@ html, body{
 	</div>
 </div>
 
+
 <!-- ----------------------------Header end---------------------------- -->
 <main>
+<div class="container">

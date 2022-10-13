@@ -6,9 +6,8 @@
 
 <style>
 #joinform{
-    padding-top: 0;
+    padding: 20px 0 20px 0;
     position: relative;
-    left: 60px;
 }
 
 #jcbutton {
@@ -16,6 +15,9 @@
 	right: 45px;	
 }
 
+label{
+	color:black;
+}
 </style>
 <script type="text/javascript">
 function joinCheck() {
@@ -77,20 +79,21 @@ function check(){
 
 </script>
 
+
 <div class = "container">
-
+<h1>회원가입</h1>
 <form action="/join" method="post" class="form-horizontal" id="joinform" name="joinform" onsubmit="return check2()" >
-
+	
 	<div class="form-group">
-		<label for="username" class="col-xs-2 control-label">이름</label>
-		<div class="col-xs-7">
+		<label for="username" class="col-xs-2 col-xs-offset-1 control-label">이름</label>
+		<div class="col-xs-6">
 			<input type="text" id="username" name="username" class="form-control" placeholder="이름을 입력하세요" required>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="userid" class="col-xs-2 control-label" required>아이디</label>
-		<div class="col-xs-7">
+		<label for="userid" class="col-xs-2 col-xs-offset-1 control-label" required>아이디</label>
+		<div class="col-xs-6">
 			<input type="text" id="userid" name="userid" class="form-control" placeholder="아이디를 입력하세요" maxlength="16" required>
 			<div id="result"></div>
 		</div>
@@ -102,36 +105,36 @@ function check(){
 	</div>
 
 	<div class="form-group">
-		<label for="userpw" class="col-xs-2 control-label">패스워드</label>
-		<div class="col-xs-7">
+		<label for="userpw" class="col-xs-2 col-xs-offset-1 control-label">패스워드</label>
+		<div class="col-xs-6">
 			<input type="password" id="userpw" name="userpw" class="form-control" placeholder="패스워드를 입력하세요" required>
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label for="userpw2" class="col-xs-2 control-label">패스워드확인</label>
-		<div class="col-xs-7">
+		<label for="userpw2" class="col-xs-2 col-xs-offset-1 control-label">패스워드확인</label>
+		<div class="col-xs-6">
 			<input type="password" id="userpw2" name="userpw2" class="form-control" placeholder="패스워드 재확인" required>
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label for="userbirth" class="col-xs-2 control-label">생년월일</label>
-		<div class="col-xs-7">
+		<label for="userbirth" class="col-xs-2 col-xs-offset-1 control-label">생년월일</label>
+		<div class="col-xs-6">
 			<input type="text" id="userbirth" class="form-control" name="userbirth" placeholder="@1995-12-25" required>
 		</div>
 	</div>
 	
 	<div class="form-group">
-    	<label for="uphone" class="col-xs-2 control-label">휴대 전화</label>
-    	<div class="col-xs-7">
+    	<label for="uphone" class="col-xs-2 col-xs-offset-1 control-label">휴대 전화</label>
+    	<div class="col-xs-6">
     		<input type="tel" class="form-control" id="uphone" name="uphone" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11" required>
     	</div>
     </div>
 	
 	<div class="form-group">
-	<label for="gender" class="col-xs-2 control-label">성별</label>
-		<div class="col-xs-7">
+	<label for="gender" class="col-xs-2 col-xs-offset-1 control-label">성별</label>
+		<div class="col-xs-6">
          	<select class="form-control" id="gender" name="gender">
 		    	<option value="M">남자</option>
 		   	 	<option value="F">여자</option>
@@ -140,15 +143,15 @@ function check(){
 	</div>
 
 	<div class="form-group">
-		<label for="address" class="col-xs-2 control-label">주소</label>
-		<div class="col-xs-7">
+		<label for="address" class="col-xs-2 col-xs-offset-1 control-label">주소</label>
+		<div class="col-xs-6">
 			<input type="text" id="address" name="address" class="form-control" placeholder="주소">
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label for="email" class="col-xs-2 control-label">이메일</label>
-		<div class="col-xs-7">
+		<label for="email" class="col-xs-2 col-xs-offset-1 control-label">이메일</label>
+		<div class="col-xs-6">
 			<input type="email" id="email" name="email" class="form-control" placeholder="이메일을 입력하세요">
 		</div>
 	</div>

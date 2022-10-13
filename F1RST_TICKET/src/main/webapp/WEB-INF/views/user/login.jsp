@@ -33,9 +33,15 @@ $(document).ready(function(){
 
 </script>
 
-<hr>
+<style type="text/css">
+#pdBot{
+	padding-top:100px;
+}
 
-<form action="/user/login" method="post" class="form-horizontal">
+</style>
+
+<h1>LOGIN</h1>
+<form action="/user/login" method="post" name="login" class="form-horizontal">
 
 <div class="form-group">
 	<label for="userid" class="col-sm-4 control-label"></label>
@@ -44,6 +50,7 @@ $(document).ready(function(){
 	</div>
 </div>
 
+
 <div class="form-group">
 	<label for="userpw" class="col-sm-4 control-label"></label>
 	<div class="col-sm-4">
@@ -51,15 +58,14 @@ $(document).ready(function(){
 	</div>
 </div>
 
-<!-- css 부분 다시 생각해보기 -->
 <div class="form-group" id="loginJoin">
 	<div class="text-center">
 		<ul style="list-style-type: none; padding:0px;">
-			<li style="display:inline;"><a href="/lost/id">아이디 찾기</a></li>
+			<li style="display:inline;"><a href="/user/findid">아이디 찾기</a></li>
 			<li style="display:inline;">&nbsp;|&nbsp;</li>
-			<li style="display:inline;"><a href="/lost/pw">비밀번호 찾기</a></li>
+			<li style="display:inline;"><a href="/user/findpw">비밀번호 찾기</a></li>
 			<li style="display:inline">&nbsp;|&nbsp;</li>
-			<li style="display:inline;"><a href="/">회원가입</a></li>
+			<li style="display:inline;"><a href="/join">회원가입</a></li>
 		</ul>  
 	</div> 
 </div>
@@ -72,20 +78,71 @@ $(document).ready(function(){
 
 <div class="form-group">
 	<div class="col-sm-4 col-sm-offset-4">
-		<button type="button" class="form-control btn btn-block" style="background-color: #6AAFE6; color:#fff;" id="btnLogin">로그인</button><br>
+		<button type="button" class="btn btn-block " style="background-color: #6AAFE6; color:#fff;" id="btnLogin">로그인</button><br>
 </div>
 	
 
-<div class="col-sm-4 col-sm-offset-4">
-	<button type="button" class="form-control btn btn-block" style="background-color: #D4DFE6;" id="btnNoLogin">카카오 로그인 자리</button><br>
-</div>
+<!-- <div class="col-sm-4 col-sm-offset-4">
+	<button type="button" class="form-control btn btn-block" style="background-color: #D4DFE6;" id="btnKakaoLogin" onclick="btnKakaoLogin">카카오 로그인 자리</button><br>
+</div> -->
+
+<!-- 카카오 로그인 구현.. 로그인창은 뜨는데 로그인이 안됨. -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
+  integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+<script>
+  Kakao.init('f76d3a70c175116c158bd05a6aaa51bf'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
 
 <div class="col-sm-4 col-sm-offset-4">
-	<button type="button" class="form-control btn btn-block" style="border:1px solid black;" id="btnNoTicket">네이버 로그인 자리</button>
+<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+  <img src="/resources/img/kakao_login_medium_wide.png" width="auto" 
+    alt="카카오 로그인 버튼" />
+</a>
+<p id="token-result"></p>
 </div>
+
+<script>
+  function loginWithKakao() {
+    Kakao.Auth.authorize({
+      redirectUri: 'http://localhost:8088/main',
+    });
+  }
+
+  displayToken()
+  function displayToken() {
+    var token = getCookie('authorize-access-token');
+
+    if(token) {
+      Kakao.Auth.setAccessToken(token);
+      Kakao.Auth.getStatusInfo()
+        .then(function(res) {
+          if (res.status === 'connected') {
+            document.getElementById('token-result').innerText
+              = 'login success, token: ' + Kakao.Auth.getAccessToken();
+          }
+        })
+        .catch(function(err) {
+          Kakao.Auth.setAccessToken(null);
+        });
+    }
+  }
+
+  function getCookie(name) {
+    var parts = document.cookie.split(name + '=');
+    if (parts.length === 2) { return parts[1].split(';')[0]; }
+  }
+</script>
+
+<!-- <div class="col-sm-4 col-sm-offset-4"> -->
+<!-- 	<button type="button" class="form-control btn btn-block" style="border:1px solid black;" id="btnNaverTicket">네이버 로그인 자리</button> -->
+<!-- </div> -->
 
 </div>
 
 </form>
 
+<div id="pdBot"></div>
+
+
+<!-- 해결될때까지 잠시 주석처리 -->
 <%@ include file = "../layout/footer.jsp" %>
