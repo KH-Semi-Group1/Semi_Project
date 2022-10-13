@@ -28,7 +28,7 @@ public class CartController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		//장바구니 전체 조회
-		List<Cart> musicalList = CartService.getAllCart();
+		List<Cart> cartList = adminService.getAllCart();
 				
 		//조회결과 전달
 		req.setAttribute("cartList", cartList);

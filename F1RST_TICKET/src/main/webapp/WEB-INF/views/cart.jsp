@@ -136,7 +136,7 @@ colgroup {
     height: 60px;
     line-height: 54px;
     padding-top: 4px;
-    font-size: 60px;
+    font-size: 20px;
     font-weight: 50px;
     font-family: 'Noto Sans KR','NanumBarunGothic','맑은 고딕','Malgun Gothic',sans-serif;
     border: 1px solid #6AAFE6;
@@ -148,11 +148,11 @@ colgroup {
 
 <script type="text/javascript">  	 
 
-// $("document").ready(function() {
-// 	  //selectedTotal
-// 		var total=Number(0);
+//$("document").ready(function() {
+//	  //selectedTotal
+//		var total=Number(0);
 <%-- 		  <% --%>
-<%-- 		  for(int j=0;j<mcList.size();j++){%> --%>
+<%-- 		  for(int j=0;j<productList.size();j++){%> --%>
 <%-- 			total += Number(document.getElementsByName("total")[<%=j%>].value); --%>
 <%-- 		  <%}%> --%>
 // 		  $('#selectedTotal').val(total);
@@ -275,7 +275,7 @@ Order / Payment
     	<td class="cart-body">3</td>
     	<td class="cart-body">4</td>
     	<td class="cart-body">5</td>
-    	<td class="cart-body"><input type="checkbox" name="checkP" class="check" <%-- value=" <%=cartList.get(i).getCartname()%>" --%> ></td>
+    	<td class="cart-body"><input type="checkbox" name="checkP" class="check" ></td>
     	<td class="cart-body">3,000,000</td>
   	</tr>
 	</tbody>
