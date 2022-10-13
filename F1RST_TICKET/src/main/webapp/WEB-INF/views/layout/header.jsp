@@ -149,7 +149,7 @@ html, body{
 	<ul style="list-style-type: none">
 		<li style="display:inline; color: #fff;"><%=session.getAttribute("loginid") %>님, 환영합니다.</li>
 		<li style="display:inline"><a href="/user/logout">로그아웃</a></li>
-		<li style="display:inline"><a href="/">마이페이지</a></li>
+		<li style="display:inline"><a href="/mypage">마이페이지</a></li>
 		<li style="display:inline"><a href="/">고객센터</a></li>
 	</ul>    
   </div>

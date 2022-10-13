@@ -24,14 +24,19 @@ $(document).ready(function() {
 <div class="container">
 
 	<div class="row row-cols-auto">
-		<div class="col page-header"><h3 class="text-left"><strong><%=viewReview.getReviewtitle() %></strong></h3></div> <!-- 후기제목 -->
+		<div class="col page-header">
+			<h3 class="text-left"><strong><%=viewReview.getReviewtitle() %></strong></h3> <!-- 후기제목 -->
+		</div>
 	
 		<div class="row">
+			<span class="col col-md-auto col-md-offset-9">작성자 : <%=viewReview.getUserid() %></span>
 			<span class="col col-md-auto col-md-offset-9">등록일 : <%=viewReview.getWritedate() %></span>
 		</div>
 		
 		<!-- 후기게시글내용 -->
-		<div class="col"><%=viewReview.getReviewcontent() %></div>
+		<div class="row">
+			<div class="col"><%=viewReview.getReviewcontent() %></div>
+		</div>
 	</div>
 
 </div>
@@ -50,11 +55,11 @@ $(document).ready(function() {
 
 <div class="media">
 <div class="media-left media-middle">
-<div>
-	<span class="glyphicon glyphicon-user"></span>
+<div class="media-object" style="padding: 5px;">
+	<span class="glyphicon glyphicon-user" style="font-size: 40px;"></span>
 </div>
 </div>
-<div class="media-body">
+<div class="media-body text-left">
 <h4 class="media-heading">유저아이디</h4>
 댓글내용
 </div>

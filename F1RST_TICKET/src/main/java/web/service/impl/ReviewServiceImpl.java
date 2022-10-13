@@ -159,6 +159,7 @@ public class ReviewServiceImpl implements ReviewService {
 				
 				//값(value) 추출하기
 				String value = null;
+				
 				try {
 					value = item.getString("UTF-8");	//한글 인코딩 지정
 				} catch (UnsupportedEncodingException e) {
@@ -166,11 +167,16 @@ public class ReviewServiceImpl implements ReviewService {
 				}
 				
 				//key에 맞게 value를 DTO에 삽입하기
-				if( "title".equals(key) ) {
+				if( "reviewtitle".equals(key) ) {
 					review.setReviewtitle(value);
 				}
 				if( "reviewcontent".equals(key) ) {
 					review.setReviewcontent(value);
+				}
+				if( "reviewscope".equals(key) ) {
+					//별점 처리
+					review.setReviewscope( Integer.parseInt( value ) );
+//					review.setReviewscope( 6 - Integer.parseInt( value ) );
 				}
 				
 			}// if( item.isFormField() ) END
@@ -216,6 +222,9 @@ public class ReviewServiceImpl implements ReviewService {
 		//작성자 ID처리
 		review.setUserid( (String) req.getSession().getAttribute("userid") );
 		
+		//별점 처리
+//		review.setReviewscope( Integer.parseInt( req.getParameter("reviewscope") ));
+		System.out.println(review);
 		if( reviewDao.insert(conn, review) > 0 ) {
 			JDBCTemplate.commit(conn);
 		} else {

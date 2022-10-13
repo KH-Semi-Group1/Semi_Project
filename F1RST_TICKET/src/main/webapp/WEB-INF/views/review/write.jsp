@@ -23,7 +23,7 @@ $(document).ready(function() {
 	$("#btnCancel").click(function() {
 		history.go(-1)
 	})
-	
+
 })
 
 function updateContents() {
@@ -38,6 +38,8 @@ function updateContents() {
 	<small>관람하신 공연에 대해서 얼마나 만족하시나요?</small>
 </div>
 
+<form action="./write" method="post" enctype="multipart/form-data">
+
 <div class="container-fluid row">
 	<div class="col-xs-12">
 		<div class="thumbnail row">
@@ -45,12 +47,32 @@ function updateContents() {
 			<div class="caption col-md-10">
 				<h3>뮤지컬 이름</h3>
 				<p>별점</p>
+				
+				<div class="star-rating space-x mx-auto">
+
+					<input type="radio" id="5-star" name="reviewscope" value="5">
+					<label for="5-star" class="star pr-4"><span class="glyphicon glyphicon-star"></span></label>
+
+					<input type="radio" id="4-star" name="reviewscope" value="4">
+					<label for="4-star" class="star"><span class="glyphicon glyphicon-star"></span></label>
+					
+					<input type="radio" id="3-star" name="reviewscope" value="3">
+					<label for="3-star" class="star"><span class="glyphicon glyphicon-star"></span></label>
+					
+					<input type="radio" id="2-star" name="reviewscope" value="2">
+					<label for="2-star" class="star"><span class="glyphicon glyphicon-star"></span></label>
+					
+					<input type="radio" id="1-star" name="reviewscope" value="1">
+					<label for="1-star" class="star"><span class="glyphicon glyphicon-star"></span></label>
+					
+				</div>
+				
 			</div>
 		</div>
 	</div>
 </div>
 
-<form action="./write" method="post" enctype="multipart/form-data">
+<!-- <form action="./write" method="post" enctype="multipart/form-data"> -->
 
 	<table class="table table-bordered">
 

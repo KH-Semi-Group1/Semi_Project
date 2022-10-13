@@ -30,23 +30,40 @@ public class UserLoginController extends HttpServlet {
 		
 		// 전달 파라미터 로그인 정보 얻어오기
 		User user = userService.getLoginUser(req);
-	
+				
 		// 로그인 인증
 		boolean isLogin = userService.login(user);
 		
+		HttpSession session = req.getSession();
+
 		// 로그인 인증 성공
 		if( isLogin ) {
 			
 			user = userService.info(user);
 			
-			HttpSession session = req.getSession();
-			
 			session.setAttribute("login", isLogin);
-			session.setAttribute("loginid", user.getUserid());
+			System.out.println(isLogin);
+			session.setAttribute("userid", user.getUserid());
+			System.out.println(user.getUserid());
+			session.setAttribute("userpw", user.getUserpw()); // 1007 추가
+			System.out.println(user.getUserpw());
+			session.setAttribute("username", user.getUsername()); // 1007 추가
+			System.out.println(user.getUsername());
 			
+			session.setAttribute("gender", user.getGender());
+			session.setAttribute("userbirth", user.getUserbirth());
+			session.setAttribute("uphone", user.getUphone());
+			session.setAttribute("address", user.getAddress());
+			session.setAttribute("email", user.getEmail());
+			
+			//로그인 성공시 메인페이지
+			req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
+			
+		}  else {
+			// 아이디와 비밀번호 불일치시 에러 메시지 띄워주는 페이지로 이동
+			req.getRequestDispatcher("/WEB-INF/views/user/login_err.jsp").forward(req, resp);
 		}
 		
-		// 메인으로
-		resp.sendRedirect("/");
+//		resp.sendRedirect("/");
 	}
 }

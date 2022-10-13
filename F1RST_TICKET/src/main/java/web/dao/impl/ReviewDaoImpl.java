@@ -53,7 +53,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		sql += "SELECT * FROM (";
 		sql += "	SELECT rownum rnum, N.* FROM (";
 		sql += "		SELECT";
-		sql += "			reviewno, userid, mcno, reviewtitle";
+		sql += "			reviewno, userid, resno, reviewtitle";
 		sql += "			, reviewcontent, reviewscope, writedate";
 		sql += "		FROM review";
 		sql += "		ORDER BY reviewno DESC";
@@ -80,7 +80,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				r.setReviewno( rs.getInt("reviewno") );
 				r.setUserid( rs.getString("userid") );
-				r.setMcno( rs.getInt("mcno") );
+				r.setResno( rs.getInt("resno") );
 				r.setReviewtitle( rs.getString("reviewtitle") );
 				r.setReviewcontent( rs.getString("reviewcontent") );
 				r.setReviewscope( rs.getInt("reviewscope") );
@@ -107,7 +107,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		String sql = "";
 		sql += "SELECT";
-		sql += "	reviewno, userid, mcno, reviewtitle";
+		sql += "	reviewno, userid, resno, reviewtitle";
 		sql += "	, reviewcontent, reviewscope, writedate";
 		sql += " FROM review";
 		sql += " WHERE reviewno = ?";
@@ -125,7 +125,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				review.setReviewno( rs.getInt("reviewno") );
 				review.setUserid( rs.getString("userid") );
-				review.setMcno( rs.getInt("mcno") );
+				review.setResno( rs.getInt("resno") );
 				review.setReviewtitle( rs.getString("reviewtitle") );
 				review.setReviewcontent( rs.getString("reviewcontent") );
 				review.setReviewscope( rs.getInt("reviewscope") );
@@ -214,7 +214,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int insert(Connection conn, Review review) {
 		
 		String sql = "";
-		sql += "INSERT INTO review ( reviewno, userid, mcno, reviewtitle, reviewcontent, reviewscope ) ";
+		sql += "INSERT INTO review ( reviewno, userid, resno, reviewtitle, reviewcontent, reviewscope ) ";
 		sql += " VALUES ( ?, ?, ?, ?, ?, ? )";
 		
 		int res = 0;
@@ -224,7 +224,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			
 			ps.setInt(1, review.getReviewno());
 			ps.setString(2, review.getUserid());
-			ps.setInt(3, review.getMcno());
+			ps.setInt(3, review.getResno());
 			ps.setString(4, review.getReviewtitle());
 			ps.setString(5, review.getReviewcontent());
 			ps.setInt(6, review.getReviewscope());
