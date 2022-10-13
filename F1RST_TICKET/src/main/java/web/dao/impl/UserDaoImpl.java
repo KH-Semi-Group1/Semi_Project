@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 	public int selectCntUserByUseridUserpw(Connection conn, User user) {
 
 		String sql = "";
-		sql += "SELECT count(*) cnt FROM user_table";
+		sql += "SELECT count(*) cnt FROM usertable";
 		sql += " WHERE userid = ?";
 		sql += " 	AND userpw = ?";
 		
@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
 	public User selectUserByUserid(Connection conn, User user) {
 
 		String sql = "";
-		sql += "SELECT * FROM user_table";
+		sql += "SELECT * FROM usertable";
 		sql += " WHERE userid = ?";
 		
 		User res = null;
@@ -92,7 +92,7 @@ public class UserDaoImpl implements UserDao {
 	public int insert(Connection conn, User user) {
 		
 		String sql = "";
-		sql += "INSERT INTO user_table ( username, userid, userpw, gender, userbirth, uphone, address, email )";
+		sql += "INSERT INTO usertable ( username, userid, userpw, gender, userbirth, uphone, address, email )";
 		sql += " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		int ress = 0;
@@ -126,7 +126,7 @@ public class UserDaoImpl implements UserDao {
 	public int selectCntUserByUsernameEmail(Connection conn, User user) {
 		
 		String sql = "";
-		sql += "SELECT count(*) cnt FROM user_table";
+		sql += "SELECT count(*) cnt FROM usertable";
 		sql += " WHERE username = ?";
 		sql += " 	AND email = ?";
 		
@@ -155,7 +155,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User selectUserByUsernameEmail(Connection conn, User user) {
 		String sql = "";
-		sql += "SELECT * FROM user_table";
+		sql += "SELECT * FROM usertable";
 		sql += " WHERE username = ?";
 		sql += "  AND email = ?";
 		
@@ -198,7 +198,7 @@ public class UserDaoImpl implements UserDao {
 	public int selectCntUserByUseridUsernameEmail(Connection conn, User user) {
 		
 		String sql = "";
-		sql += "SELECT count(*) cnt FROM user_table";
+		sql += "SELECT count(*) cnt FROM usertable";
 		sql += " WHERE userid = ?";
 		sql += "    AND username = ?";
 		sql += " 	AND email = ?";
@@ -230,7 +230,7 @@ public class UserDaoImpl implements UserDao {
 	public User selectUserByUseridUsernameEmail(Connection conn, User user) {
 		
 		String sql = "";
-		sql += "SELECT * FROM user_table";
+		sql += "SELECT * FROM usertable";
 		sql += " WHERE userid = ?";
 		sql += "  AND username = ?";
 		sql += "  AND email = ?";
@@ -292,7 +292,166 @@ public class UserDaoImpl implements UserDao {
 		}
 		return 1;
 	}
+	
+	//회원 정보 수정
+//	@Override
+//	public int updateUser(Connection conn, User user) {
+//
+//		String sql = "";
+//		
+//		sql += "UPDATE usertable SET";
+//		sql += " userpw=?";
+//		sql += " , uphone=?";
+//		sql += " , address=?";
+//		sql += " , email=?";
+//		sql += " WHERE userid=?";
+//		
+//		int res = 0;
+//		
+//		try {
+//			ps=conn.prepareStatement(sql);
+//			ps.setString(1, user.getUserpw());
+//			ps.setString(2, user.getUphone());
+//			ps.setString(3, user.getAddress());
+//			ps.setString(4, user.getEmail());
+//			ps.setString(5, user.getUserid());
+//			
+//			res=ps.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			JDBCTemplate.close(ps);
+//		}
+//		
+//		return res;
+//	}
+//	
+//	@Override
+//	public User selectOne(Connection conn, String userid) {
+//		User res = null;
+//
+//		String query = "SELECT * FROM usertable where userid=?";
+//
+//		try {
+//			ps = conn.prepareStatement(query);
+//			ps.setString(1, userid);
+//			rs = ps.executeQuery();
+//			while (rs.next()) {
+//				res = new User();
+//				
+//				res.setUsername(rs.getString("username"));
+//				res.setUserid(rs.getString("userid"));
+//				res.setUserpw(rs.getString("userpw"));
+//				res.setGender(rs.getString("gender"));
+//				res.setUserbirth(rs.getString("userbirth"));
+//				res.setUphone(rs.getString("uphone"));
+//				res.setAddress(rs.getString("address"));
+//				res.setEmail(rs.getString("email"));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(ps);
+//		}
+//		return res;
+//	}
+	
+//	@Override
+//	public User selectUserByUserId(Connection conn, User userid) {
+//		
+//		String sql = "";
+//		sql += "SELECT * FROM usertable";
+//		sql += " WHERE userid = ?";
+//		
+//		User res = null;
+//		
+//		try {
+//			ps=conn.prepareStatement(sql);
+//			ps.setString(1, userid.getUserid());
+//			
+//			rs = ps.executeQuery();
+//			
+//			while(rs.next()) {
+//				
+//				res = new User();
+//				
+//				res.setUsername(rs.getString("username"));
+//				res.setUserid(rs.getString("userid"));
+//				res.setUserpw(rs.getString("userpw"));
+//				res.setGender(rs.getString("gender"));
+//				res.setUserbirth(rs.getString("userbirth"));
+//				res.setUphone(rs.getString("uphone"));
+//				res.setAddress(rs.getString("address"));
+//				res.setEmail(rs.getString("email"));
+//				
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(ps);
+//		}
+//		
+//		return res;
+//	}
+	
+	@Override
+	public int update(Connection conn, User user) {
+
+		String sql = "";
+		sql += "UPDATE usertable ";
+		sql += " SET";
+		sql += "	userpw = ?";
+		sql += "	, uphone = ?";
+		sql += "	, address = ?";
+		sql += "	, email = ?";
+		sql += " WHERE userid = ?";
+		
+		int res = 0;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, user.getUserpw());
+			ps.setString(2, user.getUphone());
+			ps.setString(3, user.getAddress());
+			ps.setString(4, user.getEmail());
+			ps.setString(5, user.getUserid());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int delete(Connection conn, User userid) {
+		String sql = "";
+		sql += "DELETE usertable";
+		sql += " WHERE userid = ?";
+		
+		int res = 0;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userid.getUserid());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
 }
-
-
-// 안되는거 주석처리

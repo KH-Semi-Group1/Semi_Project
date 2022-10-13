@@ -87,6 +87,27 @@ public interface UserService {
 	 */
 	public User infoUserpw(User user);
 
+	/**
+	 * 전달 파라미터 DTO로 저장하고 반환
+	 * 
+	 * @param req - 요청 정보 객체
+	 * @return User - 전달파라미터 userid를 저장한 객체
+	 */
+	public User getUserid(HttpServletRequest req);
+
+	//회원 정보 수정
+//	public int updateUser(User user);
+//
+//	public User selectOne(String userid);
+
+	public User view(User userid);
+
+	public void update(HttpServletRequest req);
+
+	// 회원 정보 삭제
+	public void delete(User userid);
+
+
 	
 }
 

@@ -55,7 +55,10 @@ nav li a:hover{
 	color: black;
 } 
 
-
+#midmenu{
+	
+	font-size: 16px;
+}
 
 /* header_login.jsp CSS */
 
@@ -69,6 +72,7 @@ nav li a:hover{
 #loginJoin ul li a:hover{
 	
 	border-bottom: 2px solid #8EC0E4;
+	width: auto;
 	
 }
 

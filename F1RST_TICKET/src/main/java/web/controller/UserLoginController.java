@@ -43,12 +43,18 @@ public class UserLoginController extends HttpServlet {
 			
 			session.setAttribute("login", isLogin);
 			System.out.println(isLogin);
-			session.setAttribute("loginid", user.getUserid());
+			session.setAttribute("userid", user.getUserid());
 			System.out.println(user.getUserid());
-			session.setAttribute("loginpw", user.getUserpw()); // 1007 추가
+			session.setAttribute("userpw", user.getUserpw()); // 1007 추가
 			System.out.println(user.getUserpw());
-			session.setAttribute("loginname", user.getUsername()); // 1007 추가
+			session.setAttribute("username", user.getUsername()); // 1007 추가
 			System.out.println(user.getUsername());
+			
+			session.setAttribute("gender", user.getGender());
+			session.setAttribute("userbirth", user.getUserbirth());
+			session.setAttribute("uphone", user.getUphone());
+			session.setAttribute("address", user.getAddress());
+			session.setAttribute("email", user.getEmail());
 			
 			//로그인 성공시 메인페이지
 			req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);

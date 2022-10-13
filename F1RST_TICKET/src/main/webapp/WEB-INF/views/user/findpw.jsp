@@ -1,7 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file = "../layout/header_login.jsp" %>
+<%-- <%@ include file = "../layout/header_login.jsp" %> --%>
+<%@ include file = "../layout/header.jsp" %>
+
+<style type="text/css">
+#loginJoin ul li a{
+	
+	text-decoration: none; 
+	color: black;
+	
+}
+
+#loginJoin ul li a:hover{
+	
+	border-bottom: 2px solid #8EC0E4;
+	width: auto;
+	
+}
+</style>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -65,11 +82,9 @@ $(document).ready(function(){
 			<li style="display:inline">&nbsp;|&nbsp;</li>
 			<li style="display:inline;"><a href="/user/login">로그인</a></li>
 			<li style="display:inline">&nbsp;|&nbsp;</li>
-			<li style="display:inline;"><a href="/">회원가입</a></li>
+			<li style="display:inline;"><a href="/join">회원가입</a></li>
 		</ul>  
 	</div> 
 </div>
 
 </form>
-
-</script>

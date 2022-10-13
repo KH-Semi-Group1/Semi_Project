@@ -1,8 +1,8 @@
-
 package web.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,12 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import web.dao.impl.UserDaoImpl;
 import web.dao.face.UserDao;
 import web.dto.User;
-
+import web.service.impl.UserServiceImpl;
+import web.service.face.UserService;
 
 @WebServlet("/idCheck")
 public class IdCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
+	
 	public IdCheckController() {
 		super();
 	}
@@ -38,6 +41,7 @@ public class IdCheckController extends HttpServlet {
 		
 		resp.setContentType("application/x-json; charset=UTF-8");
 		resp.getWriter().write(result+"");
+
 
 	}
 	
