@@ -46,6 +46,9 @@ $(document).ready(function(){
 	
 }
 
+main{
+	padding: 0; !important;
+}
 
 </style>
 

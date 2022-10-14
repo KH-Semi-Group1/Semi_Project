@@ -128,8 +128,8 @@ $(document).ready(function(){
 	<div class="text-center" id=jcbutton>
 	
 <!-- 		<input type="submit" value="회원 정보 수정" class="btn" style="background-color: #6AAFE6; color:#fff;" id="btnUserView"> -->
-		<button type="submit" class="btn" style="background-color: #6AAFE6; color: #fff;" id="btnUserView">수정하기</button>
-		<button type="button" class="btn" style="background-color: #D4DFE6;" id="btnUserViewCancel">취소</button>
+		<button type="submit" class="btn" style="background-color: #6AAFE6; color: #fff;" id="btnUserView">수정하기</button>&nbsp;&nbsp;
+		<button type="button" class="btn" style="background-color: #D4DFE6;" id="btnUserViewCancel">취소</button>&nbsp;&nbsp;
 		<button type="button" class="btn" style="background-color: #ff7473 ; color: #fff;" id="btnUserDelete">회원탈퇴</button>
 	</div>
 </form>

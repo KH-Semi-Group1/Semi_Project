@@ -41,11 +41,11 @@ function joinCheck() {
 		return false;	
 	}
 	return true;
+// 	window.alert("회원가입이 완료되었습니다.")
 }
 
 /* $(document).ready(function(){
 	$(#"joinCheck").click(function(){
-		alert("회원가입이 완료되었습니다.")
 	})
 }) */
 

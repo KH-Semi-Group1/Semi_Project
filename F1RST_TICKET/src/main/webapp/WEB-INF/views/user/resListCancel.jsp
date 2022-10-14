@@ -27,18 +27,18 @@ $(document).ready(function(){
 <div class="container-fluid" id="mypageDiv">
 	<div class="row text-center" id="mypageInfo" style="font-size: 20px;">
 		<div class="col-md-3" >My Ticket</div>
-		<div class="col-md-3">미사용 티켓<br><a href='/mypage'>2</a> 장</div>
-		<div class="col-md-3">할인 쿠폰<br><a href='/mypage'>1</a> 장</div>
-		<div class="col-md-3">My Point<br><a href='/mypage'>350</a> 점</div>
+		<div class="col-md-9"><%=session.getAttribute("username") %>님, 반갑습니다.</div>
 	</div>
 	<div class="row">
 		<div class="col-md-3" id="mypageMenu">
 			<ul style="list-style-type: none; padding:0;">
 				<li class="list-item"><a href="/mypage">예매확인 / 취소
 				 	<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span> </a></li><br>
-				<li class="list-item"><a href="/mypage">할인 쿠폰 / 예매권
-					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
+				<!-- <li class="list-item"><a href="/mypage">할인 쿠폰 / 예매권
+					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br> -->
 				<li class="list-item"><a href="/mypage">나의 관람 공연
+					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
+					<li class="list-item"><a href="/user/update">회원 정보 수정
 					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
 			</ul>
 		</div>

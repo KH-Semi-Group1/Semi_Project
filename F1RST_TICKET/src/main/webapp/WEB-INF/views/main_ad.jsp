@@ -8,13 +8,13 @@
 <body>
 
 <!--  비 로그인 --> 
-<% if(session.getAttribute("login") == null )  { %>
+<% if(session.getAttribute("adminlogin") == null )  { %>
   <div class="topmenu"></div>
 <%@ include file = "./admin/login.jsp" %>
 <% }  %>
 
 <!-- 로그인 -->
-<% if(session.getAttribute("login") != null  && (boolean)session.getAttribute("login"))  { %>
+<% if(session.getAttribute("adminlogin") != null  && (boolean)session.getAttribute("adminlogin"))  { %>
   <div class="topmenu">
 	<ul style="list-style-type: none">
 		<li style="display:inline; color: #fff;"><%=session.getAttribute("adminid") %>님, 환영합니다.</li>

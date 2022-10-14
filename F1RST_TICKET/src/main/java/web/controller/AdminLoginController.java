@@ -41,7 +41,7 @@ public class AdminLoginController extends HttpServlet {
 			
 			admin = adminService.info(admin);
 			
-			session.setAttribute("login", isLogin);
+			session.setAttribute("adminlogin", isLogin);
 			System.out.println(isLogin);
 			session.setAttribute("adminid", admin.getAdminid());
 			System.out.println(admin.getAdminid());

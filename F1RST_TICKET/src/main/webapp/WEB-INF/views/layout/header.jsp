@@ -170,7 +170,7 @@ html, body{
 	        <li><a href="/">이용안내</a></li>
 	        <!--  비 로그인  --> 
 			<% if(session.getAttribute("login") == null )  { %>
-	        <li class="noLoginTC"><a href="/user/login">My티켓</a></li> <!-- 로그인과 비로그인 화면&알림 맞춰놓기 -->
+	        <li class="noLoginTC"><a href="/user/login">My티켓</a></li>
 	      	<% } %>
 	      	
 	      	<!--  로그인  -->

@@ -107,6 +107,10 @@ public interface UserService {
 	// 회원 정보 삭제
 	public void delete(User userid);
 
+	// reservation에 넘겨줄 아이디 찾아오기
+	public User getuserid(HttpServletRequest req);
+
+
 
 	
 }

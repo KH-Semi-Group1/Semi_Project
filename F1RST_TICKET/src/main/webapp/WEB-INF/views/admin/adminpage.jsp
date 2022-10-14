@@ -18,7 +18,7 @@
 #adminpageDiv ul li a {
 	text-decoration: none;
 	color : #fff;
-	font-size: 16px;
+	font-size: 18px;
 }
 
 #adminpageDiv ul li a:hover{
@@ -39,6 +39,10 @@ border-bottom: 2px solid #D4DFE6;
 
 }
 
+tr th{
+	font-size: 14px;
+}
+
 </style>
 
 	
@@ -51,14 +55,16 @@ border-bottom: 2px solid #D4DFE6;
 		</div>
 	</div>
 	<div class="col-md-4 col-md-offset-1">
-		<p style="font-size: 20px; color:black; font-weight: bold">관리자 페이지</p>
+		<a href="/admin/main" style="text-decoration: none; color:black; font-size: 20px; font-weight: bold;">
+			관리자 페이지
+		</a>
 	</div>
 	<br><br>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-2 col-md-offset-1" id="adminpageDiv">
 			<ul style="list-style-type: none;">
-				<li><a href="/admin/main">회원 관리
+				<li><a href="/admin/user">회원 관리
 				<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
 				<li><a href="/admin/main">게시글 관리
 					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
@@ -69,72 +75,118 @@ border-bottom: 2px solid #D4DFE6;
 			</ul>
 		</div>
 		<div class="col-md-8" id="adminpageMain">
-			<h4>최근 예매 내역</h4>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>예매일</th>
-						<th>예매번호</th>
-						<th>공연명</th>
-						<th>관람일시</th>
-						<th>매수</th>
-						<th>예매상태</th>
-					</tr>
-				</thead>
-				
-				<tbody>
-					<tr>
-						<td>[예매일]</td>
-						<td>[예매번호]</td>
-						<td>[공연명]</td>
-						<td>[관람일시]</td>
-						<td>[매수]</td>
-						<td>[예매상태]</td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<h4>My Point 적립내역</h4>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>공연명(예매번호)</th>
-						<th>적립일</th>
-						<th>My Point </th>
-						<th>매수</th>
-						<th>적립유형</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>[공연명(예매번호)]</td>
-						<td>[적립일]</td>
-						<td>[My Point]</td>
-						<td>[매수]</td>
-						<td>[적립유형]</td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<h4>나의 관람 공연</h4>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>공연명(예매번호)</th>
-						<th>관람일시</th>
-						<th>매수</th>
-						<th>리뷰 작성</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>[공연명(예매번호)]</td>
-						<td>[관람일시]</td>
-						<td>[매수]</td>
-						<td>[리뷰 작성]</td>
-					</tr>
-				</tbody>
-			</table>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6">
+					<h4 style="display: inline-block;">회원관리</h4>
+					<span><a href="/admin/user" style="color: #aaa;">더보기</a></span>
+					<table class="table">
+						<thead>
+							<tr> 
+								<th style="width: 15%">아이디</th>
+								<th style="width: 30%">이메일</th>
+								<th style="width: 20%">핸드폰</th>
+								<th style="width: 10%">성별</th>
+								<th style="width: 20%">생일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-6">
+					<h4 style="display: inline-block;">게시글관리</h4>
+					<span><a href="/admin/main" style="color: #aaa;">더보기</a></span>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>아이디</th>
+								<th>이메일</th>
+								<th>핸드폰</th>
+								<th>성별</th>
+								<th>생일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6">
+					<h4 style="display: inline-block;">예매관리</h4>
+					<span><a href="/admin/main" style="color: #aaa;">더보기</a></span>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>아이디</th>
+								<th>이메일</th>
+								<th>핸드폰</th>
+								<th>성별</th>
+								<th>생일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-6">
+					<h4 style="display: inline-block;">티켓관리</h4>
+					<span><a href="/admin/main" style="color: #aaa;">더보기</a></span>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>아이디</th>
+								<th>이메일</th>
+								<th>핸드폰</th>
+								<th>성별</th>
+								<th>생일</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+								<td>[DB작업]</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 		</div>
 	</div>
 </div>
