@@ -79,7 +79,7 @@ $(document).ready(function() {
 	<table class="table table-striped">
 		<tr>
 			<td style="border-bottom:none;" valign="middle"><br><br><%=session.getAttribute("userid") %></td>
-			<td><input type="text" style="height:100px; width:100%;" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "content" id="content"></td>
+			<td><input type="text" style="height:100px; width:100%;" placeholder="댓글을 입력해주세요." name = "content" id="content"></td>
 			<td><br><br><button type="button" id="btnCommentWrite" class="btn btn-outline-secondary">댓글작성</button></td>
 		</tr>
 	</table>
