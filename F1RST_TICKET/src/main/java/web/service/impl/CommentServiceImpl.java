@@ -54,6 +54,9 @@ public class CommentServiceImpl implements CommentService {
 		//댓글 번호 생성
 		int cmno = commentDao.selectNextCmno(conn);
 		
+		//리뷰 번호 삽입
+		comment.setReviewno(reviewno);
+		
 		//댓글 번호 삽입
 		comment.setCmno(cmno);
 		
@@ -63,7 +66,7 @@ public class CommentServiceImpl implements CommentService {
 		//작성자 ID처리
 		comment.setUserid( (String) req.getSession().getAttribute("userid"));
 		
-		if( commentDao.insertComment(conn, comment, reviewno) > 0 ) {
+		if( commentDao.insertComment(conn, comment) > 0 ) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);

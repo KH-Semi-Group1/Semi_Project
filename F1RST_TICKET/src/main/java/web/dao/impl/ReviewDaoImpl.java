@@ -149,7 +149,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		String sql = "";
 		sql += "SELECT"; 
-		sql += "	fileno, reviewno, originname, storedname, filesize, fileimg, writedate";
+		sql += "	fileno, reviewno, originname, storedname, filesize, writedate";
 		sql += " FROM reviewfile";
 		sql += " WHERE reviewno = ?";
 		sql += " ORDER BY fileno";
@@ -270,7 +270,5 @@ public class ReviewDaoImpl implements ReviewDao {
 		return res;		
 		
 	}
-	
-
 	
 }

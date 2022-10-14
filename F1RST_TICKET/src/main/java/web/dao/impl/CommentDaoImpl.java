@@ -149,7 +149,7 @@ public class CommentDaoImpl implements CommentDao {
 	}
 	
 	@Override
-	public int insertComment(Connection conn, Comment comment, int reviewno) {
+	public int insertComment(Connection conn, Comment comment) {
 		
 		String sql = "";
 		sql += "INSERT INTO commenttable ( cmno, userid, reviewno, content)";

@@ -83,8 +83,8 @@ $(document).ready(function() {
 			<td><br><br><button type="button" id="btnCommentWrite" class="btn btn-outline-secondary">댓글작성</button></td>
 		</tr>
 	</table>
-<input type="text" name="reviewno" value="<%=viewReview.getReviewno() %>">
-<input type="text" name="login" value="<%=session.getAttribute("login") %>" >
+<input type="hidden" name="reviewno" value="<%=viewReview.getReviewno() %>">
+<input type="hidden" name="login" value="<%=session.getAttribute("login") %>" >
 </form>
 
 
