@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import util.Paging;
+import web.dto.Comment;
 import web.dto.Review;
 import web.dto.ReviewFile;
 
@@ -69,5 +70,7 @@ public interface ReviewDao {
 	 * @return int - INSERT 수행 결과
 	 */
 	public int insertFile(Connection conn, ReviewFile reviewFile);
+
+
 
 }

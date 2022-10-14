@@ -61,7 +61,7 @@ public class Paging {
 		
 		//총 페이지 수 계산
 		totalPage = totalCount / listCount;	//총 게시글 수 / 한 페이지 게시글 수
-		if( totalPage % listCount > 0 )	totalPage++;	//나머지가 있으면 증가해서 대입	//예) totalPage==33, listCount==10 -> 33/10 == 3.xxx
+		if( totalCount % listCount > 0 )	totalPage++;	//나머지가 있으면 증가해서 대입	//예) totalPage==33, listCount==10 -> 33/10 == 3.xxx
 		
 		//총 페이지 수 보정
 		//	-> 존재하는 페이지보다 큰 값의 페이지를 요청할 때

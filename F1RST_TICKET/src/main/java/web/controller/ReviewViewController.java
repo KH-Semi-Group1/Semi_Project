@@ -1,6 +1,7 @@
 package web.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,10 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Paging;
 import web.dto.Comment;
 import web.dto.Review;
 import web.dto.ReviewFile;
+import web.service.face.CommentService;
 import web.service.face.ReviewService;
+import web.service.impl.CommentServiceImpl;
 import web.service.impl.ReviewServiceImpl;
 
 @WebServlet("/review/view")
@@ -20,6 +24,7 @@ public class ReviewViewController extends HttpServlet {
 	
 	//서비스객체
 	private ReviewService reviewService = new ReviewServiceImpl();
+	private CommentService commentService = new CommentServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,9 +44,31 @@ public class ReviewViewController extends HttpServlet {
 		//첨부파일 MODEL값 전달
 		req.setAttribute("reviewFile", reviewFile);
 		
+		//-----------------댓글------------------------------------
+		//댓글 페이징 목록 조회
+		Paging paging = commentService.getPaging(req);
+
+		//댓글 페이징 목록 전달
+		req.setAttribute("paging", paging);
+		
+		List<Comment> commentList = commentService.getList(paging, viewReview);
+		
+//		댓글 MODEL값 전달
+		req.setAttribute("commentList", commentList);
+		
 		//View 지정응답
 		req.getRequestDispatcher("/WEB-INF/views/review/view.jsp").forward(req, resp);
 		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//댓글작성 삽입
+		commentService.writeComment(req);
+		
+		//상세뷰로 리다이렉트
+		resp.sendRedirect("/review/view");
 		
 	}
 

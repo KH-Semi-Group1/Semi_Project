@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import util.Paging;
+import web.dto.Comment;
 import web.dto.Review;
 import web.dto.ReviewFile;
 
@@ -57,5 +58,8 @@ public interface ReviewService {
 	 * @param req - 요청 정보 객체
 	 */
 	public void write(HttpServletRequest req);
+
+
+
 
 }

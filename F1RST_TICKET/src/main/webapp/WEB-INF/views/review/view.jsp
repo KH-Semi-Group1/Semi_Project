@@ -1,8 +1,11 @@
+<%@page import="java.util.List"%>
+<%@page import="web.dto.Comment"%>
 <%@page import="web.dto.Review"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%	Review viewReview = (Review) request.getAttribute("viewReview");
+	List<Comment> commentList = (List) request.getAttribute("commentList");
 	request.setCharacterEncoding("UTF-8");
 	%>
 
@@ -48,21 +51,49 @@ $(document).ready(function() {
 
 
 <!-- 후기게시글 댓글 -->
+<div class="container">
 
 <div class="page-header">
 	<h3 class="text-left"><strong>댓글</strong></h3>
 </div>
 
-<div class="media">
-<div class="media-left media-middle">
-<div class="media-object" style="padding: 5px;">
-	<span class="glyphicon glyphicon-user" style="font-size: 40px;"></span>
-</div>
-</div>
-<div class="media-body text-left">
-<h4 class="media-heading">유저아이디</h4>
-댓글내용
-</div>
-</div>
+<!-- 댓글 입력하는 폼 -->
+<form action="./view.jsp" method="post">
+<%-- <input type="hidden" name="reviewno" value="<%=viewReview.getReviewno() %>"> --%>
 
+	<table class="table table-striped">
+		<tr>
+			<td style="border-bottom:none;" valign="middle"><br><br><%=request.getAttribute("userid") %></td>
+			<td><input type="text" style="height:100px; width:100%;" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "content"></td>
+			<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
+		</tr>
+	</table>
+</form>
+
+
+<%	for( int i=0; i<commentList.size(); i++) { %>
+
+<div class="media">
+	<div class="media-left media-middle">
+		<div class="media-object" style="padding: 5px;">
+			<span class="glyphicon glyphicon-user" style="font-size: 40px;"></span>
+		</div>
+	</div>
+
+	<div class="media-body text-left">
+	
+		<h4 class="media-heading"><%=commentList.get(i).getUserid() %></h4>
+		<%=commentList.get(i).getContent() %>
+	
+		<div class="text-right">
+			<span>작성일:<%=commentList.get(i).getWritedate() %></span>
+		</div>
+	</div>
+	
+</div>
+<%	} %>
+
+<%@	include file="../layout/commentPaging.jsp" %>
+
+</div><!-- 댓글창 끝 -->
 <%@ include file = "../layout/footer.jsp" %>

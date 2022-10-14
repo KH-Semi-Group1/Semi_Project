@@ -10,6 +10,7 @@ import java.util.List;
 import common.JDBCTemplate;
 import util.Paging;
 import web.dao.face.ReviewDao;
+import web.dto.Comment;
 import web.dto.Review;
 import web.dto.ReviewFile;
 
@@ -53,7 +54,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		sql += "SELECT * FROM (";
 		sql += "	SELECT rownum rnum, N.* FROM (";
 		sql += "		SELECT";
-		sql += "			reviewno, userid, resno, reviewtitle";
+		sql += "			reviewno, userid, mcno, reviewtitle";
 		sql += "			, reviewcontent, reviewscope, writedate";
 		sql += "		FROM review";
 		sql += "		ORDER BY reviewno DESC";
@@ -80,7 +81,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				r.setReviewno( rs.getInt("reviewno") );
 				r.setUserid( rs.getString("userid") );
-				r.setResno( rs.getInt("resno") );
+				r.setMcno( rs.getInt("mcno") );
 				r.setReviewtitle( rs.getString("reviewtitle") );
 				r.setReviewcontent( rs.getString("reviewcontent") );
 				r.setReviewscope( rs.getInt("reviewscope") );
@@ -107,7 +108,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		String sql = "";
 		sql += "SELECT";
-		sql += "	reviewno, userid, resno, reviewtitle";
+		sql += "	reviewno, userid, mcno, reviewtitle";
 		sql += "	, reviewcontent, reviewscope, writedate";
 		sql += " FROM review";
 		sql += " WHERE reviewno = ?";
@@ -125,7 +126,7 @@ public class ReviewDaoImpl implements ReviewDao {
 				
 				review.setReviewno( rs.getInt("reviewno") );
 				review.setUserid( rs.getString("userid") );
-				review.setResno( rs.getInt("resno") );
+				review.setMcno( rs.getInt("mcno") );
 				review.setReviewtitle( rs.getString("reviewtitle") );
 				review.setReviewcontent( rs.getString("reviewcontent") );
 				review.setReviewscope( rs.getInt("reviewscope") );
@@ -214,7 +215,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int insert(Connection conn, Review review) {
 		
 		String sql = "";
-		sql += "INSERT INTO review ( reviewno, userid, resno, reviewtitle, reviewcontent, reviewscope ) ";
+		sql += "INSERT INTO review ( reviewno, userid, mcno, reviewtitle, reviewcontent, reviewscope ) ";
 		sql += " VALUES ( ?, ?, ?, ?, ?, ? )";
 		
 		int res = 0;
@@ -224,7 +225,7 @@ public class ReviewDaoImpl implements ReviewDao {
 			
 			ps.setInt(1, review.getReviewno());
 			ps.setString(2, review.getUserid());
-			ps.setInt(3, review.getResno());
+			ps.setInt(3, review.getMcno());
 			ps.setString(4, review.getReviewtitle());
 			ps.setString(5, review.getReviewcontent());
 			ps.setInt(6, review.getReviewscope());
@@ -269,5 +270,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		return res;		
 		
 	}
+	
+
 	
 }
