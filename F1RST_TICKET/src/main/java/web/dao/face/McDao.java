@@ -3,6 +3,7 @@ package web.dao.face;
 import java.sql.Connection;
 import java.util.List;
 
+import web.dto.Like;
 import web.dto.Musical;
 
 public interface McDao {
@@ -56,6 +57,61 @@ public interface McDao {
 	 * @return List<Musical> - 검색된 뮤지컬 목록
 	 */
 	List<Musical> searchList(Connection conn, String keyword);
+
+	/**
+	 * useid와 mcno를 동시에 만족하는 좋아요 수를 조회한다
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param like - 조회할 좋아요 정보
+	 * @return int - 0: 좋아요 없음(삽입하기) 1: 좋아요 있음(삭제하기)
+	 */
+	public int selectCntisLike(Connection conn, Like like);
+
+	/**
+	 * 좋아요 삭제
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param like - 삭제할 좋아요
+	 * @return delete 수행 결과
+	 */
+	public int deleteLikes(Connection conn, Like like);
+
+	/**
+	 * 좋아요 추가
+	 * 
+	 * @param conn  - DB연결 객체
+	 * @param like  - 추가할 좋아요
+	 * @return insert 수행 결과
+	 */
+	public int insertLikes(Connection conn, Like like);
+
+	/**
+	 * 조회된 뮤지컬 좋아요 감소
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param like - 조회할 mcno 저장 객체
+	 * @return update 수행 결과
+	 */
+	public int updateLikedmm(Connection conn, Like like);
+
+	/**
+	 * 조회된 뮤지컬 좋아요 증가
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param like - - 조회할 mcno 저장 객체
+	 * @return
+	 */
+	public int updateLikedpp(Connection conn, Like like);
+
+	/**
+	 * 좋아요 증가된 뮤지컬 상세보기
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param like - 조회할 mcno 저장 객체
+	 * @return
+	 */
+	public Musical selectMusicalLike(Connection conn, Like like);
+
 
 
 

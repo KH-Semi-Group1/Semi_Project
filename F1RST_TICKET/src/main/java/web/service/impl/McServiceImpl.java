@@ -1,5 +1,6 @@
 package web.service.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import common.JDBCTemplate;
 import web.dao.face.McDao;
 import web.dao.impl.McDaoImpl;
+import web.dto.Like;
 import web.dto.Musical;
 import web.service.face.McService;
 
@@ -62,5 +64,104 @@ public class McServiceImpl implements McService {
 	@Override
 	public List<Musical> getSearchList(String keyword) {
 		return mcDao.searchList(JDBCTemplate.getConnection(), keyword);
+	}
+	
+	@Override
+	public Like getLIkes(HttpServletRequest req) {
+		//전달파라미터를 저장할 객체 생성
+		Like like = new Like();
+		
+		String likechk = req.getParameter("likechk");
+		String userid = req.getParameter("userid");
+		String mcno = req.getParameter("mcno");
+		if( likechk != null && !"".equals(likechk) 
+				&& mcno != null && !"".equals(mcno) 
+				&& userid != null && !"".equals(userid) ) {
+			like.setLikechk( Integer.parseInt(likechk) );
+			like.setMcno( Integer.parseInt(mcno) );
+			like.setUserid( userid );
+		} else {
+			like.setMcno( Integer.parseInt(mcno) );
+			
+		} return like;
+	}
+	
+	@Override
+	public Musical getLikeMcno(int likemcno) {
+		Musical likemu = new Musical();
+		
+		//전달된 Like테이블의 mcno를 Musical에 저장
+		likemu.setMcno( likemcno );
+		
+		return likemu;
+	}
+	
+	@Override
+	public boolean like(Like like) {
+		
+		if( mcDao.selectCntisLike(JDBCTemplate.getConnection(), like) > 0 ) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void deleteLike(Like like) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//좋아요 기록 삭제
+		if(mcDao.deleteLikes(conn, like) > 0 ) {
+			JDBCTemplate.commit(conn);
+//			System.out.println("삭제성공");
+		} else {
+			JDBCTemplate.rollback(conn);
+//			System.out.println("삭제실패");
+		}
+	}
+	
+	@Override
+	public void insertLike(Like like) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//좋아요 기록 추가
+		if( mcDao.insertLikes(conn, like) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
+	
+	@Override
+	public void updateLikeM(Like like) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//좋아요 감소
+		if( mcDao.updateLikedmm(conn, like) > 0 ) {
+			JDBCTemplate.commit(conn);
+//			System.out.println("좋아요 감소 성공");
+		} else {
+			JDBCTemplate.rollback(conn);
+//			System.out.println("좋아요 감소 실패");
+		}
+	}
+	
+	@Override
+	public Musical updateLikeP(Like like) {
+		Connection conn = JDBCTemplate.getConnection();
+
+		//좋아요 증가
+		if( mcDao.updateLikedpp(conn, like) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//뮤지컬 조회
+		Musical viewMc= mcDao.selectMusicalLike(conn, like);
+		
+		//조회된 뮤지컬 리턴
+		return viewMc;
 	}
 }

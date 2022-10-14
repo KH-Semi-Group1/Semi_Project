@@ -9,6 +9,7 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import web.dao.face.McDao;
+import web.dto.Like;
 import web.dto.Musical;
 
 public class McDaoImpl implements McDao {
@@ -210,7 +211,7 @@ public class McDaoImpl implements McDao {
 	@Override
 	public Musical selectMusicalByMusical(Connection conn, Musical mcno) {
 		String sql = "";
-		sql += "SELECT * FROM musical WHERE mcno = ?";
+		sql += "SELECT *  FROM musical WHERE mcno = ?";
 		
 		Musical viewMC = null;
 		
@@ -300,5 +301,179 @@ public class McDaoImpl implements McDao {
 		//결과값 반환
 		return mcSearchList;
 		
+	}
+	
+	@Override
+	public int selectCntisLike(Connection conn, Like like) {
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM liketable";
+		sql += " WHERE userid = ?";
+		sql += "	AND mcno = ?";
+		
+		int cnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, like.getUserid());
+			ps.setInt(2, like.getMcno());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+				
+		return cnt;
+	}
+	
+	@Override
+	public int deleteLikes(Connection conn, Like like) {
+		String sql = "";
+		sql += "DELETE liketable";
+		sql += " WHERE userid = ?";
+		sql += "	AND mcno = ?";
+		
+		int res = 0;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, like.getUserid());
+			ps.setInt(2, like.getMcno());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int insertLikes(Connection conn, Like like) {
+		String sql = "";
+		sql += "INSERT INTO liketable (likeno, userid, mcno, likechk )";
+		sql += " VALUES (like_seq.nextval, ?, ?, ? )";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, like.getUserid());
+			ps.setInt(2, like.getMcno());
+			ps.setInt(3, like.getLikechk());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int updateLikedmm(Connection conn, Like like) {
+		String sql = "";
+		sql += "UPDATE musical";
+		sql += "	SET mclike = mclike - 1 ";
+		sql += " WHERE mcno = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, like.getMcno());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	
+	@Override
+	public int updateLikedpp(Connection conn, Like like) {
+		String sql = "";
+		sql += "UPDATE musical";
+		sql += "	SET mclike = mclike + 1 ";
+		sql += " WHERE mcno = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, like.getMcno());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public Musical selectMusicalLike(Connection conn, Like like) {
+		String sql = "";
+		sql += "SELECT * ";
+		sql += "	FROM ( musical INNER JOIN liketable ";
+		sql += "	ON musical.mcno = liketable.mcno )";
+		sql += " WHERE liketable.mcno = ?";
+
+		Musical viewMc = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, like.getMcno());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				viewMc = new Musical();
+				
+				viewMc.setMcno(rs.getInt("mcno"));
+				viewMc.setMcname(rs.getString("mcname"));
+				viewMc.setMcage(rs.getString("mcage"));
+				viewMc.setMctime(rs.getString("mctime"));
+				viewMc.setMcstart(rs.getString("mcstart"));
+				viewMc.setMcend(rs.getString("mcend"));
+				viewMc.setMcact(rs.getString("mcact"));
+				viewMc.setMcloc(rs.getString("mcloc"));
+				viewMc.setMclike(rs.getInt("mclike"));
+				viewMc.setMcimg(rs.getString("mcimg"));
+				viewMc.setMcimgcas(rs.getString("mcimgcas"));
+				viewMc.setMcimginfo(rs.getString("mcimginfo"));
+				viewMc.setMcimgchk(rs.getString("mcimgchk"));
+				viewMc.setMcimgsale(rs.getString("mcimgsale"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return viewMc;
 	}
 }
