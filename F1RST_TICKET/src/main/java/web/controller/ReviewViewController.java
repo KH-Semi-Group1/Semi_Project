@@ -64,11 +64,14 @@ public class ReviewViewController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		//게시글번호 가져오기
+		int reviewno = Integer.parseInt(req.getParameter("reviewno"));
+		
 		//댓글작성 삽입
-		commentService.writeComment(req);
+		commentService.writeComment(req, reviewno);
 		
 		//상세뷰로 리다이렉트
-		resp.sendRedirect("/review/view");
+		resp.sendRedirect("/review/view?reviewno=50&curPage=1");
 		
 	}
 

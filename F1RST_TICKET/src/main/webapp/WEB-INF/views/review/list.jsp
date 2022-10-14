@@ -64,6 +64,8 @@ $(document).ready(function() {
 <h1 class="text-center">관람후기</h1>
 <hr>
 
+<div class="container">
+
 <div class="row">
 <%	for( int i=0; i<reviewList.size(); i++ ) { %>
 	<div class="col-sm-6 col-md-4">
@@ -86,6 +88,7 @@ $(document).ready(function() {
 <%	} %>
 </div>
 
+</div>
 <div class="clearfix"></div>
 
 <%@	include file="../layout/paging.jsp" %>

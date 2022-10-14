@@ -28,12 +28,14 @@ public interface CommentService {
 	public List<Comment> getList(Paging paging, Review viewReview);
 
 	/**
-	 * 댓글 작성
-	 * 입력한 댓글을 DB에 저장한다
+	 * 해당 게시글번호에 맞는 댓글을 작성한다
 	 * 
-	 * @param req - 요청정보객체
+	 * @param req - 요청 정보 객체
+	 * @param reviewno - 게시글번호
 	 */
-	public void writeComment(HttpServletRequest req);
+	public void writeComment(HttpServletRequest req, int reviewno);
+
+
 
 	
 }

@@ -36,4 +36,25 @@ public interface CommentDao {
 	 */
 	public List<Comment> selectComment(Connection conn, Paging paging, Review viewReview);
 
+	/**
+	 * 시퀀스를 이용하여 다음 댓글 번호 조회하기
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @return int - 다음 댓글 번호
+	 */
+	public int selectNextCmno(Connection conn);
+
+	/**
+	 * 댓글 입력
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param comment - 삽입될 댓글 내용
+	 * @param reviewno - 삽입할 게시글 번호
+	 * @return int INSERT 수행 결과
+	 */
+	public int insertComment(Connection conn, Comment comment, int reviewno);
+
+	
+	
+
 }

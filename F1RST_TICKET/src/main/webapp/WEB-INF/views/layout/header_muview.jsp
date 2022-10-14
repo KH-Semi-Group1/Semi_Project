@@ -55,8 +55,8 @@
 		<div class="header2">
 	      <ul class="nav navbar-nav nav-pills topcon" data-bs-target="#navbarToggleExternalContent">
 	        <li><a href="/musical/mcList">뮤지컬</a></li>
-	        <li><a href="/">공지사항</a></li>
-	        <li><a href="/">관람후기</a></li>
+	        <li><a href="/notice/list">공지사항</a></li>
+	        <li><a href="/review/list">관람후기</a></li>
 	        <li><a href="/">이용안내</a></li>
 	        <!--  비 로그인  --> 
 			<% if(session.getAttribute("login") == null )  { %>

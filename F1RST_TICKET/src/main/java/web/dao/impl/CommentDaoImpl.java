@@ -122,4 +122,60 @@ public class CommentDaoImpl implements CommentDao {
 		return commentList;
 	}
 	
+	@Override
+	public int selectNextCmno(Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT commenttable_seq.nextval FROM dual";
+		
+		int nextCmno = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				nextCmno = rs.getInt("nextval");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return nextCmno;
+	}
+	
+	@Override
+	public int insertComment(Connection conn, Comment comment, int reviewno) {
+		
+		String sql = "";
+		sql += "INSERT INTO commenttable ( cmno, userid, reviewno, content)";
+		sql += " VALUES ( ?, ?, ?, ?)";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, comment.getCmno());
+			ps.setString(2, comment.getUserid());
+			ps.setInt(3, comment.getReviewno());
+			ps.setString(4, comment.getContent());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	
+	
 }

@@ -47,9 +47,15 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
-	public void writeComment(HttpServletRequest req) {
+	public void writeComment(HttpServletRequest req, int reviewno) {
 		
 		Comment comment = new Comment();
+		
+		//댓글 번호 생성
+		int cmno = commentDao.selectNextCmno(conn);
+		
+		//댓글 번호 삽입
+		comment.setCmno(cmno);
 		
 		//본문 처리
 		comment.setContent( req.getParameter("content") );
@@ -57,7 +63,7 @@ public class CommentServiceImpl implements CommentService {
 		//작성자 ID처리
 		comment.setUserid( (String) req.getSession().getAttribute("userid"));
 		
-		if( commentDao.insertComment(conn, comment) > 0 ) {
+		if( commentDao.insertComment(conn, comment, reviewno) > 0 ) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);

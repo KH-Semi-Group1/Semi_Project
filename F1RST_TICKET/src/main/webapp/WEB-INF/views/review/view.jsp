@@ -13,8 +13,24 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+	
+	//후기게시판 목록으로 이동
 	$("#btnList").click(function() {
 		$(location).attr('href', './list')
+	})
+	
+	//댓글작성버튼
+	$("#btnCommentWrite").click(function() {
+		
+		if( $("#content").val != null ) {
+			
+			//#content의 값이 널값이 아닐때 댓글작성
+			$("form").submit();
+			
+		} else {
+			alert('댓글 입력을 안했습니다.')
+		}
+		
 	})
 })
 </script>
@@ -58,16 +74,17 @@ $(document).ready(function() {
 </div>
 
 <!-- 댓글 입력하는 폼 -->
-<form action="./view.jsp" method="post">
-<%-- <input type="hidden" name="reviewno" value="<%=viewReview.getReviewno() %>"> --%>
+<form action="./view" method="post">
 
 	<table class="table table-striped">
 		<tr>
-			<td style="border-bottom:none;" valign="middle"><br><br><%=request.getAttribute("userid") %></td>
-			<td><input type="text" style="height:100px; width:100%;" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "content"></td>
-			<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
+			<td style="border-bottom:none;" valign="middle"><br><br><%=session.getAttribute("userid") %></td>
+			<td><input type="text" style="height:100px; width:100%;" placeholder="상대방을 존중하는 댓글을 남깁시다." name = "content" id="content"></td>
+			<td><br><br><button type="button" id="btnCommentWrite" class="btn btn-outline-secondary">댓글작성</button></td>
 		</tr>
 	</table>
+<input type="text" name="reviewno" value="<%=viewReview.getReviewno() %>">
+<input type="text" name="login" value="<%=session.getAttribute("login") %>" >
 </form>
 
 

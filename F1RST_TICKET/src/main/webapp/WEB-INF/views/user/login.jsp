@@ -18,17 +18,10 @@ $(document).ready(function(){
 	$("#btnLogin").click(function(){
 		$(this).parents("form").submit();
 	})
-	
-	// 비회원 로그인 버튼
-	$("#btnNoLogin").click(function(){
-		$(location).attr('href','/nouser/login')
+
+	$("#kakao-login-btn").click(function(){
+		$("form").submit();
 	})
-	
-	// 비회원 티켓 조회 버튼
-	$("#btnNoTicket").click(function(){
-		$(location).attr('href', '/nouser/ticket')
-	})
-	
 })
 
 </script>
@@ -36,6 +29,25 @@ $(document).ready(function(){
 <style type="text/css">
 #pdBot{
 	padding-top:100px;
+	
+}
+
+#loginJoin ul li a{
+	
+	text-decoration: none; 
+	color: black;
+	
+}
+
+#loginJoin ul li a:hover{
+	
+	border-bottom: 2px solid #8EC0E4;
+	width: auto;
+	
+}
+
+main{
+	padding: 0; !important;
 }
 
 </style>
@@ -58,8 +70,8 @@ $(document).ready(function(){
 	</div>
 </div>
 
-<div class="form-group" id="loginJoin">
-	<div class="text-center">
+<div class="form-group" >
+	<div class="text-center" id="loginJoin">
 		<ul style="list-style-type: none; padding:0px;">
 			<li style="display:inline;"><a href="/user/findid">아이디 찾기</a></li>
 			<li style="display:inline;">&nbsp;|&nbsp;</li>
@@ -87,51 +99,50 @@ $(document).ready(function(){
 </div> -->
 
 <!-- 카카오 로그인 구현.. 로그인창은 뜨는데 로그인이 안됨. -->
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
-  integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+ <!-- <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
+ integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
 <script>
-  Kakao.init('f76d3a70c175116c158bd05a6aaa51bf'); // 사용하려는 앱의 JavaScript 키 입력
+ Kakao.init('f76d3a70c175116c158bd05a6aaa51bf'); // 사용하려는 앱의 JavaScript 키 입력
 </script>
 
-<div class="col-sm-4 col-sm-offset-4">
 <a id="kakao-login-btn" href="javascript:loginWithKakao()">
-  <img src="/resources/img/kakao_login_medium_wide.png" width="auto" 
-    alt="카카오 로그인 버튼" />
+ <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
+   alt="카카오 로그인 버튼" />
 </a>
 <p id="token-result"></p>
-</div>
 
 <script>
-  function loginWithKakao() {
-    Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:8088/main',
-    });
-  }
+ function loginWithKakao() {
+   Kakao.Auth.authorize({
+     redirectUri: 'http://localhost:8088/',
+   });
+ }
 
-  displayToken()
-  function displayToken() {
-    var token = getCookie('authorize-access-token');
+ // 아래는 데모를 위한 UI 코드입니다.
+ displayToken()
+ function displayToken() {
+   var token = getCookie('authorize-access-token');
 
-    if(token) {
-      Kakao.Auth.setAccessToken(token);
-      Kakao.Auth.getStatusInfo()
-        .then(function(res) {
-          if (res.status === 'connected') {
-            document.getElementById('token-result').innerText
-              = 'login success, token: ' + Kakao.Auth.getAccessToken();
-          }
-        })
-        .catch(function(err) {
-          Kakao.Auth.setAccessToken(null);
-        });
-    }
-  }
+   if(token) {
+     Kakao.Auth.setAccessToken(token);
+     Kakao.Auth.getStatusInfo()
+       .then(function(res) {
+         if (res.status === 'connected') {
+           document.getElementById('token-result').innerText
+             = 'login success, token: ' + Kakao.Auth.getAccessToken();
+         }
+       })
+       .catch(function(err) {
+         Kakao.Auth.setAccessToken(null);
+       });
+   }
+ }
 
-  function getCookie(name) {
-    var parts = document.cookie.split(name + '=');
-    if (parts.length === 2) { return parts[1].split(';')[0]; }
-  }
-</script>
+ function getCookie(name) {
+   var parts = document.cookie.split(name + '=');
+   if (parts.length === 2) { return parts[1].split(';')[0]; }
+ }
+</script> -->
 
 <!-- <div class="col-sm-4 col-sm-offset-4"> -->
 <!-- 	<button type="button" class="form-control btn btn-block" style="border:1px solid black;" id="btnNaverTicket">네이버 로그인 자리</button> -->
