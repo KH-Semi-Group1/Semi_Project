@@ -396,8 +396,32 @@ public class ReviewServiceImpl implements ReviewService {
 			
 		}
 		
-		
 	}
 
+	@Override
+	public void delete(Review review) {
+		
+		//첨부 파일 삭제
+		if(reviewDao.deleteFile(conn, review) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+		//댓글 삭제
+		if(reviewDao.deleteComment(conn, review) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		//게시글 삭제
+		if(reviewDao.delete(conn, review) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
 	
 }

@@ -66,6 +66,13 @@ public interface ReviewService {
 	 */
 	public void update(HttpServletRequest req);
 
+	/**
+	 * 게시글 삭제
+	 * 
+	 * @param review - 삭제할 게시글 번호 객체
+	 */
+	public void delete(Review review);
+
 
 
 

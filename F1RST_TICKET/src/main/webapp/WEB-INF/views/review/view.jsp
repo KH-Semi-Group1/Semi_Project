@@ -37,6 +37,11 @@ $(document).ready(function() {
 	$("#btnUpdate").click(function() {
 		$(location).attr('href', './update?reviewno=<%=viewReview.getReviewno() %>')
 	})
+
+	//수정버튼 클릭
+	$("#btnDelete").click(function() {
+		$(location).attr('href', './delete?reviewno=<%=viewReview.getReviewno() %>')
+	})
 	
 	
 })
@@ -69,13 +74,15 @@ $(document).ready(function() {
 
 <!-- 목록버튼 -->
 <div class="text-center">
-	<button id="btnList" class="btn btn-outline-secondary">목록으로</button>
+	<button id="btnList" class="btn btn-outline">목록으로</button>
 	
-	<!-- 해당 작성자만 수정할 수 있게끔 설정 -->
+	<!-- 해당 작성자만 수정/삭제할 수 있게끔 설정 -->
 	<%	if( !session.getAttribute("userid").equals(viewReview.getUserid()) ) { %>
 		<button id="btnUpdate" class="hidden">수정하기</button>
+		<button id="btnDelete" class="hidden">삭제하기</button>
 	<%	} else { %>
-		<button id="btnUpdate" class="btn btn-outline-secondary">수정하기</button>
+		<button id="btnUpdate" class="btn" style="background-color: #8EC0E4;">수정하기</button>
+		<button id="btnDelete" class="btn" style="background-color: #ea9999;">삭제하기</button>
 	<%	} %>
 	
 	

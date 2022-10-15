@@ -80,6 +80,34 @@ public interface ReviewDao {
 	 */
 	public int update(Connection conn, Review review);
 
+	/**
+	 * 게시글에 첨부된 파일 정보 삭제
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param review - 삭제할 게시글 번호
+	 * @return int - DELETE 수행 결과
+	 */
+	public int deleteFile(Connection conn, Review review);
+
+	/**
+	 * 게시글에 첨부된 댓글 정보 삭제
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param review - 삭제할 게시글 번호
+	 * @return int - DELETE 수행 결과
+	 */
+	public int deleteComment(Connection conn, Review review);
+
+	/**
+	 * 게시글 삭제
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param review - 삭제할 게시글 번호
+	 * @return int - DELETE 수행 결과
+	 */
+	public int delete(Connection conn, Review review);
+
+
 
 
 }
