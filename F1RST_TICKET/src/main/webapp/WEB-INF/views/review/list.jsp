@@ -80,7 +80,7 @@ $(document).ready(function() {
 					<%	} %>
 					<%=reviewList.get(i).getReviewscope() %>점
 				</p>
-				<p class="content"><%=reviewList.get(i).getReviewcontent() %></p>
+<%-- 				<p class="content"><%=reviewList.get(i).getReviewcontent() %></p> --%>
 			</div>
 		</div>
 	</a>

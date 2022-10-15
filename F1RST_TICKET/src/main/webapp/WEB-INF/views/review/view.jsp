@@ -32,6 +32,13 @@ $(document).ready(function() {
 		}
 		
 	})
+	
+	//수정버튼 클릭
+	$("#btnUpdate").click(function() {
+		$(location).attr('href', './update?reviewno=<%=viewReview.getReviewno() %>')
+	})
+	
+	
 })
 </script>
 
@@ -63,6 +70,15 @@ $(document).ready(function() {
 <!-- 목록버튼 -->
 <div class="text-center">
 	<button id="btnList" class="btn btn-outline-secondary">목록으로</button>
+	
+	<!-- 해당 작성자만 수정할 수 있게끔 설정 -->
+	<%	if( !session.getAttribute("userid").equals(viewReview.getUserid()) ) { %>
+		<button id="btnUpdate" class="hidden">수정하기</button>
+	<%	} else { %>
+		<button id="btnUpdate" class="btn btn-outline-secondary">수정하기</button>
+	<%	} %>
+	
+	
 </div>
 
 

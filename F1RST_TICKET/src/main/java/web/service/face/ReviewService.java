@@ -59,6 +59,13 @@ public interface ReviewService {
 	 */
 	public void write(HttpServletRequest req);
 
+	/**
+	 * 게시글 수정
+	 * 
+	 * @param req - 요청 정보 객체
+	 */
+	public void update(HttpServletRequest req);
+
 
 
 
