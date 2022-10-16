@@ -1,9 +1,6 @@
 package web.service.impl;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +9,7 @@ import common.JDBCTemplate;
 import util.Paging;
 import web.dao.face.ReservationDao;
 import web.dao.impl.ReservationDaoImpl;
+import web.dto.Musical;
 import web.dto.Reservation;
 import web.dto.User;
 import web.service.face.ReservationService;
@@ -57,6 +55,14 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		return list;
 	}
+//	@Override
+//	public List<Reservation> getListSearch(Paging paging, User user, Musical musical) {
+//		
+//		List<Reservation>  list = reservationDao.selectAllSearch(JDBCTemplate.getConnection(), paging, user, musical);
+//		
+//		
+//		return list;
+//	}
 	
 	@Override
 	public Reservation getResv(HttpServletRequest req) {
@@ -116,5 +122,38 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation info(Reservation resv,  User user) {
 		return reservationDao.selectUserByUserid(JDBCTemplate.getConnection(), resv, user);
 	}
+	
+	@Override
+	public Paging getDeletePaging(HttpServletRequest req) {
+		
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if( param != null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		} else {
+			System.out.println("[WARN] reservationService getPaging() - curPage가 null이거나 비어있음");
+		}
+		
+		//총 게시글 수 조회하기
+		int totalCount = reservationDao.selectCntAll(JDBCTemplate.getConnection());
+		
+		//Paging 객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+		
+		return paging;
+	}
+
+	public void delete(Reservation resv, User user) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if(reservationDao.delete(conn,resv, user)> 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+	}
+	
+	
 }
 	

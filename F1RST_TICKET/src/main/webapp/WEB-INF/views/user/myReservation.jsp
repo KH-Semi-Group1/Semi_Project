@@ -8,6 +8,7 @@
 
 <%@ include file="../layout/header.jsp"%>
 
+<%-- <%List<Reservation> rsList = (List)request.getAttribute("rsList"); %> --%>
 <%List<Reservation> resvList = (List)request.getAttribute("resvList"); %>
 
 
@@ -20,6 +21,17 @@
 	padding-bottom: 40% !important;
 }
 </style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btnMyCancel").click(function(){
+		if(confirm('정말 취소 하시겠습니까?')){
+			alert('취소가 완료 되었습니다.')
+			location.replace('/');
+		} else{}
+	})
+})
+</script>
 
 <h1 style="text-align: center">마이페이지</h1>
 <hr>
@@ -43,6 +55,7 @@
 			<div class="col-md-3 col-sm-offset-1" id="mypageMenu" >
 				<ul style="list-style-type: none; padding: 0;">
 					<li class="list-item "><a href="/mypage/reservation">예매확인 / 취소 <!-- 				 	<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span> </a></li><br> -->
+							<!-- 				<li class="list-item"><a href="/advance/ticket">할인쿠폰 / 예매권 -->
 							<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 					</a></li>
 					<br>
@@ -55,19 +68,23 @@
 				</ul>
 			</div>
 			<br>
-			<div class="col-md-7 col-sm-offset-1" >
-			<h3>예매확인/취소</h3><br>
+			<div class="col-md-7 col-sm-offset-1" style="padding-left: 30px;">
+			<ul class="nav nav-tabs">
+			  <li role="presentation" class="active" style="font-size: 16px; font-weight: bold"><a href="/mypage/reservation">예매 내역</a></li>
+			  <li role="presentation"  style="font-size: 14px;"><a href="/mypage/resCancel">예매 취소 내역</a></li>
+			</ul>
 			</div>
 
 			<div class="col-md-7 col-sm-offset-1" style="padding-left: 30px;">
 				<table class="table">
 					<thead>
 						<tr>
-							<!-- <th class="text-center">예매일</th> -->
+							<!-- 						<th class="text-center">예매일</th> -->
 							<th class="text-center">예매번호</th>
 							<th class="text-center">공연명</th>
 							<th class="text-center">관람일시</th>
 							<th class="text-center">매수</th>
+							<th class="text-center">관람 상태</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,6 +95,7 @@
 								<td><%=resvList.get(i).getScheduleInfoID()%></td>
 								<td><%=resvList.get(i).getResdate()%></td>
 								<td><%=resvList.get(i).getTicketcount()%></td>
+								<td><button class="btn btn-sm"  id="btnMyCancel">예매 취소</button></td>
 							</tr>
 						<% } %>
 					

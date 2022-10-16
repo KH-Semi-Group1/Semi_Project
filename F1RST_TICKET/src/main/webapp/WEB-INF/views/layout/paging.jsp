@@ -5,7 +5,7 @@
 <%	Paging paging = (Paging) request.getAttribute("paging"); %>
 
 <div class="text-center">
-	<ul class="pagination">
+	<ul class="pagination pagination-sm">
 	
 		<%-- 첫 페이지로 이동 --%>
 		<%	if(paging.getCurPage() != 1) { %>

@@ -78,6 +78,7 @@ $(document).ready(function(){
 						<th class="text-center">예매일</th>
 						<th class="text-center">예매번호</th>
 						<th class="text-center">공연명</th>
+						<th class="text-center">매수</th>
 						<th class="text-center">관람일시</th>
 					</tr>
 				</thead>
@@ -89,6 +90,7 @@ $(document).ready(function(){
 								<td><%=resvList.get(i).getResdate()%></td>
 								<td><%=resvList.get(i).getResno() %></td>
 								<td><%=resvList.get(i).getScheduleInfoID()%></td>
+								<td><%=resvList.get(i).getTicketcount()%>장</td>
 								<td><%=resvList.get(i).getScheduleInfoID()%></td>
 							</tr>
 						<% } %>
@@ -105,6 +107,7 @@ $(document).ready(function(){
 				<thead>
 					<tr>
 						<th class="text-center">공연명(예매번호)</th>
+						<th class="text-center">매수</th>
 						<th class="text-center">관람일시</th>
 					<!-- 	<th>후기작성</th> -->
 					</tr>
@@ -113,6 +116,7 @@ $(document).ready(function(){
 					<%for (int i = 0; i < resvList.size(); i++) {%>
 							<tr class="text-center">
 								<td><%=resvList.get(i).getResdate()%>(<%=resvList.get(i).getResno() %>)</td>
+								<td><%=resvList.get(i).getTicketcount()%>장</td>
 								<td><%=resvList.get(i).getScheduleInfoID()%></td>
 							</tr>
 						<% } %>

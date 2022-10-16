@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import util.Paging;
+import web.dto.Musical;
 import web.dto.Reservation;
 import web.dto.User;
 
@@ -34,5 +35,9 @@ public interface ReservationService {
 	public Reservation info(Reservation resv,  User user);
 
 	public List<Reservation> getListMain(Paging paging, User user);
+
+	public Paging getDeletePaging(HttpServletRequest req);
+	
+//	public List<Reservation> getListSearch(Paging paging, User user, Musical musical); 
 	
 }

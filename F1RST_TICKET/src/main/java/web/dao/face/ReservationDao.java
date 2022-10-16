@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import util.Paging;
+import web.dto.Musical;
 import web.dto.Reservation;
 import web.dto.User;
 
@@ -30,6 +31,12 @@ public interface ReservationDao {
 	public Reservation selectUserByUserid(Connection conn, Reservation resv,  User user);
 
 	public List<Reservation> selectAllMain(Connection connection, Paging paging, User user);
+
+
+	public int delete(Connection conn, Reservation resv, User user);
+
+
+//	public List<Reservation> selectAllSearch(Connection conn, Paging paging, User user, Musical musical);
 
 
 }

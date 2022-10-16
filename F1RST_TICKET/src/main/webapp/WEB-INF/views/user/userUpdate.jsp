@@ -45,6 +45,7 @@ $(document).ready(function(){
 		
 		if(confirm('정말 탈퇴 하시겠습니까?')){
 			$(this).parents("form").submit();
+				alert('이용해 주셔서 감사합니다.\n다음에는 좋은 모습으로 뵙겠습니다')
 	 		$(location).attr('href','/user/delete')	
 		} else{
 	 		$(location).attr('href','/mypage')	
