@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.JDBCTemplate;
+import util.Paging;
 import web.dao.face.McDao;
 import web.dto.Like;
 import web.dto.Musical;
@@ -475,5 +476,220 @@ public class McDaoImpl implements McDao {
 			JDBCTemplate.close(ps);
 		}
 		return viewMc;
+	}
+	
+	@Override
+	public List<Musical> selectAllpage(Connection conn, Paging paging) {
+		//SQL작성
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, B.* FROM (";
+		sql += "		SELECT *";
+		sql += "		FROM musical";
+		sql += "		ORDER BY mcno DESC";
+		sql += "	) B";
+		sql += " ) musical";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		//결과 저장할 List
+		List<Musical> musicalList = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
+			
+			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
+			
+			//조회 결과 처리
+			while(rs.next()) {
+				Musical b = new Musical(); //결과값 저장 객체
+				
+				//결과값 한 행씩 처리
+				b.setMcno(rs.getInt("mcno"));
+				b.setMcname(rs.getString("mcname"));
+				b.setMcage(rs.getString("mcage"));
+				b.setMctime(rs.getString("mctime"));
+				b.setMcstart(rs.getString("mcstart"));
+				b.setMcend(rs.getString("mcend"));
+				b.setMcact(rs.getString("mcact"));
+				b.setMcloc(rs.getString("mcloc"));
+				b.setMclike(rs.getInt("mclike"));
+				b.setMcimg(rs.getString("mcimg"));
+				b.setMcimgcas(rs.getString("mcimgcas"));
+				b.setMcimginfo(rs.getString("mcimginfo"));
+				b.setMcimgchk(rs.getString("mcimgchk"));
+				b.setMcimgsale(rs.getString("mcimgsale"));
+				
+				//리스트에 결과값 저장
+				musicalList.add(b);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		//최종 결과 반환
+		return musicalList;
+	}
+	
+	@Override
+	public int selectCntAllpage(Connection conn) {
+		//SQL 작성
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM musical";
+		
+		//총 게시글 수
+		int count = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return count;
+	}
+	
+	@Override
+	public List<Musical> selectLikepage(Connection conn, Paging paging) {
+		//SQL작성
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, B.* FROM (";
+		sql += "		SELECT *";
+		sql += "		FROM musical";
+		sql += "		ORDER BY mclike DESC";
+		sql += "	) B";
+		sql += " ) musical";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		//결과 저장할 List
+		List<Musical> mcLikeList = new ArrayList<>();
+		
+		try {
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
+			
+			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
+			
+			//조회 결과 처리
+			while(rs.next()) {
+				Musical b = new Musical(); //결과값 저장 객체
+				
+				//결과값 한 행씩 처리
+				b.setMcno(rs.getInt("mcno"));
+				b.setMcname(rs.getString("mcname"));
+				b.setMcage(rs.getString("mcage"));
+				b.setMctime(rs.getString("mctime"));
+				b.setMcstart(rs.getString("mcstart"));
+				b.setMcend(rs.getString("mcend"));
+				b.setMcact(rs.getString("mcact"));
+				b.setMcloc(rs.getString("mcloc"));
+				b.setMclike(rs.getInt("mclike"));
+				b.setMcimg(rs.getString("mcimg"));
+				b.setMcimgcas(rs.getString("mcimgcas"));
+				b.setMcimginfo(rs.getString("mcimginfo"));
+				b.setMcimgchk(rs.getString("mcimgchk"));
+				b.setMcimgsale(rs.getString("mcimgsale"));
+				
+				//리스트에 결과값 저장
+				mcLikeList.add(b);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		//최종 결과 반환
+		return mcLikeList;
+	}
+	
+	@Override
+	public List<Musical> searchpageList(Connection conn, String keyword, Paging paging) {
+		
+		//결과 저장할 List
+		List<Musical> mcSearchList = new ArrayList<>();
+		
+		//SQL작성
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, B.* FROM (";
+		sql += "		SELECT *";
+		sql += "		FROM musical WHERE mcname ";
+		
+		try {
+			
+			if(keyword != null && !keyword.equals("") ){
+                sql +=" LIKE '%"+keyword+"%' order by mcno desc";
+        		sql += "	) B";
+        		sql += " ) musical";
+        		sql += " WHERE rnum BETWEEN ? AND ?";
+            }
+			
+			ps = conn.prepareStatement(sql); //SQL수행 객체
+			
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
+			
+			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
+			
+			//조회 결과 처리
+			while(rs.next()) {
+				Musical b = new Musical(); //결과값 저장 객체
+				
+				//결과값 한 행씩 처리
+				b.setMcno(rs.getInt("mcno"));
+				b.setMcname(rs.getString("mcname"));
+				b.setMcage(rs.getString("mcage"));
+				b.setMctime(rs.getString("mctime"));
+				b.setMcstart(rs.getString("mcstart"));
+				b.setMcend(rs.getString("mcend"));
+				b.setMcact(rs.getString("mcact"));
+				b.setMcloc(rs.getString("mcloc"));
+				b.setMclike(rs.getInt("mclike"));
+				b.setMcimg(rs.getString("mcimg"));
+				b.setMcimgcas(rs.getString("mcimgcas"));
+				b.setMcimginfo(rs.getString("mcimginfo"));
+				b.setMcimgchk(rs.getString("mcimgchk"));
+				b.setMcimgsale(rs.getString("mcimgsale"));
+				
+				//리스트에 결과값 저장
+				mcSearchList.add(b);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		//최종 결과 반환
+		return mcSearchList;
 	}
 }

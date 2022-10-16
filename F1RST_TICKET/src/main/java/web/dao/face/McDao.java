@@ -3,6 +3,7 @@ package web.dao.face;
 import java.sql.Connection;
 import java.util.List;
 
+import util.Paging;
 import web.dto.Like;
 import web.dto.Musical;
 
@@ -111,6 +112,44 @@ public interface McDao {
 	 * @return
 	 */
 	public Musical selectMusicalLike(Connection conn, Like like);
+
+	/**
+	 * 테이블 전체 조회
+	 *	->페이징 처리 추가
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param paging - 페이징 정보 객체 
+	 * @return List<Musical> - 테이블 페이징 목록 조회 결과 
+	 */
+	public List<Musical> selectAllpage(Connection conn, Paging paging);
+
+	/**
+	 * 총 게시글 수 조회
+	 * 
+	 * @param conn - DB연결 객체
+	 * @return int - 테이블의 전체 행 수
+	 */
+	public int selectCntAllpage(Connection conn);
+
+	/**
+	 * 테이블 인기 조회
+	 *	->페이징 처리 추가
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param paging - 페이징 정보 객체 
+	 * @return List<Musical> - 테이블 페이징 목록 조회 결과 
+	 */
+	public List<Musical> selectLikepage(Connection conn, Paging paging);
+
+	/**
+	 * 테이블 검색 조회
+	 *	->페이징 처리 추가
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param paging - 페이징 정보 객체 / keyword - 검색어
+	 * @return List<Musical> - 테이블 페이징 목록 조회 결과 
+	 */
+	public List<Musical> searchpageList(Connection conn, String keyword, Paging paging);
 
 
 

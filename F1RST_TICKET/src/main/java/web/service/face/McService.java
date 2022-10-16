@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import util.Paging;
 import web.dto.Like;
 import web.dto.Musical;
 
@@ -115,6 +116,46 @@ public interface McService {
 	 * @return Musical 좋아요 증가한 뮤지컬 상세보기
 	 */
 	public Musical updateLikeP(Like like);
+
+	/**
+	 * 뮤지컬 페이징 객체 생성
+	 * 
+	 * @param req - 요청 정보 객체
+	 * @return Paging - 페이징 계산이 완료된 객체
+	 */
+	public Paging getPaging(HttpServletRequest req);
+
+	/**
+	 * 뮤지컬 페이징 전체 조회
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return List<Musical> - 뮤지컬 전체 조회 결과 목록
+	 */
+	public List<Musical> getList(Paging paging);
+
+	/**
+	 * 뮤지컬 페이징 인기 조회
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return List<Musical> - 뮤지컬 인기 조회 결과 목록
+	 */
+	public List<Musical> getLikeList(Paging paging);
+
+	/**
+	 * 뮤지컬 페이징 검색 조회
+	 * 
+	 * @param paging - 페이징 정보 객체 / keyword - 검색어
+	 * @return List<Musical> - 뮤지컬 검색 조회 결과 목록
+	 */
+	public List<Musical> gettSearchList(String keyword, Paging paging);
+
+	/**
+	 * 뮤지컬 검색 페이징 객체 생성
+	 * 
+	 * @param req - 요청 정보 객체
+	 * @return Paging - 페이징 계산이 완료된 객체
+	 */
+	public Paging getPagingSearch(HttpServletRequest req);
 
 	
 

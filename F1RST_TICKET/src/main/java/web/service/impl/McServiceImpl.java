@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import common.JDBCTemplate;
+import util.Paging;
 import web.dao.face.McDao;
 import web.dao.impl.McDaoImpl;
 import web.dto.Like;
@@ -163,5 +164,63 @@ public class McServiceImpl implements McService {
 		
 		//조회된 뮤지컬 리턴
 		return viewMc;
+	}
+	
+	@Override
+	public List<Musical> getList(Paging paging) {
+		//뮤지컬 전체 조회 결과 처리
+		return mcDao.selectAllpage(JDBCTemplate.getConnection(), paging);
+	}
+	
+	@Override
+	public Paging getPaging(HttpServletRequest req) {
+		//전달파라미터 curPage 추출하기
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if( param != null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		} else {
+			System.out.println("[WARN] getPaging() - curPage가 null이거나 비어있음");
+		}
+		
+		//총 게시글 수 조회하기
+		int totalCount = mcDao.selectCntAllpage(JDBCTemplate.getConnection());
+		
+		//Paging 객체 생성
+		Paging paging = new Paging(totalCount, curPage, 12, 5);
+		
+		return paging;
+	}
+	
+	@Override
+	public List<Musical> getLikeList(Paging paging) {
+		//뮤지컬 인기 조회 결과 처리
+		return mcDao.selectLikepage(JDBCTemplate.getConnection(), paging);
+	}
+	
+	@Override
+	public List<Musical> gettSearchList(String keyword, Paging paging) {
+		//뮤지컬 검색 조회 결과 처리
+		return mcDao.searchpageList(JDBCTemplate.getConnection(), keyword , paging);
+	}
+	
+	@Override
+	public Paging getPagingSearch(HttpServletRequest req) {
+		//전달파라미터 curPage 추출하기
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if( param != null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		} else {
+			System.out.println("[WARN] getPaging() - curPage가 null이거나 비어있음");
+		}
+		
+		//총 게시글 수 조회하기
+		int totalCount = mcDao.selectCntAllpage(JDBCTemplate.getConnection());
+		
+		//Paging 객체 생성
+		Paging paging = new Paging(totalCount, curPage, 6, 5);
+		
+		return paging;
 	}
 }
