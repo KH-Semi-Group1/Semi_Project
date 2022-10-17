@@ -15,7 +15,7 @@ public interface McDao {
 	 * @param conn - DB 연결 객체
 	 * @return List<Musical> - 테이블 전체 조회 결과 목록
 	 */
-	List<Musical> selectAll(Connection conn);
+	public List<Musical> selectAll(Connection conn);
 
 	/**
 	 * 뮤지컬 테이블 신규 조회
@@ -23,7 +23,7 @@ public interface McDao {
 	 * @param conn - DB 연결 객체
 	 * @return List<Musical> - 테이블 신규 조회 결과 목록(제일 최근 업로드된 7개 반환)
 	 */
-	List<Musical> selectNew(Connection conn);
+	public List<Musical> selectNew(Connection conn);
 
 	/**
 	 * 뮤지컬 테이블 인기 조회
@@ -31,7 +31,7 @@ public interface McDao {
 	 * @param conn - DB 연결 객체
 	 * @return List<Musical> - 테이블 인기 조회 결과 목록(like순)
 	 */
-	List<Musical> selectLike(Connection conn);
+	public List<Musical> selectLike(Connection conn);
 
 	/**
 	 * 뮤지컬 테이블 MD-pick 조회
@@ -39,7 +39,7 @@ public interface McDao {
 	 * @param conn - DB 연결 객체
 	 * @return List<Musical> - 테이블 MD-pick 조회 결과 목록(img가 null이 아닌 뮤지컬)
 	 */
-	List<Musical> selectMd(Connection conn);
+	public List<Musical> selectMd(Connection conn);
 
 	/**
 	 * 지정된 mcno의 뮤지컬 조회하기
@@ -57,7 +57,7 @@ public interface McDao {
 	 * @param keyword - 뮤지컬 검색어
 	 * @return List<Musical> - 검색된 뮤지컬 목록
 	 */
-	List<Musical> searchList(Connection conn, String keyword);
+	public List<Musical> searchList(Connection conn, String keyword);
 
 	/**
 	 * useid와 mcno를 동시에 만족하는 좋아요 수를 조회한다

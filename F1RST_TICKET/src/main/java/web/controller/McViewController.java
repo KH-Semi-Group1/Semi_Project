@@ -39,7 +39,16 @@ public class McViewController extends HttpServlet {
 				
 		//조회결과 MODEL값 전달
 		req.setAttribute("viewMc", viewMc);
-				
+
+
+		
+		//기존 좋아요 유무 확인
+		Like like = mcService.getLIkes(req);
+		like.setUserid((String)req.getSession().getAttribute("userid"));
+		boolean isLike = mcService.like(like);
+		req.setAttribute("isLike", isLike);
+		System.out.println( "isLike : " + isLike);
+		
 		//VIEW 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/musical/mcView.jsp").forward(req, resp);
 		
@@ -66,7 +75,7 @@ public class McViewController extends HttpServlet {
 			//상세보기 결과 세션값으로 전달
 			HttpSession session = req.getSession();
 			session.setAttribute("viewMc", viewMc);
-			
+
 		//로그인 상태 좋아요 이후 
 		} else {
 			
@@ -107,7 +116,7 @@ public class McViewController extends HttpServlet {
 		}
 		
 		//뮤지컬 상세보기로 리다이렉트
-		resp.sendRedirect("/musical/mcView");
+		resp.sendRedirect("/musical/mcView?mcno=" + req.getParameter("mcno"));
 	
 	}
 

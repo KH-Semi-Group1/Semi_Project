@@ -10,8 +10,19 @@
 <%@ include file="../layout/header_muview.jsp" %>
 
 
+
 <script>	
-$(document).ready(function(){		
+//좋아요 클릭
+$(document).ready(function(){
+	
+    if( ${isLike eq true} ) {
+		$('#heart').val('♥');
+    }
+    else if( ${isLike eq false } ){
+		$('#heart').val('♡'); 
+    }
+	
+	
 // 뮤지컬 위치 클릭 시 map으로 스크롤 이동          
 	$('#moveLoc').click(function(){			
 		var offset = $('#map').offset(); //offset : 선택한 태그의 위치를 반환                
@@ -23,28 +34,10 @@ $(document).ready(function(){
 		var offset = $('#top').offset(); //offset : 선택한 태그의 위치를 반환                
 		$('html').animate({scrollTop : offset.top}, 600);	//0.6초 동안 부드럽게 해당 위치로 이동	
 	});
-	
-	$('#likee').click( function() {
-	    if( $('#heart').val() == '♡' ) {
-	      $('#heart').val('♥');
-	    }
-	    else if($('#heart').val() == '♥'){
-	      $('#heart').val('♡'); // $(this) 로 사용하면 클릭된 버튼 것만 바뀝니다.
-	    }
-	  });
-	
-// 		$('#likee').click( function() {
-// 	    $('#heart').attr('src','${pageContext.request.contextPath}/resources/img/mc/heart-fill.svg')
-	     
-// 	  });
 
-
-  
 });	
 	
 </script>
-
-
 
 
 <!-- 맨 위로 스크롤 이동 버튼(고정) -->
@@ -89,13 +82,10 @@ $(document).ready(function(){
 			<input type="hidden" name="mcno" value="${viewMc.mcno}">
 		
 		
-		<button onclick="change()" id="likee" style="border:0px;background:none;">
+		<button type="button" id="likee" style="border:0px;background:none;">
 		<input  type="submit" id="heart" value="♡">
 		</button>
 
-<!-- 		<button onclick="change()" id="likee" style="border:0px;background:none;"> -->
-<%-- 		<img src="${pageContext.request.contextPath}/resources/img/mc/heart.svg"  id="heart" > --%>
-<!-- 		</button> -->
 			${viewMc.mclike} Likes<br><br>
 		</form>
 		</div><!-- col-sm-5 -->

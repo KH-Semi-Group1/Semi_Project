@@ -15,28 +15,28 @@ public interface McService {
 	 * 
 	 * @return List<Musical> - 뮤지컬 전체 조회 결과 목록
 	 */
-	List<Musical> getAllMusical();
+	public List<Musical> getAllMusical();
 
 	/**
 	 * 뮤지컬 신규 조회
 	 * 
 	 * @return List<Musical> - 뮤지컬 신규 조회 결과 목록
 	 */
-	List<Musical> getNewMusical();
+	public List<Musical> getNewMusical();
 
 	/**
 	 * 뮤지컬 인기 조회
 	 * 
 	 * @return List<Musical> - 뮤지컬 인기 조회 결과 목록
 	 */
-	List<Musical> getLikeMusical();
+	public List<Musical> getLikeMusical();
 
 	/**
 	 * 뮤지컬 MD-pick 조회
 	 * 
 	 * @return List<Musical> - 뮤지컬 MD-pick 조회 결과 목록
 	 */
-	List<Musical> getMdMusical();
+	public List<Musical> getMdMusical();
 
 	/**
 	 * 전달파라미터를 Musical DTO로 저장하여 반환
@@ -60,7 +60,7 @@ public interface McService {
 	 * @param keyword - 검색어
 	 * @return List<Musical> - 검색결과 뮤지컬 목록
 	 */
-	List<Musical> getSearchList(String keyword);
+	public List<Musical> getSearchList(String keyword);
 
 	/**
 	 * 전달파라미터를 Like DTO로 저장하여 반환

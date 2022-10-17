@@ -20,20 +20,20 @@ public class McController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
 	//서비스 객체 생성
-	private McService adminService = new McServiceImpl();
+	private McService mcService = new McServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//전달파라미터에서 현재 페이징 객체 계산하기
-		Paging paging = adminService.getPaging(req);
+		Paging paging = mcService.getPaging(req);
 		System.out.println( "페이징객체" + paging );
 				
 		//뮤지컬 전체 조회
-		List<Musical> musicalList1 = adminService.getAllMusical();
+		List<Musical> musicalList1 = mcService.getAllMusical();
 		
 		//게시글 페이징 목록 조회
-		List<Musical> musicalList = adminService.getList( paging );
+		List<Musical> musicalList = mcService.getList( paging );
 		
 		//조회결과 전달
 		req.setAttribute("musicalList", musicalList);
