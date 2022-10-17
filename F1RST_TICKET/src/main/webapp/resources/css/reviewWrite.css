@@ -37,12 +37,12 @@ td:nth-child(1) {
 }
 
 .star-rating :checked ~ label {
-	-webkit-text-fill-color: rgb(255, 255, 0);
+	-webkit-text-fill-color: rgba(250, 208, 0, 0.99);
 }
 
 .star-rating :hover,
 .star-rating :hover ~ label {
-	-webkit-text-fill-color: yellow;
+	-webkit-text-fill-color: rgba(250, 208, 0, 0.99);
 }
 
 small {

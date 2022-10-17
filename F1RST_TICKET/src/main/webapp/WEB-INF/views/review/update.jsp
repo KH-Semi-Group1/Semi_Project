@@ -70,7 +70,7 @@ function updateContents() {
 <div class="container-fluid row">
 	<div class="col-xs-12">
 		<div class="thumbnail row">
-			<img class="col-xs-2" alt="..." src="../resources/img/mc/jes.jpg">
+			<img class="col-xs-2" alt="..." src="../resources/img/mc/<%=updateReview.getMcimg() %>">
 			<div class="caption col-md-10">
 				<h3>뮤지컬 이름</h3>
 				<p>별점</p>
@@ -83,7 +83,7 @@ function updateContents() {
 					<input type="radio" id="4-star" name="reviewscope" value="4">
 					<label for="4-star" class="star"><span class="glyphicon glyphicon-star"></span></label>
 					
-					<input type="radio" id="3-star" name="reviewscope" value="3">
+					<input type="radio" id="3-star" name="reviewscope" value="3" checked="checked">
 					<label for="3-star" class="star"><span class="glyphicon glyphicon-star"></span></label>
 					
 					<input type="radio" id="2-star" name="reviewscope" value="2">
