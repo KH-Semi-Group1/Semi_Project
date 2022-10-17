@@ -155,7 +155,7 @@ public class UserServiceImpl implements UserService {
 		//조회된 게시글 리턴
 		return user;
 	}
-	
+	// 회원 수정
 	@Override
 	public void update(HttpServletRequest req) {
 
@@ -175,7 +175,7 @@ public class UserServiceImpl implements UserService {
 			JDBCTemplate.rollback(conn);
 		}
 	}
-	
+	// 회원 탈퇴
 	@Override
 	public void delete(User userid) {
 
@@ -188,4 +188,14 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
+	@Override
+	public User getuserid(HttpServletRequest req) {
+		User user = new User();
+		
+		user.setUserid((String)req.getSession().getAttribute("userid"));
+	
+		return user;
+	}
+	
 }
+

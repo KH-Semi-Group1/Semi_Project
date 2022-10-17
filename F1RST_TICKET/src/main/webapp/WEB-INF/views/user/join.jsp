@@ -9,10 +9,12 @@
     padding: 20px 0 20px 0;
     position: relative;
 }
+
 #jcbutton {
 	position: relative;
 	right: 45px;	
 }
+
 label{
 	color:black;
 }
@@ -39,14 +41,18 @@ function joinCheck() {
 		return false;	
 	}
 	return true;
+// 	window.alert("회원가입이 완료되었습니다.")
 }
+
 /* $(document).ready(function(){
 	$(#"joinCheck").click(function(){
-		alert("회원가입이 완료되었습니다.")
 	})
 }) */
+
 /* if()
 $("#btnJoin").prop("disabled",true); */
+
+
 function check(){
 	var userid = $("#userid").val();
 	
@@ -71,10 +77,12 @@ function check(){
 			console.log("상태코드: "+a);
 			console.log("메세지: "+b);
 			console.log("에러설명: "+c);
+
 		}
 		
 	})
 }
+
 </script>
 
 

@@ -32,7 +32,6 @@ $(document).ready(function(){
 });
 </script>
 
-
 <hr>
 <div class="text-center">
 		<span id="menuMu">뮤지컬</span>
@@ -114,6 +113,5 @@ $(document).ready(function(){
 		
 	</ul>
 </div>
-
 <%@ include file = "../layout/footer.jsp" %>
 

@@ -34,6 +34,13 @@ $(document).ready(function(){
 		var offset = $('#top').offset(); //offset : 선택한 태그의 위치를 반환                
 		$('html').animate({scrollTop : offset.top}, 600);	//0.6초 동안 부드럽게 해당 위치로 이동	
 	});
+	
+	
+	//후기 작성 버튼 클릭
+	$("#bag").click(function() {
+		
+	});
+	
 
 });	
 	
@@ -60,22 +67,25 @@ $(document).ready(function(){
 		<img alt="포스터" src="${pageContext.request.contextPath}/resources/img/mc/${viewMc.mcimg}"
 						onerror="this.src='${pageContext.request.contextPath}/resources/img/mc/noImg.jpg'">
 		<div class="row">
-		<div class="col-sm-5">
+		<div class="col-sm-6" style = "margin-left: 40px;">
 		
-<!-- 좋아요 전 로그인여부확인 -->
+<!-- 좋아요, 후기작성 전 로그인여부확인 -->
 <c:if test="${sessionScope.userid == null}">
-		추천은 <a href="/user/login" type="button" id="newLogin"
-		class="btn btn-outline-success">로그인</a> 후 <br> 사용 가능합니다.
+		추천과 후기 작성은<br>
+		<a href="/user/login" type="button" id="newLogin"
+		class="btn btn-outline-success" style="margin-left: -13px;">
+		로그인</a> 후 사용 가능합니다.
 </c:if>
 <c:if test="${sessionScope.userid != null}">
 	<div>
 	<input type="hidden" id="likechk" value="${viewMc.mclike}">
+	<input type="hidden" id="reviewMcno" value="${viewMc.mcno}">
 	</div>
 </c:if>
 		</div><!-- col-sm-5  -->
 
 <!-- 좋아요 기능 -->
-		<div class="col-sm-5">
+		<div class="col-sm-4">
 		<form action="/musical/mcView" method="post">
 			<input type="hidden" name="likechk" value="${viewMc.mclike}">
 			<input type="hidden" name="userid" value="${sessionScope.userid}">
@@ -129,12 +139,11 @@ $(document).ready(function(){
 
 </div>
 
-
-<div id="btns">
-<button id="tick"><a href="/">예매하기</a></button>
-<button id="bag"><a href="/">장바구니</a></button>
+<div class="text-center">
+<div id="btns" class="text-center">
+<button id="tick"><a href="/reservationpay">예매하기</a></button>
+<button id="bag"><a href="/review/write?mcno=${viewMc.mcno}&mcname=${viewMc.mcname}&mcimg=${viewMc.mcimg}">후기작성</a></button>
 </div>
-
 
 <p class="contents">유의사항</p>
 <img alt="포스터" src="${pageContext.request.contextPath}/resources/img/mc/${viewMc.mcimgchk}"
@@ -153,6 +162,7 @@ $(document).ready(function(){
 						onerror="this.src='${pageContext.request.contextPath}/resources/img/mc/noImg.jpg'">
 						
 <hr style="border:solid 1px;">
+</div>
 
 <!-- 카카오맵 -->
 <div id="loc">

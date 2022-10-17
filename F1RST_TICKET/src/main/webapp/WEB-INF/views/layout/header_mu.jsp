@@ -11,12 +11,124 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-
-<link rel="stylesheet" href="/resources/css/layout.css">
-
 <!-- list.css -->
 <link rel="stylesheet" href="/resources/css/list_mu.css">
 
+<style type="text/css">
+body {
+	color : black;text-align:center; margin:0; padding:0;
+}
+
+.wrap{
+	position: relative;
+  	min-height: 100%;
+  	
+}
+
+nav {
+	position : fixed; width:100%; height:40px; background : #6AAFE6; 
+	color : white; text-align : center;top:0;left:0;}
+	
+.all {
+	display:flex; flex-flow : row wrap; min-width:280px; margin-top:50px;
+}
+
+header {
+	flex:1 1 100%; height:85px; background:white;
+}
+	
+main {
+	flex: 1 1 100%;
+	min-height: 100%;
+	padding: 35px 0 35px 0;
+}
+
+footer{
+	position : absolute; 
+	width:100%;
+	flex: 1 1 100%;
+	padding: 35px 0 0 0;
+}
+
+.header1{
+	display: inline-block;
+}
+
+.header2{
+	display: inline-block;
+	padding-top: 10px;
+	font-size: 20px;
+}
+
+.header3{
+	float: right;
+	padding-top: 10px;
+	font-size: 20px; */
+}
+
+.topmenu {
+	float:right;
+	padding: .4% 3% 0 0;
+	z-index: 10;
+}
+
+.topmenu>ul>li{
+
+	margin-left: 18px;
+	font-size: 14px;
+}
+
+.topmenu a {
+	text-decoration: none;
+	color:#fff;
+}
+
+.topmenu a:hover{
+	text-decoration: none;
+	color: black;
+} 
+
+header li a {
+	color : black;
+	
+}
+
+header li a:hover{
+	border-bottom: 2px solid black;
+	color : black !important;
+	background-color: #fff !important;
+}
+
+footer a:hover {
+	text-decoration: none;
+}
+
+.topcon {
+	padding-left: 20px;
+}
+
+
+html, body{
+	height:100%;
+}
+
+.footer-wrap {
+	background:#6AAFE6;
+	width:100%;
+	
+	z-index: 2;
+}
+
+.empty {
+	background:white;
+	height:100px;
+	width:100%;
+	z-index: 1;
+	position:relative;
+	transform: translatY(-100%);
+	
+}
+</style>
 
 </head>
 <body>

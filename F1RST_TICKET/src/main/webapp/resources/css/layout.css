@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+/* header.jsp css */
+
 body {
 	color : black;text-align:center; margin:0; padding:0;
 }
@@ -48,7 +50,7 @@ footer{
 .header3{
 	float: right;
 	padding-top: 10px;
-	font-size: 20px; */
+	font-size: 20px; 
 }
 
 .topmenu {
