@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* header.jsp css */
 
 header{
 	margin: 0 auto;
@@ -19,7 +20,8 @@ nav li a {
 }
 
 nav li a:hover{
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #8EC0E4;
+/* 	border-bottom: 2px solid black; */
 	color : black !important;
 	background-color: #fff !important;
 }
@@ -53,14 +55,26 @@ nav li a:hover{
 	color: black;
 } 
 
+#midmenu{
+	
+	font-size: 16px;
+}
+
 /* header_login.jsp CSS */
 
-#loginJoin > ul{
+#loginJoin ul li a{
 	
-	text-decoration: none !important; 
-	color: black !important;
+	text-decoration: none; 
+	color: black;
 	
-} 
+}
+
+#loginJoin ul li a:hover{
+	
+	border-bottom: 2px solid #8EC0E4;
+	width: auto;
+	
+}
 
 #lostId ul li {
 	font-size: 28px;

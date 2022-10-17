@@ -54,10 +54,12 @@ public class ReviewDaoImpl implements ReviewDao {
 		sql += "SELECT * FROM (";
 		sql += "	SELECT rownum rnum, N.* FROM (";
 		sql += "		SELECT";
-		sql += "			reviewno, userid, mcno, reviewtitle";
-		sql += "			, reviewcontent, reviewscope, writedate";
-		sql += "		FROM review";
-		sql += "		ORDER BY reviewno DESC";
+		sql += "			R.reviewno, R.userid, R.mcno, M.mcimg, M.mcname, R.reviewtitle";
+		sql += "			, R.reviewcontent, R.reviewscope, R.writedate";
+		sql += "		FROM review R";
+		sql += "		INNER JOIN musical M";
+		sql += "		 ON R.mcno = M.mcno";
+		sql += "		ORDER BY R.reviewno DESC";
 		sql += "	) N";
 		sql += " ) REVIEW";
 		sql += " WHERE rnum BETWEEN ? AND ?";
@@ -86,6 +88,10 @@ public class ReviewDaoImpl implements ReviewDao {
 				r.setReviewcontent( rs.getString("reviewcontent") );
 				r.setReviewscope( rs.getInt("reviewscope") );
 				r.setWritedate( rs.getDate("writedate") );
+				
+				//조인테이블 조회
+				r.setMcimg( rs.getString("mcimg") );
+				r.setMcname( rs.getString("mcname") );
 				
 				reviewList.add(r);
 				

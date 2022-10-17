@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="web.dto.Musical"%>
 <%@ page import="java.util.List"%>
+<%@page import="util.Paging"%>
 <!-- c:forEach 사용을 위한 jstl 선언 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- 조회결과 반환 -->
 <% List<Musical> mcSearchList = (List) request.getAttribute("mcSearchList"); %>
+<!-- paging 반환 -->
+<%	Paging paging = (Paging) request.getAttribute("paging"); %>
 
 <%@ include file="../layout/header_musearch.jsp" %>
 
@@ -46,11 +49,47 @@
 <%	} %>
 </table>
 
+</div>
 
+<div class="text-center">
+	<ul class="pagination">
+	
+		<%-- 첫 페이지로 이동 --%>
+		<%	if(paging.getCurPage() != 1) { %>
+		<li><a href="./mcSearch?keyword=${param.keyword}">&laquo;</a></li>
+		<%	} %>
 
 	
+		<%-- 이전 페이지로 이동 --%>
+		<%	if(paging.getCurPage() > 1) { %>
+		<li><a href="./mcSearch?keyword=${param.keyword}&curPage=<%=paging.getCurPage()-1 %>">&lt;</a></li>
+		<%	} %>
+	
+	
+		<%-- 페이징 번호 리스트 --%>
+		<%	for(int i=paging.getStartPage(); i<=paging.getEndPage(); i++) { %>
+		<%		if(i == paging.getCurPage()) { %>
+		<li class="active"><a href="./mcSearch?keyword=${param.keyword}&curPage=<%=i %>"><%=i %></a></li>
+		<%		} else { %>
+		<li><a href="./mcSearch?keyword=${param.keyword}&curPage=<%=i %>"><%=i %></a></li>
+		<%		} %>
+		<%	} %>
 
 
+		<%-- 다음 페이지로 이동 --%>
+		<%	if(paging.getCurPage() < paging.getTotalPage()) { %>
+		<li><a href="./mcSearch?keyword=${param.keyword}&curPage=<%=paging.getCurPage()+1 %>">&gt;</a></li>
+		<%	} %>
+
+		
+		
+		<%-- 마지막 페이지 이동 --%>
+		<%	if(paging.getCurPage() != paging.getTotalPage()) { %>
+		<li><a href="./mcSearch?keyword=${param.keyword}&curPage=<%=paging.getTotalPage() %>">&raquo;</a></li>
+		<%	} %>
+		
+	</ul>
 </div>
+
 
 <%@ include file = "../layout/footer.jsp" %>

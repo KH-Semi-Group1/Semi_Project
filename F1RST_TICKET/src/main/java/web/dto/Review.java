@@ -12,6 +12,10 @@ public class Review {
 	private int reviewscope;
 	private Date writedate;
 	
+	//조인한 테이블 명
+	private String mcimg;
+	private String mcname;
+	
 	public Review() {}
 
 	public Review(int reviewno, String userid, int mcno, String reviewtitle, String reviewcontent, int reviewscope,
@@ -87,6 +91,22 @@ public class Review {
 
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
+	}
+
+	public String getMcimg() {
+		return mcimg;
+	}
+
+	public void setMcimg(String mcimg) {
+		this.mcimg = mcimg;
+	}
+
+	public String getMcname() {
+		return mcname;
+	}
+
+	public void setMcname(String mcname) {
+		this.mcname = mcname;
 	}
 	
 }

@@ -45,6 +45,7 @@ $(document).ready(function(){
 		
 		if(confirm('정말 탈퇴 하시겠습니까?')){
 			$(this).parents("form").submit();
+				alert('이용해 주셔서 감사합니다.\n다음에는 좋은 모습으로 뵙겠습니다')
 	 		$(location).attr('href','/user/delete')	
 		} else{
 	 		$(location).attr('href','/mypage')	
@@ -128,8 +129,8 @@ $(document).ready(function(){
 	<div class="text-center" id=jcbutton>
 	
 <!-- 		<input type="submit" value="회원 정보 수정" class="btn" style="background-color: #6AAFE6; color:#fff;" id="btnUserView"> -->
-		<button type="submit" class="btn" style="background-color: #6AAFE6; color: #fff;" id="btnUserView">수정하기</button>
-		<button type="button" class="btn" style="background-color: #D4DFE6;" id="btnUserViewCancel">취소</button>
+		<button type="submit" class="btn" style="background-color: #6AAFE6; color: #fff;" id="btnUserView">수정하기</button>&nbsp;&nbsp;
+		<button type="button" class="btn" style="background-color: #D4DFE6;" id="btnUserViewCancel">취소</button>&nbsp;&nbsp;
 		<button type="button" class="btn" style="background-color: #ff7473 ; color: #fff;" id="btnUserDelete">회원탈퇴</button>
 	</div>
 </form>

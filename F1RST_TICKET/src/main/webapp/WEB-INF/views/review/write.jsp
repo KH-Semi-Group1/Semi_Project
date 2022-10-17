@@ -1,8 +1,18 @@
+<%@page import="web.dto.ReviewFile"%>
+<%@page import="web.dto.Review"%>
+
+<%@ page import="web.dto.Musical"%>
+<!-- jstl 선언 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file = "../layout/header.jsp" %>
 
 <link rel="stylesheet" href="/resources/css/reviewWrite.css">
+
+<%	Review updateReview = (Review) request.getAttribute("updateReview"); %>
+<%	ReviewFile reviewFile = (ReviewFile) request.getAttribute("reviewFile"); %>
 
 <!-- 스마트 에디터2 설치 -->
 <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js"></script>
@@ -11,7 +21,7 @@
 $(document).ready(function() {
 	
 	//작성버튼
-	$("#btnWrite").click(function() {
+	$("#btnUpdate").click(function() {
 		
 		//작성된 내용을 <textarea>에 적용하기
 		updateContents()
@@ -23,6 +33,24 @@ $(document).ready(function() {
 	$("#btnCancel").click(function() {
 		history.go(-1)
 	})
+	
+		//파일이 없을 경우
+	if(<%=reviewFile != null %>) {
+		$("#beforeFile").show();
+		$("#afterFile").hide();
+	}
+	
+	//파일이 있을 경우
+	if(<%=reviewFile == null %>) {
+		$("#beforeFile").hide();
+		$("#afterFile").show();
+	}
+	
+	//파일 삭제 버튼(X) 처리
+	$("#delFile").click(function() {
+		$("#beforeFile").toggle();
+		$("#afterFile").toggle();
+	})
 
 })
 
@@ -33,6 +61,8 @@ function updateContents() {
 
 </script>
 
+<div class="container">
+
 <div class="page-header">
 	<h1>공연 후기</h1>
 	<small>관람하신 공연에 대해서 얼마나 만족하시나요?</small>
@@ -40,13 +70,17 @@ function updateContents() {
 
 <form action="./write" method="post" enctype="multipart/form-data">
 
+<input type="text" name="mcno" value="<%=request.getParameter("mcno") %>">
+<input type="text" name="reviewno" value="<%=session.getAttribute("userid") %>">
+
 <div class="container-fluid row">
 	<div class="col-xs-12">
 		<div class="thumbnail row">
-			<img class="col-xs-2" alt="..." src="../resources/img/jes.jpg">
+			<img class="col-xs-2" alt="포스터" src="${pageContext.request.contextPath}/resources/img/mc/<%=request.getParameter("mcimg") %>"
+						onerror="this.src='${pageContext.request.contextPath}/resources/img/mc/noImg.jpg'">
 			<div class="caption col-md-10">
-				<h3>뮤지컬 이름</h3>
-				<p>별점</p>
+				<h3 class="text-left"><%=request.getParameter("mcname") %></h3>
+				<p class="text-left">별점주기</p>
 				
 				<div class="star-rating space-x mx-auto">
 
@@ -72,22 +106,35 @@ function updateContents() {
 	</div>
 </div>
 
-<!-- <form action="./write" method="post" enctype="multipart/form-data"> -->
-
 	<table class="table table-bordered">
 
 		<tr><td>제목</td><td><input type="text" name="reviewtitle" style="width: 100%;"></td></tr>
 		<tr><td>상세리뷰</td><td><textarea id="reviewcontent" name="reviewcontent" style="width: 100%;"></textarea></td></tr>
-		<tr><td>사진 첨부</td><td><input type="file" name="file"></td></tr>
+		<tr>
+			<td>사진 첨부</td>
+			<td>
+				<div>
+					<input type="file" name="file">
+				</div>
+			</td>
+		</tr>
 
 	</table>
-
+	
 </form>
 
-<div class="text-center">
-	<button id="btnWrite" class="btn btn-md">작성하기</button>
-	<button id="btnCancel" class="btn btn-md">취소하기</button>
 </div>
+
+
+<% 	if( session.getAttribute("userid") == null ) { %>		
+<div class="text-center">
+	<p class="text-danger">후기작성은 로그인 후 사용 가능합니다.</p>
+	<a href="/user/login" type="button" id="newLogin"
+		class="btn btn-outline-success">로그인</a>
+</div>
+<%	}  else { %>
+	<button id="btnUpdate" class="btn btn-md">작성하기</button>
+<%	} %>
 
 <script type="text/javascript">
 var oEditors = [];

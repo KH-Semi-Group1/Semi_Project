@@ -33,6 +33,7 @@ public class ReviewWriteController extends HttpServlet {
 		
 		//관람후기게시판으로 리다이렉트
 		resp.sendRedirect("/review/list");
+//		resp.sendRedirect("/review/list?mcimg=" + req.getParameter("mcimg"));
 		
 	}
 }

@@ -77,14 +77,18 @@ $(document).ready(function() {
 	<button id="btnList" class="btn btn-outline">목록으로</button>
 	
 	<!-- 해당 작성자만 수정/삭제할 수 있게끔 설정 -->
-	<%	if( !session.getAttribute("userid").equals(viewReview.getUserid()) ) { %>
-		<button id="btnUpdate" class="hidden">수정하기</button>
-		<button id="btnDelete" class="hidden">삭제하기</button>
+	<%	if( session.getAttribute("userid") != null ) { %>
+		
+			<%	if ( session.getAttribute("userid").equals(viewReview.getUserid() ) ) { %>
+				<button id="btnUpdate" class="btn" style="background-color: #8EC0E4;">수정하기</button>
+				<button id="btnDelete" class="btn" style="background-color: #ea9999;">삭제하기</button>
+			<% } %>
 	<%	} else { %>
-		<button id="btnUpdate" class="btn" style="background-color: #8EC0E4;">수정하기</button>
-		<button id="btnDelete" class="btn" style="background-color: #ea9999;">삭제하기</button>
+		
+				<button id="btnUpdate" class="hidden">수정하기</button>
+				<button id="btnDelete" class="hidden">삭제하기</button>
+		
 	<%	} %>
-	
 	
 </div>
 

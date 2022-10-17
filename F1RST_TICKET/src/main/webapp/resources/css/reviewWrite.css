@@ -31,18 +31,18 @@ td:nth-child(1) {
 
 .star-rating label {
 	-webkit-text-fill-color: transparent;
-	-webkit-text-stroke-width: 2.3px;
-	-webkit-text-stroke-color: #2b2a29;
+	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-color: black;
 	cursor: pointer;
 }
 
 .star-rating :checked ~ label {
-	-webkit-text-fill-color: red;
+	-webkit-text-fill-color: rgb(255, 255, 0);
 }
 
 .star-rating :hover,
 .star-rating :hover ~ label {
-	-webkit-text-fill-color: pink;
+	-webkit-text-fill-color: yellow;
 }
 
 small {

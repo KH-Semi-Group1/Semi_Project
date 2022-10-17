@@ -63,7 +63,6 @@ $(document).ready(function() {
 
 <h1 class="text-center">관람후기</h1>
 <hr>
-
 <div class="container">
 
 <div class="row">
@@ -71,7 +70,8 @@ $(document).ready(function() {
 	<div class="col-sm-6 col-md-4">
 	<a href="./view?reviewno=<%=reviewList.get(i).getReviewno() %>">
 		<div class="thumbnail">
-			<img src="../resources/img/jes.jpg" alt="...">
+			<img alt="포스터" src="/resources/img/mc/<%=reviewList.get(i).getMcimg() %>"
+				onerror="this.src='/resources/img/mc/noImg.jpg'">
 			<div class="caption">
 				<h3><%=reviewList.get(i).getReviewtitle() %></h3>
 				

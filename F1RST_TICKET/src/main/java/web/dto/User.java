@@ -1,7 +1,7 @@
 package web.dto;
 
 public class User {
-
+	
 	private String username;
 	private String userid;
 	private String userpw;
@@ -11,14 +11,13 @@ public class User {
 	private String address;
 	private String email;
 	
-	public User() {
-	}
+	public User() {	}
 
-	public User(String userid, String username, String userpw, String gender, String userbirth, String uphone,
+	public User(String username, String userid, String userpw, String gender, String userbirth, String uphone,
 			String address, String email) {
 		super();
-		this.userid = userid;
 		this.username = username;
+		this.userid = userid;
 		this.userpw = userpw;
 		this.gender = gender;
 		this.userbirth = userbirth;
@@ -29,16 +28,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", username=" + username + ", userpw=" + userpw + ", gender=" + gender
+		return "User [username=" + username + ", userid=" + userid + ", userpw=" + userpw + ", gender=" + gender
 				+ ", userbirth=" + userbirth + ", uphone=" + uphone + ", address=" + address + ", email=" + email + "]";
-	}
-
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
 	}
 
 	public String getUsername() {
@@ -47,6 +38,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getUserpw() {
@@ -96,6 +95,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	
+	
+
 }

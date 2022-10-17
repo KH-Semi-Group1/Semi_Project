@@ -101,3 +101,12 @@ table {
 	color: orange;
 	text-decoration: none;
 }
+
+
+#heart {
+	color: orange;
+	font-size: large;
+	font-weight: bold;
+    border : 0px;
+    background: none;
+}

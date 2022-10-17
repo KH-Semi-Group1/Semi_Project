@@ -56,6 +56,8 @@ function updateContents() {
 
 </script>
 
+<div class="container">
+
 <div class="page-header">
 	<h1>공연 후기</h1>
 	<small>관람하신 공연에 대해서 얼마나 만족하시나요?</small>
@@ -63,7 +65,7 @@ function updateContents() {
 
 <form action="./update" method="post" enctype="multipart/form-data">
 
-<input type="text" name="reviewno" value="<%=updateReview.getReviewno() %>">
+<input type="hidden" name="reviewno" value="<%=updateReview.getReviewno() %>">
 
 <div class="container-fluid row">
 	<div class="col-xs-12">
@@ -128,6 +130,8 @@ function updateContents() {
 	</table>
 	
 </form>
+
+</div>
 
 <div class="text-center">
 	<button id="btnUpdate" class="btn btn-md">수정하기</button>

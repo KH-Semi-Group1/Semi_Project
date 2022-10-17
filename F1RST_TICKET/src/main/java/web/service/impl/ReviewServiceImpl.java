@@ -179,6 +179,9 @@ public class ReviewServiceImpl implements ReviewService {
 					review.setReviewscope( Integer.parseInt( value ) );
 //					review.setReviewscope( 6 - Integer.parseInt( value ) );
 				}
+				if( "mcno".equals(key) ) {
+					review.setMcno( Integer.parseInt(value) );
+				}
 				
 			}// if( item.isFormField() ) END
 			
@@ -223,8 +226,6 @@ public class ReviewServiceImpl implements ReviewService {
 		//작성자 ID처리
 		review.setUserid( (String) req.getSession().getAttribute("userid") );
 		
-		//별점 처리
-//		review.setReviewscope( Integer.parseInt( req.getParameter("reviewscope") ));
 		System.out.println(review);
 		if( reviewDao.insert(conn, review) > 0 ) {
 			JDBCTemplate.commit(conn);

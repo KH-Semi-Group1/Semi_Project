@@ -22,6 +22,8 @@ td:nth-child(2) {
 <h1 class="text-center">공지사항</h1>
 <hr>
 
+<div class="container">
+
 <table class="table table-hover table-condensed">
 	<thead>
 		<tr>
@@ -49,6 +51,8 @@ td:nth-child(2) {
 	</tbody>
 	
 </table>
+
+</div>
 
 <div class="clearfix"></div>
 
