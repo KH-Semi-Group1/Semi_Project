@@ -27,7 +27,7 @@ public class McController extends HttpServlet {
 		
 		//전달파라미터에서 현재 페이징 객체 계산하기
 		Paging paging = mcService.getPaging(req);
-		System.out.println( "페이징객체" + paging );
+//		System.out.println( "페이징객체" + paging );
 				
 		//뮤지컬 전체 조회
 		List<Musical> musicalList1 = mcService.getAllMusical();

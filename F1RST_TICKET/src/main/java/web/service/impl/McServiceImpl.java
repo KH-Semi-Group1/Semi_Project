@@ -51,7 +51,7 @@ public class McServiceImpl implements McService {
 		if( param != null && !"".equals(param) ) {
 			musical.setMcno( Integer.parseInt(param) );
 		} else {
-			System.out.println("mcno값 null이거나 비어있음");
+//			System.out.println("mcno값 null이거나 비어있음");
 		}
 		return musical;
 	}
@@ -212,7 +212,7 @@ public class McServiceImpl implements McService {
 		if( param != null && !"".equals(param) ) {
 			curPage = Integer.parseInt(param);
 		} else {
-			System.out.println("[WARN] getPaging() - curPage가 null이거나 비어있음");
+//			System.out.println("[WARN] getPaging() - curPage가 null이거나 비어있음");
 		}
 		
 		//총 게시글 수 조회하기

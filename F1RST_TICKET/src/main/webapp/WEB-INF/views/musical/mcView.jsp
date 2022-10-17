@@ -22,6 +22,28 @@ $(document).ready(function(){
 		$('#heart').val('♡'); 
     }
 	
+    
+    if( ${userid != null} ) {
+		$('#likee').click(function(){
+			 if( ${isLike eq true} ) {
+					$('#heart').val('♥');
+					alert('뮤지컬 [${viewMc.mcname}] 추천을 취소하였습니다.');
+			 }
+			 else if( ${isLike eq false } ){
+					$('#heart').val('♡'); 
+		 			alert('뮤지컬 [${viewMc.mcname}]를 추천하였습니다.');
+			 }
+		 });
+    }
+    else if( ${userid == null } ){
+		$('#likee').click(function(){
+			alert('추천은 로그인 후 사용 가능합니다.');
+		});
+    }
+    
+  
+  
+ 
 	
 // 뮤지컬 위치 클릭 시 map으로 스크롤 이동          
 	$('#moveLoc').click(function(){			

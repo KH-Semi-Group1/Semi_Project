@@ -40,7 +40,7 @@ public class McSearchController extends HttpServlet {
 		//조회결과 MODEL값 전달
 		req.setAttribute("mcSearchList", mcSearchList);
 		
-		System.out.println(mcSearchList);
+//		System.out.println(mcSearchList);
 		
 		//페이징 객체 MODEL값 전달
 		req.setAttribute("paging", paging);

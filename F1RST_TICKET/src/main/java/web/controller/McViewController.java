@@ -35,7 +35,7 @@ public class McViewController extends HttpServlet {
 				
 		//상세보기 결과 조회
 		Musical viewMc = mcService.view(mcno);
-		System.out.println("상세보기 객체 : " + viewMc);
+//		System.out.println("상세보기 객체 : " + viewMc);
 				
 		//조회결과 MODEL값 전달
 		req.setAttribute("viewMc", viewMc);
@@ -47,7 +47,7 @@ public class McViewController extends HttpServlet {
 		like.setUserid((String)req.getSession().getAttribute("userid"));
 		boolean isLike = mcService.like(like);
 		req.setAttribute("isLike", isLike);
-		System.out.println( "isLike : " + isLike);
+//		System.out.println( "isLike : " + isLike);
 		
 		//VIEW 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/musical/mcView.jsp").forward(req, resp);
@@ -70,7 +70,7 @@ public class McViewController extends HttpServlet {
 			Musical likemu = mcService.getLikeMcno(likemcno);
 			Musical viewMc = mcService.view(likemu);
 			req.setAttribute("viewMc", viewMc);
-			System.out.println("상세보기 nologin post객체 : " + viewMc);
+//			System.out.println("상세보기 nologin post객체 : " + viewMc);
 			
 			//상세보기 결과 세션값으로 전달
 			HttpSession session = req.getSession();
@@ -83,7 +83,7 @@ public class McViewController extends HttpServlet {
 			boolean isLike = mcService.like(like);
 			
 			if(isLike) {
-				System.out.println("islogintrue"+like);
+//				System.out.println("islogintrue"+like);
 				//좋아요 삭제
 				mcService.deleteLike(like);
 				
@@ -93,21 +93,21 @@ public class McViewController extends HttpServlet {
 				int likemcno = like.getMcno();
 				Musical likemu = mcService.getLikeMcno(likemcno);
 				Musical viewMc = mcService.view(likemu);
-				System.out.println("상세보기 login -좋아요객체 : " + viewMc);
+//				System.out.println("상세보기 login -좋아요객체 : " + viewMc);
 				//상세보기 조회 결과
 				HttpSession session = req.getSession();
 				session.setAttribute("viewMc", viewMc);
 				
 			} else {
 				
-				System.out.println("로그인쪽222"+like);
+//				System.out.println("로그인쪽222"+like);
 				//좋아요 삽입
 				mcService.insertLike(like);
 				
 				//좋아요 수 업데이트(+1)
 				Musical viewMc = mcService.updateLikeP(like);
 				
-				System.out.println("상세보기 login +좋아요객체 : " + viewMc);
+//				System.out.println("상세보기 login +좋아요객체 : " + viewMc);
 				//상세보기 조회 결과
 				HttpSession session = req.getSession();
 				session.setAttribute("viewMc", viewMc);
