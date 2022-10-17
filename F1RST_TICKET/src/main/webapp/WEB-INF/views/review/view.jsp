@@ -8,6 +8,8 @@
 	List<Comment> commentList = (List) request.getAttribute("commentList");
 	request.setCharacterEncoding("UTF-8");
 	%>
+	
+<link rel="stylesheet" href="/resources/css/reviewView.css">
 
 <%@ include file = "../layout/header.jsp" %>
 
@@ -43,6 +45,12 @@ $(document).ready(function() {
 		$(location).attr('href', './delete?reviewno=<%=viewReview.getReviewno() %>')
 	})
 	
+	$( ".star_rating a" ).click(function() {
+		$(this).parent().children("a").removeClass("on");
+		$(this).addClass("on").prevAll("a").addClass("on");
+		return false;
+	});
+	
 	
 })
 </script>
@@ -54,11 +62,23 @@ $(document).ready(function() {
 <!-- 후기게시글 -->
 <div class="container">
 
-	<div class="row row-cols-auto">
-		<div class="col page-header">
-			<h3 class="text-left"><strong><%=viewReview.getReviewtitle() %></strong></h3> <!-- 후기제목 -->
-		</div>
+	<!-- 후기게시글 제목과 포스터 -->
+	<img alt="포스터" src="/resources/img/mc/<%=viewReview.getMcimg() %>"
+		onerror="this.src='/resources/img/mc/noImg.jpg">
 	
+	<div class="page-header">
+	<div class="media">
+		<div class="media-body">
+			<h3 class="media-heading"><%=viewReview.getReviewtitle() %></h3>
+			<%	for(int i=0; i < viewReview.getReviewscope(); i++) { %>
+				<span class="glyphicon glyphicon-star" style="color: rgba(250, 208, 0, 0.99)"></span>
+			<%	} %>
+			
+		</div>
+	</div>
+	</div>
+	
+	<div class="row row-cols-auto">
 		<div class="row">
 			<span class="col col-md-auto col-md-offset-9">작성자 : <%=viewReview.getUserid() %></span>
 			<span class="col col-md-auto col-md-offset-9">등록일 : <%=viewReview.getWritedate() %></span>

@@ -70,7 +70,7 @@ function updateContents() {
 <div class="container-fluid row">
 	<div class="col-xs-12">
 		<div class="thumbnail row">
-			<img class="col-xs-2" alt="..." src="../resources/img/jes.jpg">
+			<img class="col-xs-2" alt="..." src="../resources/img/mc/jes.jpg">
 			<div class="caption col-md-10">
 				<h3>뮤지컬 이름</h3>
 				<p>별점</p>

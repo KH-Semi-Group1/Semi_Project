@@ -114,9 +114,11 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		String sql = "";
 		sql += "SELECT";
-		sql += "	reviewno, userid, mcno, reviewtitle";
-		sql += "	, reviewcontent, reviewscope, writedate";
-		sql += " FROM review";
+		sql += "	R.reviewno, R.userid, R.mcno, M.mcimg, M.mcname, R.reviewtitle";
+		sql += "	, R.reviewcontent, R.reviewscope, R.writedate";
+		sql += " FROM review R";
+		sql += " INNER JOIN musical M";
+		sql += "  ON R.mcno = M.mcno";
 		sql += " WHERE reviewno = ?";
 		
 		Review review = null;
@@ -137,6 +139,11 @@ public class ReviewDaoImpl implements ReviewDao {
 				review.setReviewcontent( rs.getString("reviewcontent") );
 				review.setReviewscope( rs.getInt("reviewscope") );
 				review.setWritedate( rs.getDate("writedate") );
+				
+				//조인테이블 가져오기
+				review.setMcimg( rs.getString("mcimg") );
+				review.setMcname( rs.getString("mcname") );
+				
 			}
 			
 		} catch (SQLException e) {
