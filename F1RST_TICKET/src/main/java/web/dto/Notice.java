@@ -8,14 +8,21 @@ public class Notice {
 	private String adminid;
 	private String notitype;
 	private String notititle;
-	private Date opendate;
+	private String opendate;
 	private String noticontent;
 	private int notihit;
 	private Date notidate;
 
 	public Notice() {}
 
-	public Notice(int notino, String adminid, String notitype, String notititle, Date opendate, String noticontent,
+	@Override
+	public String toString() {
+		return "Notice [notino=" + notino + ", adminid=" + adminid + ", notitype=" + notitype + ", notititle="
+				+ notititle + ", opendate=" + opendate + ", noticontent=" + noticontent + ", notihit=" + notihit
+				+ ", notidate=" + notidate + "]";
+	}
+
+	public Notice(int notino, String adminid, String notitype, String notititle, String opendate, String noticontent,
 			int notihit, Date notidate) {
 		super();
 		this.notino = notino;
@@ -26,13 +33,6 @@ public class Notice {
 		this.noticontent = noticontent;
 		this.notihit = notihit;
 		this.notidate = notidate;
-	}
-
-	@Override
-	public String toString() {
-		return "notice [notino=" + notino + ", adminid=" + adminid + ", notitype=" + notitype + ", notititle="
-				+ notititle + ", opendate=" + opendate + ", noticontent=" + noticontent + ", notihit=" + notihit
-				+ ", notidate=" + notidate + "]";
 	}
 
 	public int getNotino() {
@@ -67,11 +67,11 @@ public class Notice {
 		this.notititle = notititle;
 	}
 
-	public Date getOpendate() {
+	public String getOpendate() {
 		return opendate;
 	}
 
-	public void setOpendate(Date opendate) {
+	public void setOpendate(String opendate) {
 		this.opendate = opendate;
 	}
 

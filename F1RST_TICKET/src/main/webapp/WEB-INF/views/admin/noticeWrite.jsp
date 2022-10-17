@@ -75,12 +75,13 @@ function updateContents() {
 </script>
 
 <div class="container">
+<div class="container">
 
 <div class="page-header">
 	<h1>공지사항 작성</h1>
 </div>
 
-<form action="./noticewrite" method="post">
+<form action="./noticeWrite" method="post">
 
 	<table class="table table-bordered">
 
@@ -88,20 +89,15 @@ function updateContents() {
 		<tr><td>아이디</td><td><%=session.getAttribute("adminid") %></td>
 			<td>공지타입</td>
 			<td>
-				<div class="btn-group">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						Action <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-					</ul>
-				</div>
+				<select name="notitype">
+					<option value="티켓오픈">티켓오픈</option>			
+					<option value="서비스점검">서비스점검</option>			
+					<option value="변경/취소">변경/취소</option>			
+					<option value="기타">기타</option>			
+				</select>
 			</td>
 		</tr>
+		<tr><td>오픈일자</td><td colspan="3"><input type="date" name="opendate"></td></tr>
 		<tr><td colspan="4">본문</td></tr>
 		<tr><td colspan="4"><textarea id="noticontent" name="noticontent" style="width: 100%;"></textarea></td></tr>
 
@@ -119,8 +115,11 @@ function updateContents() {
 		class="btn btn-outline-success">관리자로그인</a>
 </div>
 <%	}  else { %>
+	<div id="btnBox" class="text-center">
 	<button id="btnUpdate" class="btn btn-md">작성하기</button>
+	</div>
 <%	} %>
+</div>
 
 <script type="text/javascript">
 var oEditors = [];

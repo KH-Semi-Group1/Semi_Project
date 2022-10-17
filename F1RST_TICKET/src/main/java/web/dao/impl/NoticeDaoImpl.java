@@ -82,7 +82,7 @@ public class NoticeDaoImpl implements NoticeDao {
 				n.setAdminid( rs.getString("adminid") );
 				n.setNotitype( rs.getString("notitype") );
 				n.setNotititle( rs.getString("notititle") );
-				n.setOpendate( rs.getDate("opendate") );
+				n.setOpendate( rs.getString("opendate") );
 				n.setNoticontent( rs.getString("noticontent") );
 				n.setNotihit( rs.getInt("notihit") );
 				n.setNotidate( rs.getDate("notidate") );
@@ -156,7 +156,7 @@ public class NoticeDaoImpl implements NoticeDao {
 				notice.setNotidate( rs.getDate("notidate") );
 				notice.setNoticontent( rs.getString("noticontent") );
 				notice.setNotihit( rs.getInt("notihit") );
-				notice.setOpendate( rs.getDate("opendate") );
+				notice.setOpendate( rs.getString("opendate") );
 			}
 			
 		} catch (SQLException e) {
@@ -167,6 +167,63 @@ public class NoticeDaoImpl implements NoticeDao {
 		}
 		
 		return notice;
+	}
+	
+	@Override
+	public int insert(Connection conn, Notice notice) {
+		
+		String sql = "";
+		sql += "INSERT INTO notice (notino, adminid, notitype, notititle, opendate, noticontent, notihit )";
+		sql += " VALUES ( ?, ?, ?, ?, ?, ?, 0 )";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, notice.getNotino());
+			ps.setString(2, notice.getAdminid());
+			ps.setString(3, notice.getNotitype());
+			ps.setString(4, notice.getNotititle());
+			ps.setString(5, notice.getOpendate());
+			ps.setString(6, notice.getNoticontent());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int selectNextNotino(Connection conn) {
+		
+		String sql = "";
+		sql += "SELECT notice_seq.nextval FROM dual";
+		
+		int nextNotino = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				nextNotino = rs.getInt("nextval");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return nextNotino;
 	}
 	
 }

@@ -1,6 +1,8 @@
 package web.service.impl;
 
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -76,6 +78,42 @@ public class NoticeServiceImpl implements NoticeService {
 		Notice notice = noticeDao.selectNoticeByNotino(conn, notino);
 		
 		return notice;
+	}
+	
+	@Override
+	public void write(HttpServletRequest req) {
+		
+		Notice notice = new Notice();
+		
+		//게시글 번호 생성
+		int notino = noticeDao.selectNextNotino(conn);
+		
+		//게시글 번호 삽입
+		notice.setNotino(notino);
+		
+		//제목 처리
+		notice.setNotititle( req.getParameter("notititle") );
+		
+		//본문 처리
+		notice.setNoticontent( req.getParameter("noticontent") );
+		
+		//작성자 ID처리
+		notice.setAdminid( (String) req.getSession().getAttribute("adminid") );
+		
+		//오픈일자처리
+		notice.setOpendate( req.getParameter("opendate") );
+		
+		//게시글타입 처리
+		notice.setNotitype( (String) req.getParameter("notitype") );
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		if( noticeDao.insert(conn, notice) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
 	}
 
 }

@@ -105,7 +105,7 @@ tr th{
 				</div>
 				<div class="col-md-6">
 					<h4 style="display: inline-block;">공지사항관리</h4>
-					<span><a href="/admin/notice/write" style="color: #aaa;">더보기</a></span>
+					<span><a href="/admin/noticeList" style="color: #aaa;">더보기</a></span>
 					<table class="table">
 						<thead>
 							<tr>

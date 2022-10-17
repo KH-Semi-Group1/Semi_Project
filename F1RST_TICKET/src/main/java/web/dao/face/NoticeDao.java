@@ -43,4 +43,21 @@ public interface NoticeDao {
 	 */
 	public Notice selectNoticeByNotino(Connection conn, Notice notino);
 
+	/**
+	 * 공지사항 게시글 입력
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param notice - 삽입될 게시글 내용
+	 * @return int - INSERT 수행 결과
+	 */
+	public int insert(Connection conn, Notice notice);
+
+	/**
+	 * 시퀀스를 이용하여 다음 게시글 번호 조회
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @return int - 다음 게시글 번호
+	 */
+	public int selectNextNotino(Connection conn);
+
 }

@@ -22,6 +22,8 @@ public class AdminMainController extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		
+		
+		
 		// 메인페이지 리다이렉트
 		resp.sendRedirect("/admin/main");
 	

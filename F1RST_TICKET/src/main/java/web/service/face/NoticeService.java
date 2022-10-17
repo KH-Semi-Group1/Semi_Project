@@ -42,4 +42,11 @@ public interface NoticeService {
 	 */
 	public Notice view(Notice notino);
 
+	/**
+	 * 공지사항 게시글 작성
+	 * 
+	 * @param req - 요청 정보 객체
+	 */
+	public void write(HttpServletRequest req);
+
 }
