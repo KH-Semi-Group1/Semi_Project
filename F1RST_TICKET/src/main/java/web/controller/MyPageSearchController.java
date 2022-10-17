@@ -11,63 +11,65 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import util.Paging;
-import web.dto.Musical;
-import web.dto.Reservation;
+import web.dto.ReservationPay;
 import web.dto.User;
-import web.service.face.McService;
-import web.service.face.ReservationService;
-import web.service.impl.McServiceImpl;
-import web.service.impl.ReservationServiceImpl;
+import web.service.face.ReservationPayService;
+import web.service.impl.ReservationPayServiceImpl;
 
 @WebServlet("/mypage/search")
 public class MyPageSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private ReservationService reservationSerivce = new ReservationServiceImpl();
-	private McService mcService = new McServiceImpl();
+	private ReservationPayService reservationpayService = new ReservationPayServiceImpl(); 
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		Paging paging = reservationSerivce.getPaging(req);
-		Musical musical = mcService.getMcno(req);
-//		System.out.println(paging);
-
+		
 		User user = new User();
 		user.setUserid((String) req.getSession().getAttribute("userid"));
 		System.out.println(user);
-
 		
-//		List<Reservation> searchList = reservationSerivce.getListSearch(paging, user, musical);
-//		System.out.println(searchList);
+		Paging paging = reservationpayService.getPaging(req, user);
 		
-//		req.setAttribute("searchList", searchList);
-//		req.setAttribute("paging", paging);
+		ReservationPay res = reservationpayService.selectSearchMc(req,user);
+		System.out.println(res);
 
-
-		Reservation resv = reservationSerivce.getResv(req);
-		System.out.println(resv);
-
-		boolean isResv = reservationSerivce.findResv(resv, user);
-		System.out.println(isResv);
-
-		if (isResv) {
-			
-			resv = reservationSerivce.info(resv, user);
-			
-			HttpSession session = req.getSession();
-
-			session.setAttribute("isResv", isResv);
-			
-			session.setAttribute("userid", user.getUserid());
-
-			// 아이디와 예약 번호가 일치하면
+		String keyword = req.getParameter("keyword");
+		
+		List<ReservationPay> mcSearchList = reservationpayService.getMcSearchList(keyword, user);
+		System.out.println(mcSearchList);
+		
+		req.setAttribute("mcSearchList", mcSearchList);
+		req.setAttribute("paging", paging);
+		
+//		boolean isSearchMc = reservationpayService.searchMc(keyword,user);
+//		
+//		if(isSearchMc) {
+//			
+//			res = reservationpayService.info(res, user, keyword);
+//			
+//			HttpSession session = req.getSession();
+//			session.setAttribute("keyword", keyword);
+//			session.setAttribute("isSearchMc", isSearchMc);
+//			session.setAttribute("mcSearchList", mcSearchList);
+//			
+//			session.setAttribute("userid", user.getUserid());
+//			
+			// true 일 경우
 			req.getRequestDispatcher("/WEB-INF/views/user/watchmc.jsp").forward(req, resp);
-			
-		} else {
-			// 아이디와 예약 번호가 일치하지 않으면
-			req.getRequestDispatcher("/WEB-INF/views/user/myReservation_err.jsp").forward(req, resp);
 		}
+			// false인경우
+//		req.getRequestDispatcher("/WEB-INF/views/user/watchmc_err.jsp").forward(req, resp);
+		
+//	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
+		reservationpayService.searchRpMc(req);
+	
+		resp.sendRedirect("/mypage/search_ok");
 	}
 
 

@@ -1,9 +1,12 @@
+<%@page import="web.dto.ReservationPay"%>
 <%@page import="web.dto.Reservation"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%List<Reservation> resvList = (List)request.getAttribute("resvList"); %>
+<%--     <%List<Reservation> resvList = (List)request.getAttribute("resvList"); %> --%>
+    
+    <% List<ReservationPay> rspList = (List)request.getAttribute("rspList"); %>
     
 
 <!-- mypage.css -->
@@ -41,7 +44,7 @@ $(document).ready(function(){
 	max-width:200px;
 	background-color: #8EC0E4;
 	padding-top: 10%;
-	padding-bottom: 20% !important;
+	padding-bottom: 10% !important;
 }
 </style>
 
@@ -59,10 +62,10 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-md-3 col-sm-offset-1" id="mypageMenu">
 			<ul style="list-style-type: none; padding:0;">
-				<li class="list-item"><a href="/mypage/reservation">예매확인 / 취소
+				<li class="list-item"><a href="/mypage/view">예매확인
 				 	<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span> </a></li><br>
-				<li class="list-item"><a href="/watch/musical">나의 관람 공연
-					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
+<!-- 				<li class="list-item"><a href="/watch/musical">나의 관람 공연 -->
+<!-- 					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br> -->
 				<li class="list-item"><a href="/user/update">회원 정보 수정
 					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
 			</ul>
@@ -71,7 +74,8 @@ $(document).ready(function(){
 		<div class="col-md-7 col-sm-offset-1" style="padding-left: 30px; ">
 		
 		<!-- 최근 예매 내역 확인. 최신 3개만 보여줄 수 있음 -->
-			<h4>최근 예매 내역</h4>
+			<h4 style="display: inline;">최근 예매 내역</h4>
+			<span style="color: #8EC0E4">&nbsp;최근 내역 5개까지 표시 됩니다.</span>
 			<table class="table">
 				<thead>
 					<tr>
@@ -85,13 +89,13 @@ $(document).ready(function(){
 				
 				<tbody>
 					<tr>
-						<%for (int i = 0; i < resvList.size(); i++) {%>
+						<%for (int i = 0; i < rspList.size(); i++) {%>
 							<tr class="text-center">
-								<td><%=resvList.get(i).getResdate()%></td>
-								<td><%=resvList.get(i).getResno() %></td>
-								<td><%=resvList.get(i).getScheduleInfoID()%></td>
-								<td><%=resvList.get(i).getTicketcount()%>장</td>
-								<td><%=resvList.get(i).getScheduleInfoID()%></td>
+								<td><%=rspList.get(i).getResdate()%></td>
+								<td><%=rspList.get(i).getResno() %></td>
+								<td><%=rspList.get(i).getMcname()%></td>
+								<td><%=rspList.get(i).getTicketcount()%>장</td>
+								<td><%=rspList.get(i).getScheduledate()%></td>
 							</tr>
 						<% } %>
 					</tr>
@@ -101,30 +105,30 @@ $(document).ready(function(){
 			<br>
 			
 			
-			<!-- 최근 관람 공연 3개만 보여줌. 관람 완료 후 후기 작성 안된 부분은 버튼 보이도록 할 것 -->
-			<h4>나의 관람 공연</h4>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="text-center">공연명(예매번호)</th>
-						<th class="text-center">매수</th>
-						<th class="text-center">관람일시</th>
-					<!-- 	<th>후기작성</th> -->
-					</tr>
-				</thead>
-				<tbody>
-					<%for (int i = 0; i < resvList.size(); i++) {%>
-							<tr class="text-center">
-								<td><%=resvList.get(i).getResdate()%>(<%=resvList.get(i).getResno() %>)</td>
-								<td><%=resvList.get(i).getTicketcount()%>장</td>
-								<td><%=resvList.get(i).getScheduleInfoID()%></td>
-							</tr>
-						<% } %>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
+<!-- 			<!-- 최근 관람 공연 3개만 보여줌. 관람 완료 후 후기 작성 안된 부분은 버튼 보이도록 할 것 -->
+<!-- 			<h4>나의 관람 공연</h4> -->
+<!-- 			<table class="table"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th class="text-center">공연명(예매번호)</th> -->
+<!-- 						<th class="text-center">매수</th> -->
+<!-- 						<th class="text-center">관람일시</th> -->
+<!-- 						<th>후기작성</th> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<%-- 					<%for (int i = 0; i < rspList.size(); i++) {%> --%>
+<!-- 							<tr class="text-center"> -->
+<%-- 								<td><%=rspList.get(i).getMcname()%>(<%=rspList.get(i).getResno() %>)</td> --%>
+<%-- 								<td><%=rspList.get(i).getTicketcount()%>장</td> --%>
+<%-- 								<td><%=rspList.get(i).getScheduledate()%></td> --%>
+<!-- 							</tr> -->
+<%-- 						<% } %> --%>
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
 
 
 <!-- </table> -->

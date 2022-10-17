@@ -6,7 +6,7 @@ import java.util.Date;
 public class Reservation implements Serializable{
 
 	private int resno;
-	private int scheduleInfoID;
+	private int scheduleInfoId;
 	private String userid;
 	private Date resdate;
 	private int ticketcount;
@@ -15,11 +15,11 @@ public class Reservation implements Serializable{
 	
 	public Reservation() {	}
 
-	public Reservation(int resno, int scheduleInfoID, String userid, Date resdate, int ticketcount, String payment,
+	public Reservation(int resno, int scheduleInfoId, String userid, Date resdate, int ticketcount, String payment,
 			int paymoney) {
 		super();
 		this.resno = resno;
-		this.scheduleInfoID = scheduleInfoID;
+		this.scheduleInfoId = scheduleInfoId;
 		this.userid = userid;
 		this.resdate = resdate;
 		this.ticketcount = ticketcount;
@@ -29,7 +29,7 @@ public class Reservation implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Reservation [resno=" + resno + ", scheduleInfoID=" + scheduleInfoID + ", userid=" + userid
+		return "Reservation [resno=" + resno + ", scheduleInfoId=" + scheduleInfoId + ", userid=" + userid
 				+ ", resdate=" + resdate + ", ticketcount=" + ticketcount + ", payment=" + payment + ", paymoney="
 				+ paymoney + "]";
 	}
@@ -42,12 +42,12 @@ public class Reservation implements Serializable{
 		this.resno = resno;
 	}
 
-	public int getScheduleInfoID() {
-		return scheduleInfoID;
+	public int getScheduleInfoId() {
+		return scheduleInfoId;
 	}
 
-	public void setScheduleInfoID(int scheduleInfoID) {
-		this.scheduleInfoID = scheduleInfoID;
+	public void setScheduleInfoId(int scheduleInfoId) {
+		this.scheduleInfoId = scheduleInfoId;
 	}
 
 	public String getUserid() {
@@ -89,5 +89,7 @@ public class Reservation implements Serializable{
 	public void setPaymoney(int paymoney) {
 		this.paymoney = paymoney;
 	}
+
+	
 
 }

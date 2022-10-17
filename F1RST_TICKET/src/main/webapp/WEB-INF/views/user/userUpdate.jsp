@@ -33,7 +33,7 @@ label{
 $(document).ready(function(){
 	
 	$("#btnUserView").click(function() {
-		alert('회원 정보 수정이 완료되었습니다.\n 다시 로그인 해주세요.')
+		alert('회원 정보 수정이 완료되었습니다.\n다시 로그인 해주세요.')
 		$(this).parents("form").submit();
 	})
 	

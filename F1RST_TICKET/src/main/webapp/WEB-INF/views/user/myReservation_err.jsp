@@ -8,7 +8,7 @@
 </head>
 
 <script type="text/javascript">
-	alert('예매내역이 존재하지 않습니다.')
+	alert('예매 내역이 없습니다.')
 	history.go(-1);
 </script>  
 

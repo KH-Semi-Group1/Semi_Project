@@ -11,6 +11,7 @@ import web.dao.face.ReservationDao;
 import web.dao.impl.ReservationDaoImpl;
 import web.dto.Musical;
 import web.dto.Reservation;
+import web.dto.ReservationPay;
 import web.dto.User;
 import web.service.face.ReservationService;
 
@@ -76,7 +77,7 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		String scheduleInfoID = req.getParameter("scheduleInfoID");
 		if( resno != null && !"".equals(resno) ) {
-			resv.setScheduleInfoID( Integer.parseInt(scheduleInfoID) );
+			resv.setScheduleInfoId( Integer.parseInt(scheduleInfoID) );
 		}
 		
 		resv.setUserid((String)req.getSession().getAttribute("userid"));
@@ -153,7 +154,22 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 		
 	}
+	@Override
+	public boolean findResvSearch(Reservation resv, User user, ReservationPay rsPay) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Reservation> getListRsPay(Paging paging, User user, ReservationPay rsPay) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-	
+	@Override
+	public Reservation info(Reservation resv, User user, ReservationPay rsPay) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 	

@@ -12,6 +12,7 @@ import util.Paging;
 import web.dao.face.ReservationDao;
 import web.dto.Musical;
 import web.dto.Reservation;
+import web.dto.ReservationPay;
 import web.dto.User;
 
 public class ReservationDaoImpl implements ReservationDao {
@@ -90,11 +91,10 @@ public class ReservationDaoImpl implements ReservationDao {
 			//조회 결과 처리
 			while(rs.next()) {
 				Reservation r = new Reservation(); //결과값 저장 객체
-				Musical m = new Musical();
 				
 				//결과값 한 행씩 처리
 				r.setResno(rs.getInt("resno"));
-				r.setScheduleInfoID(rs.getInt("scheduleInfoID"));
+				r.setScheduleInfoId(rs.getInt("scheduleInfoID"));
 				r.setUserid(rs.getString("userid"));
 				r.setResdate(rs.getDate("resdate"));
 				r.setTicketcount(rs.getInt("ticketcount"));
@@ -131,12 +131,6 @@ public class ReservationDaoImpl implements ReservationDao {
 		sql += "	ON R.userid = U.userid";
 		sql += " WHERE U.userid=?";
 
-		// 뮤지컬, 예매 받아서 어떻게..??
-//		sql += "SELECT rownum, R.resno, R.userid, M.mcno, R.scheduleinfoid, M.mcname";
-//		sql += " FROM musical M, scheduleinfo S, reservation R usertable U" ;
-//		sql += " WHERE M.mcno  = S.mcno  AND S.scheduleinfoid  = R.scheduleinfoid";
-//		sql += " AND U.userid = ?";
-		
 		int cnt = 0;
 		
 		try {
@@ -186,7 +180,7 @@ public class ReservationDaoImpl implements ReservationDao {
 				res = new Reservation();
 				
 				res.setResno(rs.getInt("resno"));
-				res.setScheduleInfoID(rs.getInt("scheduleInfoID"));
+				res.setScheduleInfoId(rs.getInt("scheduleInfoID"));
 				res.setUserid(rs.getString("userid"));
 				res.setResdate(rs.getDate("resdate"));
 				res.setTicketcount(rs.getInt("ticketcount"));
@@ -235,7 +229,7 @@ public class ReservationDaoImpl implements ReservationDao {
 				
 				//결과값 한 행씩 처리
 				r.setResno(rs.getInt("resno"));
-				r.setScheduleInfoID(rs.getInt("scheduleInfoID"));
+				r.setScheduleInfoId(rs.getInt("scheduleInfoID"));
 				r.setUserid(rs.getString("userid"));
 				r.setResdate(rs.getDate("resdate"));
 				r.setTicketcount(rs.getInt("ticketcount"));
@@ -283,6 +277,76 @@ public class ReservationDaoImpl implements ReservationDao {
 		return res;
 	}
 	
+	@Override
+	public int selectCntRPByResnoMcnoUserid(Connection conn, Reservation resv, User user, ReservationPay rsPay) {
+
+		String sql = "";
+		sql += "SELECT count(*) cnt";
+		sql += " FROM  reservation R, reservationpay P, usertable U" ;
+		sql += " WHERE R.mcno  = P.mcno ";
+		sql += " AND R.userid = U.userid";
+		sql += " AND S.scheduleinfoid = R.scheduleinfoid";
+		sql += " AND R.userid = ?";
+		
+		int cnt = 0;
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			
+//			ps.setInt(1, resv.getResno());
+			ps.setString(1, user.getUserid());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt=rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println(cnt);
+		return cnt;
+	}
+
+	@Override
+	public int selectRPByResnoMcnoUserid(Connection conn, Reservation resv, User user, ReservationPay rsPay) {
+
+		String sql = "";
+		sql += "SELECT rownum, R.resno, R.userid, P.mcno,  P.mcname, P.scheduledate";
+		sql += " FROM  reservation R, reservationpay P, usertable U" ;
+		sql += " WHERE R.mcno  = P.mcno ";
+		sql += " AND R.userid = U.userid";
+		sql += " AND S.scheduleinfoid = R.scheduleinfoid";
+		sql += " AND R.userid = ?";
+		
+		int cnt = 0;
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			
+//			ps.setInt(1, resv.getResno());
+			ps.setString(1, user.getUserid());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				cnt=rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println(cnt);
+		return cnt;
+		
+	}
 	
 	// Musical & scheduleinfoid & Reservation이 있어야 함.
 //	@Override

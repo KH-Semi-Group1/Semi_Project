@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import util.Paging;
 import web.dto.Musical;
 import web.dto.Reservation;
+import web.dto.ReservationPay;
 import web.dto.User;
 
 public interface ReservationService {
@@ -37,6 +38,12 @@ public interface ReservationService {
 	public List<Reservation> getListMain(Paging paging, User user);
 
 	public Paging getDeletePaging(HttpServletRequest req);
+
+	public boolean findResvSearch(Reservation resv, User user, ReservationPay rsPay);
+
+	public Reservation info(Reservation resv, User user, ReservationPay rsPay);
+
+	public List<Reservation> getListRsPay(Paging paging, User user, ReservationPay rsPay);
 	
 //	public List<Reservation> getListSearch(Paging paging, User user, Musical musical); 
 	

@@ -1,7 +1,9 @@
+<%@page import="web.dto.ReservationPay"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-
+<% List<ReservationPay> mcSearchList = (List)request.getAttribute("mcSearchList"); %>
 <!-- mypage.css -->
 <link rel="stylesheet" href="/resources/css/mypage.css">
 
@@ -55,7 +57,7 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-md-3 col-sm-offset-1" id="mypageMenu">
 			<ul style="list-style-type: none; padding:0;">
-				<li class="list-item"><a href="/mypage/reservation">예매확인 / 취소
+				<li class="list-item"><a href="/mypage/view">예매확인
 					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
 				<li class="list-item"><a href="/watch/musical">나의 관람 공연
 					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
@@ -73,7 +75,17 @@ $(document).ready(function(){
 		<br><br>
 		<div class="col-md-12" style="padding:20 20 20 20; border:1px solid #CADBE9">
 			<hr>
-				<h3>관람하신 공연이 없습니다.</h3>
+			
+				<%for (int i = 0; i < mcSearchList.size(); i++) {%>
+					<tr class="text-center">
+						<td><%=mcSearchList.get(i).getResno() %></td>
+						<td><%=mcSearchList.get(i).getMcname()%></td>
+						<td><%=mcSearchList.get(i).getScheduledate()%></td>
+						<td><%=mcSearchList.get(i).getTicketcount()%></td>
+	<!-- 								<td><button class="btn btn-sm"  id="btnMyCancel">예매 취소</button></td> -->
+					</tr>
+				<% } %>
+				
 			<hr>
 			
 		</div>

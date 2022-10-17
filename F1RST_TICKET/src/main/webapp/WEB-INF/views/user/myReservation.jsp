@@ -1,4 +1,4 @@
-<%@page import="web.dto.Reservation"%>
+<%@page import="web.dto.ReservationPay"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -9,8 +9,8 @@
 <%@ include file="../layout/header.jsp"%>
 
 <%-- <%List<Reservation> rsList = (List)request.getAttribute("rsList"); %> --%>
-<%List<Reservation> resvList = (List)request.getAttribute("resvList"); %>
-
+<%-- <%List<Reservation> resvList = (List)request.getAttribute("resvList"); %> --%>
+<% List<ReservationPay> rspList = (List)request.getAttribute("rspList"); %>
 
 <style type="text/css">
 #mypageMenu{
@@ -18,11 +18,11 @@
 	max-width:200px;
 	background-color: #8EC0E4;
 	padding-top: 10%;
-	padding-bottom: 40% !important;
+	padding-bottom: 35% !important;
 }
 </style>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
 	$("#btnMyCancel").click(function(){
 		if(confirm('정말 취소 하시겠습니까?')){
@@ -31,12 +31,12 @@ $(document).ready(function(){
 		} else{}
 	})
 })
-</script>
+</script> -->
 
 <h1 style="text-align: center">마이페이지</h1>
 <hr>
 
-<form action="/mypage/reservation" method="post" name="myReservation" id="myReservation" class="form-horizontal">
+<form action="/mypage/view" method="post" name="myView" id="myView" class="form-horizontal">
 
 <input type="hidden" name="userid" value="<%=session.getAttribute("userid") %>">
 
@@ -54,26 +54,27 @@ $(document).ready(function(){
 		<div class="row">
 			<div class="col-md-3 col-sm-offset-1" id="mypageMenu" >
 				<ul style="list-style-type: none; padding: 0;">
-					<li class="list-item "><a href="/mypage/reservation">예매확인 / 취소 <!-- 				 	<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span> </a></li><br> -->
+<!-- 					<li class="list-item "><a href="/mypage/reservation">예매확인 / 취소 				 	<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span> </a></li><br> -->
+					<li class="list-item "><a href="/mypage/reservation">예매확인<!-- 				 	<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span> </a></li><br> -->
 							<!-- 				<li class="list-item"><a href="/advance/ticket">할인쿠폰 / 예매권 -->
 							<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 					</a></li>
 					<br>
-					<li class="list-item"><a href="/watch/musical">나의 관람 공연
-							 <span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li>
-					<br>
+<!-- 					<li class="list-item"><a href="/watch/musical">나의 관람 공연 -->
+<!-- 							 <span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li> -->
+<!-- 					<br> -->
 					<li class="list-item"><a href="/user/update">회원 정보 수정 
 							<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li>
 					<br>
 				</ul>
 			</div>
 			<br>
-			<div class="col-md-7 col-sm-offset-1" style="padding-left: 30px;">
-			<ul class="nav nav-tabs">
-			  <li role="presentation" class="active" style="font-size: 16px; font-weight: bold"><a href="/mypage/reservation">예매 내역</a></li>
-			  <li role="presentation"  style="font-size: 14px;"><a href="/mypage/resCancel">예매 취소 내역</a></li>
-			</ul>
-			</div>
+<!-- 			<div class="col-md-7 col-sm-offset-1" style="padding-left: 30px;"> -->
+<!-- 			<ul class="nav nav-tabs"> -->
+<!-- 			  <li role="presentation" class="active" style="font-size: 16px; font-weight: bold"><a href="/mypage/reservation">예매 내역</a></li> -->
+<!-- 			  <li role="presentation"  style="font-size: 14px;"><a href="/mypage/resCancel">예매 취소 내역</a></li> -->
+<!-- 			</ul> -->
+<!-- 			</div> -->
 
 			<div class="col-md-7 col-sm-offset-1" style="padding-left: 30px;">
 				<table class="table">
@@ -84,18 +85,18 @@ $(document).ready(function(){
 							<th class="text-center">공연명</th>
 							<th class="text-center">관람일시</th>
 							<th class="text-center">매수</th>
-							<th class="text-center">관람 상태</th>
+<!-- 							<th class="text-center">관람 상태</th> -->
 						</tr>
 					</thead>
 					<tbody>
 					
-						<%for (int i = 0; i < resvList.size(); i++) {%>
+						<%for (int i = 0; i < rspList.size(); i++) {%>
 							<tr class="text-center">
-								<td><%=resvList.get(i).getResno() %></td>
-								<td><%=resvList.get(i).getScheduleInfoID()%></td>
-								<td><%=resvList.get(i).getResdate()%></td>
-								<td><%=resvList.get(i).getTicketcount()%></td>
-								<td><button class="btn btn-sm"  id="btnMyCancel">예매 취소</button></td>
+								<td><%=rspList.get(i).getResno() %></td>
+								<td><%=rspList.get(i).getMcname()%></td>
+								<td><%=rspList.get(i).getScheduledate()%></td>
+								<td><%=rspList.get(i).getTicketcount()%></td>
+<!-- 								<td><button class="btn btn-sm"  id="btnMyCancel">예매 취소</button></td> -->
 							</tr>
 						<% } %>
 					

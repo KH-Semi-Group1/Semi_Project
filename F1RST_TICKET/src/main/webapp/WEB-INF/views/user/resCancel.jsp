@@ -54,7 +54,7 @@ $(document).ready(function(){
 		<div class="row">
 			<div class="col-md-3 col-sm-offset-1" id="mypageMenu" >
 				<ul style="list-style-type: none; padding: 0;">
-					<li class="list-item "><a href="/mypage/reservation">예매확인 /취소 <!-- 				 	<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span> </a></li><br> -->
+					<li class="list-item "><a href="/mypage/view">예매확인 /취소 <!-- 				 	<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span> </a></li><br> -->
 							<!-- 				<li class="list-item"><a href="/advance/ticket">할인쿠폰 / 예매권 -->
 							<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 					</a></li>
@@ -92,7 +92,7 @@ $(document).ready(function(){
 						<%for (int i = 0; i < deleteList.size(); i++) {%>
 							<tr class="text-center">
 								<td><%=deleteList.get(i).getResno() %></td>
-								<td><%=deleteList.get(i).getScheduleInfoID()%></td>
+								<td><%=deleteList.get(i).getScheduleInfoId()%></td>
 								<td><%=deleteList.get(i).getResdate()%></td>
 								<td><%=deleteList.get(i).getTicketcount()%></td>
 								<td>취소 완료</td>

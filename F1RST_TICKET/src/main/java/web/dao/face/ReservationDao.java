@@ -7,6 +7,7 @@ import java.util.Map;
 import util.Paging;
 import web.dto.Musical;
 import web.dto.Reservation;
+import web.dto.ReservationPay;
 import web.dto.User;
 
 public interface ReservationDao {
@@ -35,6 +36,12 @@ public interface ReservationDao {
 
 	public int delete(Connection conn, Reservation resv, User user);
 
+	public int selectCntRPByResnoMcnoUserid(Connection conn, Reservation resv, User user, ReservationPay rsPay);
+
+	public int selectRPByResnoMcnoUserid(Connection conn, Reservation resv, User user, ReservationPay rsPay);
+
+
+//	public Reservation selectResvByResnoMcnoUserid(Connection conn, Reservation resv, User user, ReservationPay rsPay);
 
 //	public List<Reservation> selectAllSearch(Connection conn, Paging paging, User user, Musical musical);
 
