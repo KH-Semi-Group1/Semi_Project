@@ -135,5 +135,16 @@ public class NoticeServiceImpl implements NoticeService {
 		}		
 		
 	}
+	
+	@Override
+	public void delete(Notice notice) {
+		
+		if(noticeDao.delete(conn, notice) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}	
+		
+	}
 
 }

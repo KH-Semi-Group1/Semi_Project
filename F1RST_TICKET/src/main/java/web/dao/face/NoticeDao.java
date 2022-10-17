@@ -69,4 +69,13 @@ public interface NoticeDao {
 	 */
 	public int update(Connection conn, Notice notice);
 
+	/**
+	 * 공지사항 게시글 삭제
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param notice - 삭제할 게시글 번호
+	 * @return int - DELETE 수행 결과
+	 */
+	public int delete(Connection conn, Notice notice);
+
 }

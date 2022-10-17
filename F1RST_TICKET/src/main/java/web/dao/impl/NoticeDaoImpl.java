@@ -260,4 +260,28 @@ public class NoticeDaoImpl implements NoticeDao {
 		return res;
 	}
 	
+	@Override
+	public int delete(Connection conn, Notice notice) {
+		
+		String sql = "";
+		sql += "DELETE notice";
+		sql += " WHERE notino = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, notice.getNotino());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}		
+		
+		return res;
+	}
+	
 }

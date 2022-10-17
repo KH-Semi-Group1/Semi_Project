@@ -56,4 +56,11 @@ public interface NoticeService {
 	 */
 	public void update(HttpServletRequest req);
 
+	/**
+	 * 공지사항 게시글 삭제
+	 * 
+	 * @param notice - 삭제할 게시글 번호 객체
+	 */
+	public void delete(Notice notice);
+
 }
