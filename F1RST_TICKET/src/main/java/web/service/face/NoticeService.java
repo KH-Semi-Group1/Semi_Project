@@ -49,4 +49,11 @@ public interface NoticeService {
 	 */
 	public void write(HttpServletRequest req);
 
+	/**
+	 * 공지사항 게시글 수정
+	 * 
+	 * @param req - 요청 정보 객체
+	 */
+	public void update(HttpServletRequest req);
+
 }

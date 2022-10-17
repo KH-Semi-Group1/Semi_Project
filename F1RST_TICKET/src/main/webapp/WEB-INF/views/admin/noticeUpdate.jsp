@@ -1,5 +1,9 @@
+<%@page import="web.dto.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%	Notice updateNotice = (Notice) request.getAttribute("updateNotice"); %>
+
 
 <!-- 스마트 에디터2 설치 -->
 <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js"></script>
@@ -95,10 +99,11 @@ function updateContents() {
 </div>
 
 <form action="./noticeWrite" method="post">
+<input type="text" name="reviewno" value="<%=updateNotice.getNotino() %>">
 
 	<table class="table table-bordered">
 
-		<tr><td>제목</td><td colspan="3"><input type="text" name="notititle" style="width: 100%;"></td></tr>
+		<tr><td>제목</td><td colspan="3"><input type="text" name="notititle" style="width: 100%;" value="<%=updateNotice.getNotititle() %>"></td></tr>
 		<tr><td>아이디</td><td><%=session.getAttribute("adminid") %></td>
 			<td>공지타입</td>
 			<td>
@@ -112,7 +117,7 @@ function updateContents() {
 		</tr>
 		<tr><td>오픈일자</td><td colspan="3"><input type="date" name="opendate"></td></tr>
 		<tr><td colspan="4">본문</td></tr>
-		<tr><td colspan="4"><textarea id="noticontent" name="noticontent" style="width: 100%;"></textarea></td></tr>
+		<tr><td colspan="4"><textarea id="noticontent" name="noticontent" style="width: 100%;"><%=updateNotice.getNoticontent() %></textarea></td></tr>
 
 	</table>
 	

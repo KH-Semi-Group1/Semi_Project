@@ -226,4 +226,38 @@ public class NoticeDaoImpl implements NoticeDao {
 		return nextNotino;
 	}
 	
+	@Override
+	public int update(Connection conn, Notice notice) {
+		
+		String sql = "";
+		sql += "UPDATE notice";
+		sql += "	SET";
+		sql += "		notititle = ?";
+		sql += "		, notitype = ?";
+		sql += "		, opendate = ?";
+		sql += "		, noticontent = ?";
+		sql += " WHERE notino = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, notice.getNotititle());
+			ps.setString(2, notice.getNotitype());
+			ps.setString(3, notice.getOpendate());
+			ps.setString(4, notice.getNoticontent());
+			ps.setInt(5, notice.getNotino());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}		
+		
+		return res;
+	}
+	
 }

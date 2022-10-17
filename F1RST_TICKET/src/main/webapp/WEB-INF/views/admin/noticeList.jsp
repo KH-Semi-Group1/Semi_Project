@@ -94,7 +94,7 @@ $(document).ready(function() {
 	<tr>
 		<td><%=noticeList.get(i).getNotitype() %></td>
 		<td>
-			<a href="./view?notino=<%=noticeList.get(i).getNotino() %>">
+			<a href="./noticeView?notino=<%=noticeList.get(i).getNotino() %>">
 				<%=noticeList.get(i).getNotititle() %>
 			</a>
 		</td>

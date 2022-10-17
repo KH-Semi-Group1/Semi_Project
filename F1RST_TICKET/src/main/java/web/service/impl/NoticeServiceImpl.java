@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.Session;
 
 import common.JDBCTemplate;
 import util.Paging;
@@ -113,6 +114,25 @@ public class NoticeServiceImpl implements NoticeService {
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
+		
+	}
+	
+	@Override
+	public void update(HttpServletRequest req) {
+		
+		Notice notice = new Notice();
+		
+		notice.setNotino( Integer.parseInt( req.getParameter("notino") ) );
+		notice.setNotititle( req.getParameter("notititle") );
+		notice.setNoticontent( req.getParameter("noticontent") );
+		notice.setNotitype( req.getParameter("notitype") );
+		notice.setOpendate( req.getParameter("opendate") );
+		
+		if( noticeDao.update(conn, notice) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}		
 		
 	}
 

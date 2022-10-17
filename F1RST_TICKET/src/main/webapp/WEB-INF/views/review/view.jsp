@@ -40,7 +40,7 @@ $(document).ready(function() {
 		$(location).attr('href', './update?reviewno=<%=viewReview.getReviewno() %>')
 	})
 
-	//수정버튼 클릭
+	//삭제버튼 클릭
 	$("#btnDelete").click(function() {
 		$(location).attr('href', './delete?reviewno=<%=viewReview.getReviewno() %>')
 	})
