@@ -1,137 +1,173 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>F1RST TICKET</title>
 
-<script type="text/javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- header include -->
+<%@ include file = "../layout/header.jsp" %>
 
-<!-- layout.css -->
-<link rel="stylesheet" href="/resources/css/layout.css">
+<style>
+#joinform{
+    padding: 20px 0 20px 0;
+    position: relative;
+}
 
-</head>
-<body>
+#jcbutton {
+	position: relative;
+	right: 45px;	
+}
 
-<header id="header2">
+label{
+	color:black;
+}
+</style>
+<script type="text/javascript">
+function joinCheck() {
+	if (document.joinform.userid.value.length < 4) {
+		alert("아이디는 4자 이상, 16자 이하로 입력해주세요.");
+		document.joinform.userid.focus();
+		return false;
+	}
+	if (document.joinform.userpw.value != document.joinform.userpw2.value) {
+		alert("패스워드가 일치하지 않습니다.");
+		document.joinform.userpw2.focus();
+		return false;
+	}
+	
+	if (document.joinform.userid.value.length < 4) {
+		alert("아이디는 4자 이상, 16자 이하로 입력해주세요.");
+		document.joinform.userid.focus();
+		return false;
+	}
+	if (document.joinform.idCheckBtn == false) {
+		return false;	
+	}
+	return true;
+// 	window.alert("회원가입이 완료되었습니다.")
+}
 
-<div class="text-center" style="padding-top:20px;">
-	<a href="/">
-	<img src="/resources/img/logo.png" alt="logo">
-	</a>
-</div>
+/* $(document).ready(function(){
+	$(#"joinCheck").click(function(){
+	})
+}) */
 
-</header>
-<hr>
+/* if()
+$("#btnJoin").prop("disabled",true); */
+
+
+function check(){
+	var userid = $("#userid").val();
+	
+	$.ajax({
+		type: 'POST',
+		url: '${pageContext.request.contextPath}/idCheck?userid='+userid,
+		data: {userid:userid},
+		success: function(result){
+			console.log("로그: ["+result+"]")
+			if(result == 1){
+				$("#result").text("사용이 가능한 아이디 입니다.");
+				$("#result").css("color","blue");
+				$("#btnJoin").prop("disabled",false);
+			}
+			else{
+				$("#result").text("사용중인 아이디 입니다.");
+				$("#result").css("color","red");
+				$("#btnJoin").prop("disabled",true);
+			}
+	},
+	error: function(a,b,c){ // 요청 보낸 곳(서블릿)에서 에러가 발생할 시 실행
+			console.log("상태코드: "+a);
+			console.log("메세지: "+b);
+			console.log("에러설명: "+c);
+
+		}
+		
+	})
+}
+
+</script>
+
+
 <div class = "container">
-
-<form action="/user/join" method="post" class="form-horizontal">
+<h1>회원가입</h1>
+<form action="/join" method="post" class="form-horizontal" id="joinform" name="joinform" onsubmit="return check2()" >
+	
 	<div class="form-group">
-		<label for="userid" class="col-xs-2 control-label">이름</label>
-		<div class="col-xs-7">
-			<input type="text" id="userid" name="userid" class="form-control" placeholder="이름을 입력하세요">
+		<label for="username" class="col-xs-2 col-xs-offset-1 control-label">이름</label>
+		<div class="col-xs-6">
+			<input type="text" id="username" name="username" class="form-control" placeholder="이름을 입력하세요" required>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="userid" class="col-xs-2 control-label">아이디</label>
-		<div class="col-xs-7">
-			<input type="text" id="userid" name="userid" class="form-control" placeholder="아이디를 입력하세요">
+		<label for="userid" class="col-xs-2 col-xs-offset-1 control-label" required>아이디</label>
+		<div class="col-xs-6">
+			<input type="text" id="userid" name="userid" class="form-control" placeholder="아이디를 입력하세요" maxlength="16" required>
+			<div id="result"></div>
 		</div>
+
 		<div>
-			<button type="button" class="btn btn-info">중복확인</button>
+			<button type="button" class="btn btn-sm" value="중복확인" name="idCheckBtn" id="idCheckBtn" style="background-color: #6AAFE6; color:#fff; margin-right: 220px;" onclick="check()">중복체크</button>
 		</div>
+		<input type="hidden" name="idc" value="">
 	</div>
 
 	<div class="form-group">
-		<label for="userpw" class="col-xs-2 control-label">패스워드</label>
-		<div class="col-xs-7">
-			<input type="text" id="userpw" name="userpw" class="form-control" placeholder="패스워드를 입력하세요">
+		<label for="userpw" class="col-xs-2 col-xs-offset-1 control-label">패스워드</label>
+		<div class="col-xs-6">
+			<input type="password" id="userpw" name="userpw" class="form-control" placeholder="패스워드를 입력하세요" required>
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label for="userpw" class="col-xs-2 control-label">패스워드확인</label>
-		<div class="col-xs-7">
-			<input type="text" id="userpw" name="userpw" class="form-control" placeholder="패스워드를 재확인">
+		<label for="userpw2" class="col-xs-2 col-xs-offset-1 control-label">패스워드확인</label>
+		<div class="col-xs-6">
+			<input type="password" id="userpw2" name="userpw2" class="form-control" placeholder="패스워드 재확인" required>
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label for="bir_yy" class="col-xs-2 control-label">생년월일</label>
-	 	<div class="bir_yy">
-			<span class="col-xs-2">
-				<input type="text" class="form-control" id="yy" placeholder="년(4자)" maxlength="4">
-			</span>
-		</div>
-		<div class="bir_mm">
-			<div class="col-xs-2">
-				<select class="form-control" id="mm">
-		    	<option value="월">월</option>
-		   	 	<option value="1">1</option>
-		   	 	<option value="2">2</option>
-		   	 	<option value="3">3</option>
-		   	 	<option value="4">4</option>
-		   	 	<option value="5">5</option>
-		   	 	<option value="6">6</option>
-		   	 	<option value="7">7</option>
-		   	 	<option value="8">8</option>
-		   	 	<option value="9">9</option>
-		   	 	<option value="10">10</option>
-		   	 	<option value="11">11</option>
-		   	 	<option value="12">12</option>
-            </select>
-			</div>
-		</div>
-		<div class="bir_dd">
-			<span class="col-xs-3">
-				<input type="text" class="form-control" id="yy" placeholder="일" maxlength="2">
-			</span>
+		<label for="userbirth" class="col-xs-2 col-xs-offset-1 control-label">생년월일</label>
+		<div class="col-xs-6">
+			<input type="text" id="userbirth" class="form-control" name="userbirth" placeholder="@1995-12-25" required>
 		</div>
 	</div>
 	
 	<div class="form-group">
-    	<label for="gender" class="col-xs-2 control-label">휴대 전화</label>
-    	<div class="col-xs-7">
-    		<input type="tel" class="form-control onlyNumber" id="phone" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+    	<label for="uphone" class="col-xs-2 col-xs-offset-1 control-label">휴대 전화</label>
+    	<div class="col-xs-6">
+    		<input type="tel" class="form-control" id="uphone" name="uphone" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11" required>
     	</div>
     </div>
 	
-	
 	<div class="form-group">
-	<label for="gender" class="col-xs-2 control-label">성별</label>
-		<div class="col-xs-7">
-         	<select class="form-control" id="gender">
+	<label for="gender" class="col-xs-2 col-xs-offset-1 control-label">성별</label>
+		<div class="col-xs-6">
+         	<select class="form-control" id="gender" name="gender">
 		    	<option value="M">남자</option>
 		   	 	<option value="F">여자</option>
             </select>
          </div>
 	</div>
 
-
 	<div class="form-group">
-		<label for="userpw" class="col-xs-2 control-label">주소</label>
-		<div class="col-xs-7">
-			<input id="userpw" name="userpw" class="form-control" placeholder="주소">
+		<label for="address" class="col-xs-2 col-xs-offset-1 control-label">주소</label>
+		<div class="col-xs-6">
+			<input type="text" id="address" name="address" class="form-control" placeholder="주소">
 		</div>
 	</div>
 	
 	<div class="form-group">
-		<label for="email" class="col-xs-2 control-label">이메일</label>
-		<div class="col-xs-7">
+		<label for="email" class="col-xs-2 col-xs-offset-1 control-label">이메일</label>
+		<div class="col-xs-6">
 			<input type="email" id="email" name="email" class="form-control" placeholder="이메일을 입력하세요">
 		</div>
 	</div>
 
-	<div class="text-center">
-		<button type="button" class="btn btn-info" id="btnJoin">회원가입</button>
-		<button type="button" class="btn btn-warning" id="btnCancel">취소</button>
+	<div class="text-center" id=jcbutton>
+		<input type="submit" value="회원가입" class="btn" style="background-color: #6AAFE6; color:#fff;" id="btnJoin" onclick="return joinCheck()">
+		<button type="reset" class="btn" style="background-color: #D4DFE6;" id="btnCancel">취소</button>
 	</div>
-	
 </form>
 </div>
 
+<!-- footer include -->
+<%@ include file = "../layout/footer.jsp" %> 

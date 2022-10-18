@@ -1,73 +1,51 @@
 @charset "UTF-8";
 
-/* body { */
-/* 	height:3000px; color : #fff;text-align:center; margin:0; padding:0; */
-/* } */
+/* header.jsp css */
 
-body {
-	color : black;text-align:center; margin:0; padding:0;
-}
-
-.wrap{
-	position: relative;
-  	min-height: 100%;
-  	
-}
-
-nav {
-	position : fixed; width:100%; height:40px; background : #6AAFE6; 
-	color : white; text-align : center;top:0;left:0;}
+header{
+	margin: 0 auto;
+	min-width : 1000px;
+/* 	padding: 0px 50px 0px 50px; */
 	
-.all {
-	display:flex; flex-flow : row wrap; min-width:280px; margin-top:50px;
 }
 
-header {
-	flex:1 1 100%; height:85px; background:white;
-}
+label:hover {
 	
-main {
-	flex: 1 1 100%;
-	min-height: 100%;
-	padding: 35px 0 35px 0;
+	text-decoration: none;
+	
 }
 
-footer{
-	position : absolute; 
-	width:100%;
-	flex: 1 1 100%;
-	padding: 35px 0 0 0;
+nav li a {
+	color : black;
 }
 
-.header1{
-	display: inline-block;
+nav li a:hover{
+	border-bottom: 2px solid #8EC0E4;
+/* 	border-bottom: 2px solid black; */
+	color : black !important;
+	background-color: #fff !important;
 }
 
-.header2{
-	display: inline-block;
-	padding-top: 10px;
-	font-size: 20px;
+/* .container{
+	
+	padding-top: 50px;
+	padding-bottom: 50px;
+	
+} */
+
+.topmenu{
+	background-color : #6AAFE6;
+	text-align: right;
+	height : 30px;
+	
 }
 
-.header3{
-	float: right;
-	padding-top: 10px;
-	font-size: 20px; */
+.topmenu ul li{
+	padding : 0px 10px 0px 10px;
+	vertical-align: middle;
 }
 
-.topmenu {
-	float:right;
-	padding: .4% 3% 0 0;
-	z-index: 10;
-}
-
-.topmenu>ul>li{
-
-	margin-left: 18px;
-	font-size: 14px;
-}
-
-.topmenu a {
+.topmenu a{
 	text-decoration: none;
 	color:#fff;
 }
@@ -77,60 +55,33 @@ footer{
 	color: black;
 } 
 
-header li a {
-	color : black;
+#midmenu{
+	
+	font-size: 16px;
+}
+
+/* header_login.jsp CSS */
+
+#loginJoin ul li a{
+	
+	text-decoration: none; 
+	color: black;
 	
 }
 
-header li a:hover{
-	border-bottom: 2px solid black;
-	color : black !important;
-	background-color: #fff !important;
-}
-
-footer a:hover {
-	text-decoration: none;
-}
-
-.topcon {
-	padding-left: 20px;
-}
-
-
-html, body{
-	height:100%;
-}
-
-.footer-wrap {
-	background:#6AAFE6;
-	width:100%;
+#loginJoin ul li a:hover{
 	
-	z-index: 2;
-}
-
-.empty {
-	background:white;
-	height:100px;
-	width:100%;
-	z-index: 1;
-	position:relative;
-	transform: translatY(-100%);
+	border-bottom: 2px solid #8EC0E4;
+	width: auto;
 	
 }
 
-#botmenuid ul li a{
-
-	text-decoration: none;
-	color : #fff;
-
+#lostId ul li {
+	font-size: 28px;
+	text-decoration: none ;
+	color : black; 
 }
 
-#botmenuid ul li a:hover{
 
-	text-decoration: none;
-	color : black;
-	background-color: #6AAFE6 !important;
-	
-}
-
+body { padding-bottom: 70px; }
 
