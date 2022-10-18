@@ -59,7 +59,7 @@ function updateContents() {
 <div class="container">
 
 <div class="page-header">
-	<h1>공연 후기</h1>
+	<h1>공연 후기 수정</h1>
 	<small>관람하신 공연에 대해서 얼마나 만족하시나요?</small>
 </div>
 

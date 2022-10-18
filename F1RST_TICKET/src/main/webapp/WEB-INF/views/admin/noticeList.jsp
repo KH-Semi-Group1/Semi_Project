@@ -60,7 +60,7 @@ $(document).ready(function() {
 	})
 })
 </script>
-
+	
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-1">
@@ -73,49 +73,68 @@ $(document).ready(function() {
 		</a>
 	</div>
 	<br><br>
-
-<h1 class="text-center">공지사항</h1>
-<hr>
-
-<div class="container">
-
-<table class="table table-hover table-condensed">
-	<thead>
-		<tr>
-			<th style="width: 10%;">구분</th>
-			<th style="width: 50%;">제목</th>
-			<th style="width: 20%;">티켓 오픈 일시</th>
-			<th style="width: 10%;">조회수</th>
-		</tr>
-	</thead>
 	
-	<tbody>
-	<%	for( int i=0; i<noticeList.size(); i++) { %>
-	<tr>
-		<td><%=noticeList.get(i).getNotitype() %></td>
-		<td>
-			<a href="./noticeView?notino=<%=noticeList.get(i).getNotino() %>">
-				<%=noticeList.get(i).getNotititle() %>
-			</a>
-		</td>
-		<td><%=noticeList.get(i).getOpendate() %></td>
-		<td><%=noticeList.get(i).getNotihit() %></td>
+<div class="container-fluid">
+	<!-- 관리자메뉴바 -->
+	<div class="row">
+		<div class="col-md-2 col-md-offset-1" id="adminpageDiv">
+			<ul style="list-style-type: none;">
+			<li><a href="/admin/user">회원 관리
+			<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
+			<li><a href="/admin/noticeList">공지사항 관리
+			<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
+			<li><a href="/admin/main">예매 관리
+			<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
+			<li><a href="/admin/main">티켓 관리
+			<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
+			<li><a href="/admin/mcDelete">뮤지컬 관리
+			<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
+			</ul>
+		</div>
+		
+		<div class="col-md-8" id="adminpageMain">
+			<div class="container-fluid">
 			
-	</tr>
-	<%	} %>
-	</tbody>
-	
-</table>
-
-
-
-<div id="btnBox" class="pull-right">
+			<div class="row">
+				<div class="col-md-11">
+				<h3 style="display: inline-block;">공지사항 관리</h3>
+				
+				<!-- 공지사항 조회 -->
+				<table class="table  table-hover table-condensed" style="width:1000px;margin-top: 30px;">
+					<tr>
+					<th style="width:10%;padding-top:18px;">구분</th>
+					<th style="width:50%;padding-top:18px;">제목</th>
+					<th style="width:20%;padding-top:18px;">티켓 오픈 일시</th>
+					<th style="width:10%;padding-top:18px;">조회수</th>
+					</tr>
+				
+					<%	for( int i=0; i<noticeList.size(); i++) { %>
+					<tr>
+					<td><%=noticeList.get(i).getNotitype() %></td>
+					<td>
+					<a href="./noticeView?notino=<%=noticeList.get(i).getNotino() %>">
+					<%=noticeList.get(i).getNotititle() %>
+					</a>
+					</td>
+					<td><%=noticeList.get(i).getOpendate() %></td>
+					<td><%=noticeList.get(i).getNotihit() %></td>
+							
+					</tr>
+					<%	} %>
+										
+				</table>
+				</div>
+			</div>
+			
+			</div>
+<!-- 글쓰기 버튼 -->
+<div id="btnBox" class="text-center">
 	<button id="btnWrite" class="btn btn-outline">글쓰기</button>
 </div>
-
+<%@	include file="../layout/paging_admin_notice.jsp" %>
 </div>
+		</div>
+	</div>
 </div>
 <div class="clearfix"></div>
-
-<%@	include file="../layout/paging.jsp" %>
 

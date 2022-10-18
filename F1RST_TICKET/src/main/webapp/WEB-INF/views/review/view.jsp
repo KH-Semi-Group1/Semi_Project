@@ -117,7 +117,7 @@ $(document).ready(function() {
 <div class="container">
 
 <div class="page-header">
-	<h3 class="text-left"><strong>댓글</strong></h3>
+	<h3 class="text-left"><strong>댓글</strong><small>로그인 후 댓글 작성 가능</small></h3>
 </div>
 
 <!-- 댓글 입력하는 폼 -->

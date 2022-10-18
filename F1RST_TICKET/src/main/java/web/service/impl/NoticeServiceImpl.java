@@ -48,6 +48,8 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.selectAll(JDBCTemplate.getConnection(), paging);
 	}
 	
+	
+	
 	@Override
 	public Notice getnotino(HttpServletRequest req) {
 		

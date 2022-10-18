@@ -95,11 +95,11 @@ function updateContents() {
 <div class="container">
 
 <div class="page-header">
-	<h1>공지사항 작성</h1>
+	<h1>공지사항 수정</h1>
 </div>
 
 <form action="./noticeWrite" method="post">
-<input type="text" name="reviewno" value="<%=updateNotice.getNotino() %>">
+<input type="hidden" name="notino" value="<%=updateNotice.getNotino() %>">
 
 	<table class="table table-bordered">
 

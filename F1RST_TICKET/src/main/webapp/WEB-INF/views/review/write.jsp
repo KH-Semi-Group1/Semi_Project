@@ -70,8 +70,8 @@ function updateContents() {
 
 <form action="./write" method="post" enctype="multipart/form-data">
 
-<input type="text" name="mcno" value="<%=request.getParameter("mcno") %>">
-<input type="text" name="reviewno" value="<%=session.getAttribute("userid") %>">
+<input type="hidden" name="mcno" value="<%=request.getParameter("mcno") %>">
+<input type="hidden" name="reviewno" value="<%=session.getAttribute("userid") %>">
 
 <div class="container-fluid row">
 	<div class="col-xs-12">

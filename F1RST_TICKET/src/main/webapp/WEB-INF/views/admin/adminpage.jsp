@@ -66,7 +66,7 @@ tr th{
 			<ul style="list-style-type: none;">
 				<li><a href="/admin/user">회원 관리
 				<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
-				<li><a href="/admin/notice/write" onclick="">공지사항 관리
+				<li><a href="/admin/noticeList" onclick="">공지사항 관리
 					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>
 				<li><a href="/admin/main">예매 관리
 					<span class="glyphicon glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></li><br>

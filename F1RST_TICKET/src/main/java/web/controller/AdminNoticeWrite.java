@@ -27,12 +27,12 @@ public class AdminNoticeWrite extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		//한글인코딩설정
+		req.setCharacterEncoding("UTF-8");
 		
 		//공지사항 게시글 삽입
 		noticeService.write(req);
 		
-		//한글인코딩설정
-		req.setCharacterEncoding("UTF-8");
 
 		//관리자 공지사항 목록으로 리다이렉트
 		resp.sendRedirect("/admin/noticeList");
