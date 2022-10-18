@@ -30,26 +30,6 @@ public class MyPageController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-//		Paging paging = reservationSerivce.getPaging(req);
-////		System.out.println(paging);
-//
-//		User user = new User();
-//		user.setUserid((String) req.getSession().getAttribute("userid"));
-//		System.out.println(user);
-//
-//		List<Reservation> resvList = reservationSerivce.getListMain(paging,user);
-//		System.out.println(resvList);
-//		
-//		req.setAttribute("resvList", resvList);
-//		req.setAttribute("paging", paging);
-//
-//
-//		Reservation resv = reservationSerivce.getResv(req);
-//		
-//		req.getRequestDispatcher("/WEB-INF/views/user/mypage.jsp").forward(req, resp);
-//		
-//	}
-		
 		User user = new User();
 		user.setUserid((String) req.getSession().getAttribute("userid"));
 		System.out.println(user);
@@ -60,9 +40,6 @@ public class MyPageController extends HttpServlet {
 		
 		ReservationPay res = rspayService.selectMcno(req, user);
 		System.out.println(res);
-		
-//		ReservationPay getMrno = rspayService.getMrno(req, user);
-//		System.out.println(getMrno);
 		
 		List<ReservationPay> rspList = rspayService.getRsPayListMain(paging, user);
 		System.out.println(rspList);

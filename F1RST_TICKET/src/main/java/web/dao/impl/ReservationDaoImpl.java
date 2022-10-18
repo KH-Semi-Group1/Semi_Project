@@ -348,6 +348,56 @@ public class ReservationDaoImpl implements ReservationDao {
 		
 	}
 	
+	@Override
+	public int insert(Connection conn, ReservationPay rpay, User user) {
+		
+		String sql = "";
+
+		sql+= "INSERT INTO reservationpay ("
+				+ "    mrno,  resno, scheduleinfoid,"
+				+ "    mcno, mcname, scheduledate, scheduletime,"
+				+ "    userid, resdate, ticketcount,"
+				+ "    payno, payment, paymoney)"
+				+ "  VALUES ("
+				+ "   reservationPay_seq.nextval , Reservation_seq.nextval, ScheduleInfo_seq.nextval,"
+				+ "   musical_seq.nextval , ? , ? , ? , "
+				+ "   ?, (CURRENT_TIMESTAMP), ?,  paytype_seq.nextval, ? , ?)";
+		
+		int res = 0;
+			
+		try {
+
+			
+		ps = conn.prepareStatement(sql);
+		
+		ps.setString(1, rpay.getMcname());
+		ps.setString(2, rpay.getScheduledate());
+		ps.setString(3, rpay.getScheduletime());
+		ps.setString(4, user.getUserid());
+		ps.setInt(5, rpay.getTicketcount());
+		ps.setString(6, rpay.getPayment());
+		ps.setInt(7, rpay.getPaymoney());
+		
+		res = ps.executeUpdate();
+		
+		if(res ==1) {
+			JDBCTemplate.commit(conn);
+		}
+			JDBCTemplate.rollback(conn);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+			
+		}
+		return res;
+		
+		
+	}
+	
 	// Musical & scheduleinfoid & Reservation이 있어야 함.
 //	@Override
 //	public List<Reservation> selectAllSearch(Connection conn, Paging paging, User user, Musical musical) {

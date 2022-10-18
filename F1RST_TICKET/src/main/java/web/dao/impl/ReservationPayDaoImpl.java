@@ -414,24 +414,17 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 			
 		try {
 
-			System.out.println(res);
-			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+			
 		ps = conn.prepareStatement(sql);
 		
 		ps.setString(1, rpay.getMcname());
-		System.out.println(rpay.getMcname());
 		ps.setString(2, rpay.getScheduledate());
-		System.out.println(rpay.getScheduledate());
 		ps.setString(3, rpay.getScheduletime());
-		System.out.println(rpay.getScheduletime());
 		ps.setString(4, user.getUserid());
-		System.out.println(user.getUserid());
 		ps.setInt(5, rpay.getTicketcount());
-		System.out.println(rpay.getTicketcount());
 		ps.setString(6, rpay.getPayment());
-		System.out.println(rpay.getPayment());
 		ps.setInt(7, rpay.getPaymoney());
-		System.out.println(rpay.getPaymoney());
+		
 		res = ps.executeUpdate();
 		
 		if(res ==1) {

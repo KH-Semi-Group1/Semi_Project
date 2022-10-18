@@ -532,11 +532,11 @@ ul.rank-txt > li > a {
 	<header>
 		<div class="header2">
 	      <ul class="nav navbar-nav nav-pills topcon" data-bs-target="#navbarToggleExternalContent">
-	        <li><a href="/musical/mcList">뮤지컬</a></li>
+	         <li><a href="/musical/mcList">뮤지컬</a></li>
 	        <li><a href="/notice/list">공지사항</a></li>
 	        <li><a href="/review/list">관람후기</a></li>
-	        <li><a href="/">이용안내</a></li>
-	        <!--  비 로그인  --> 
+	        
+        <!--  비 로그인  --> 
 			<% if(session.getAttribute("login") == null )  { %>
 	        <li class="noLoginTC"><a href="/user/login">My티켓</a></li>
 	      	<% } %>
@@ -577,14 +577,14 @@ ul.rank-txt > li > a {
 	<div class="slider">
 	
 		<div class="center slick_slider">
-			<div class="slide"><a href='/musical/mcView?mcno=208'><img src="${pageContext.request.contextPath}/resources/img/mc/jes.jpg${musical.mcimg}" class="sec1"></a></div>
-			<div class="slide"><a href='/musical/mcView?mcno=200'><img src="${pageContext.request.contextPath}/resources/img/mc/hap.jpg${musical.mcimg}" class="sec1"></a></div>
-			<div class="slide"><a href='/musical/mcView?mcno=206'><img src="${pageContext.request.contextPath}/resources/img/mc/ale.jpg${musical.mcimg}" class="sec1"></a></div>
-			<div class="slide"><a href='/musical/mcView?mcno=201'><img src="${pageContext.request.contextPath}/resources/img/mc/hook.jpg${musical.mcimg}" class="sec1"></a></div>
-			<div class="slide"><a href='/musical/mcView?mcno=205'><img src="${pageContext.request.contextPath}/resources/img/mc/seo.jpg${musical.mcimg}" class="sec1"></a></div>
 			<div class="slide"><a href='/musical/mcView?mcno=204'><img src="${pageContext.request.contextPath}/resources/img/mc/pri.jpg${musical.mcimg}" class="sec1"></a></div>
-			<div class="slide"><a href='/musical/mcView?mcno=202'><img src="${pageContext.request.contextPath}/resources/img/mc/per.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=205'><img src="${pageContext.request.contextPath}/resources/img/mc/seo.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=200'><img src="${pageContext.request.contextPath}/resources/img/mc/hap.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=201'><img src="${pageContext.request.contextPath}/resources/img/mc/hook.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=206'><img src="${pageContext.request.contextPath}/resources/img/mc/ale.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=208'><img src="${pageContext.request.contextPath}/resources/img/mc/jes.jpg${musical.mcimg}" class="sec1"></a></div>
 			<div class="slide"><a href='/musical/mcView?mcno=207'><img src="${pageContext.request.contextPath}/resources/img/mc/sam.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=202'><img src="${pageContext.request.contextPath}/resources/img/mc/per.jpg${musical.mcimg}" class="sec1"></a></div>
 		</div>
 
 	</div>
@@ -598,7 +598,7 @@ ul.rank-txt > li > a {
 	<div class="hotmain">
 		<div class="hotitem"></div>
 		<div class="hot-tit">WHAT'S HOT </div>
-		<div class="hotitem"><a href='/musical/mcLike'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="hotitem"><a href='/musical/mcLike'><div class="more"><img src="${pageContext.request.contextPath}/resources/img/mc/more.png${musical.mcimg}"></div></a></div>
 		<div class="hotitem"><a href='/musical/mcView?mcno=207'><img src="${pageContext.request.contextPath}/resources/img/mc/sam.jpg${musical.mcimg}" title="뮤지컬 <삼총사>" style="width:200px; height:260px;"></a></div>
 		<div class="hotitem"><a href='/musical/mcView?mcno=204'><img src="${pageContext.request.contextPath}/resources/img/mc/pri.jpg${musical.mcimg}" title="뮤지컬 <프리즌>" style="width:200px; height:260px;"></a></div>
 		<div class="hotitem"><a href='/musical/mcView?mcno=200'><img src="${pageContext.request.contextPath}/resources/img/mc/hap.jpg${musical.mcimg}" title="뮤지컬 <우연히 행복해지다>" style="width:200px; height:260px;"></a></div>
@@ -614,7 +614,7 @@ ul.rank-txt > li > a {
 	<div class="hotmain">
 		<div class="newitem"></div>
 		<div class="new-tit">WHAT'S NEW </div>
-		<div class="newitem"><a href='/musical/mcNew'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="newitem"><a href='/musical/mcNew'><div class="more"><img src="${pageContext.request.contextPath}/resources/img/mc/more.png${musical.mcimg}"></div></a></div>
 		<div class="newitem"><a href='/musical/mcView?mcno=201'><img src="${pageContext.request.contextPath}/resources/img/mc/hook.jpg${musical.mcimg}" title="뮤지컬 <더 훅 The Hook>" style="width:200px; height:260px;"></a></div>
 		<div class="newitem"><a href='/musical/mcView?mcno=202'><img src="${pageContext.request.contextPath}/resources/img/mc/per.jpg${musical.mcimg}" title="뮤지컬 <사람은 무엇으로 사는가>" style="width:200px; height:260px;"></a></div>
 		<div class="newitem"><a href='/musical/mcView?mcno=203'><img src="${pageContext.request.contextPath}/resources/img/mc/dre.jpg${musical.mcimg}" title="뮤지컬 <드리머스 Dreamers>" style="width:200px; height:260px;"></a></div>
@@ -652,7 +652,7 @@ ul.rank-txt > li > a {
 	<div class="pickmain">
 		<div class="pickitem"></div>
 		<div class="pick-tit">MD'S PICK</div>
-		<div class="pickitem"><a href='/musical/mcMd'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="pickitem"><a href='/musical/mcMd'><div class="more"><img src="${pageContext.request.contextPath}/resources/img/mc/more.png${musical.mcimg}"></div></a></div>
 		<div class="pickitem"><a href='/musical/mcView?mcno=206'><img src= "${pageContext.request.contextPath}/resources/img/mc/ale.jpg${musical.mcimg}" title="뮤지컬 <엘그리아 Alegria>" style="width:200px; height:260px;"></a></div>
 		<div class="pickitem"><a href='/musical/mcView?mcno=205'><img src="${pageContext.request.contextPath}/resources/img/mc/seo.jpg${musical.mcimg}" title="뮤지컬 <서편제>" style="width:200px; height:260px;"></a></div>
 		<div class="pickitem"><a href='/musical/mcView?mcno=204'><img src="${pageContext.request.contextPath}/resources/img/mc/pri.jpg${musical.mcimg}" title="뮤지컬 <프리즌>" style="width:200px; height:260px;"></a></div>

@@ -40,6 +40,8 @@ public interface ReservationDao {
 
 	public int selectRPByResnoMcnoUserid(Connection conn, Reservation resv, User user, ReservationPay rsPay);
 
+	public int insert(Connection conn, ReservationPay rpay, User user);
+
 
 //	public Reservation selectResvByResnoMcnoUserid(Connection conn, Reservation resv, User user, ReservationPay rsPay);
 
