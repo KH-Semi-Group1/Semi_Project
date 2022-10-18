@@ -98,7 +98,7 @@ function updateContents() {
 	<h1>공지사항 수정</h1>
 </div>
 
-<form action="./noticeWrite" method="post">
+<form action="./noticeUpdate" method="post">
 <input type="hidden" name="notino" value="<%=updateNotice.getNotino() %>">
 
 	<table class="table table-bordered">

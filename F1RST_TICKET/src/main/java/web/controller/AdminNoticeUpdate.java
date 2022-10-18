@@ -42,6 +42,8 @@ public class AdminNoticeUpdate extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.setCharacterEncoding("UTF-8");
+		
 		noticeService.update(req);
 		
 		//관리자 공지사항 목록으로 리다이렉트

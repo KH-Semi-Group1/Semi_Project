@@ -72,7 +72,7 @@ function updateContents() {
 		<div class="thumbnail row">
 			<img class="col-xs-2" alt="..." src="../resources/img/mc/<%=updateReview.getMcimg() %>">
 			<div class="caption col-md-10">
-				<h3>뮤지컬 이름</h3>
+				<h3><%=updateReview.getMcname() %></h3>
 				<p>별점</p>
 				
 				<div class="star-rating space-x mx-auto">

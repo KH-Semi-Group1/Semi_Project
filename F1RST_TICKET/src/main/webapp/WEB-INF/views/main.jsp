@@ -1,10 +1,14 @@
+<%@page import="java.util.List"%>
+<%@ page import="web.dto.Musical"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% List<Musical> musicalList = (List) request.getAttribute("musicalList"); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main Page</title>
+<title>F1rst Ticket</title>
        
 <script type="text/javascript" src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -19,14 +23,140 @@
 <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
-<link rel="stylesheet" href="/resources/css/layout.css">
 
 <style type="text/css">
 
+/* Header */
 body {
-    line-height: 1;
-    font-weight: 400;
+	color : black;text-align:center; margin:0; padding:0;
 }
+
+.wrap{
+	position: relative;
+  	min-height: 100%;
+  	
+}
+
+nav {
+	position : fixed; width:100%; height:40px; background : #6AAFE6; 
+	color : white; text-align : center;top:0;left:0;}
+	
+.all {
+	display:flex; flex-flow : row wrap; min-width:280px; margin-top:50px;
+}
+
+header {
+	flex:1 1 100%; height:85px; background:white;
+}
+	
+main {
+	flex: 1 1 100%;
+	min-height: 100%;
+	padding: 35px 0 35px 0;
+}
+
+footer{
+	position : absolute; 
+	width:100%;
+	flex: 1 1 100%;
+	padding: 35px 0 0 0;
+}
+
+.header1{
+	display: inline-block;
+}
+
+.header2{
+	display: inline-block;
+	padding-top: 10px;
+	font-size: 20px;
+}
+
+.header3{
+	float: right;
+	padding-top: 10px;
+	font-size: 20px; */
+}
+
+.topmenu {
+	float:right;
+	padding: .4% 3% 0 0;
+	z-index: 10;
+}
+
+.topmenu>ul>li{
+
+	margin-left: 18px;
+	font-size: 14px;
+}
+
+.topmenu a {
+	text-decoration: none;
+	color:#fff;
+}
+
+.topmenu a:hover{
+	text-decoration: none;
+	color: black;
+} 
+
+header li a {
+	color : black;
+	
+}
+
+header li a:hover{
+	border-bottom: 2px solid black;
+	color : black !important;
+	background-color: #fff !important;
+}
+
+footer a:hover {
+	text-decoration: none;
+}
+
+.topcon {
+	padding-left: 20px;
+}
+
+
+html, body{
+	height:100%;
+}
+
+.footer-wrap {
+	background:#6AAFE6;
+	width:100%;
+	
+	z-index: 2;
+}
+
+.empty {
+	background:white;
+	height:100px;
+	width:100%;
+	z-index: 1;
+	position:relative;
+	transform: translatY(-100%);
+	
+}
+
+#botmenuid ul li a{
+
+	text-decoration: none;
+	color : #fff;
+
+}
+
+#botmenuid ul li a:hover{
+
+	text-decoration: none;
+	color : black;
+	background-color: #6AAFE6 !important;
+	
+}
+
+/* 슬라이더 */
 
 .slider-hidden {
     width: 100%;
@@ -247,7 +377,7 @@ ul.rank-txt {
 ul.rank-txt > li {
     border-bottom: 1px solid #ddd;
     font-size: 17px;
-    padding: 18px 0;
+    padding: 25px 0;
     margin-left: -20px;
     height: 16px;
     position: relative;
@@ -346,11 +476,10 @@ ul.rank-txt > li > a {
         });
 
     })
-  
+    
   </script>
   
 <body>
-
 <header>
 
 <nav class="topmenu">
@@ -359,10 +488,9 @@ ul.rank-txt > li > a {
 <% if(session.getAttribute("login") == null )  { %>
   <div class="topmenu">
 	<ul style="list-style-type: none">
-		<li type="button" style="display:inline"><a href="/user/login">로그인</a></li> 
-		<li type="button" style="display:inline"><a href="/join">회원가입</a></li>  
-		<li type="button" style="display:inline"><a href="/">고객센터</a></li>
-	</ul>    
+		<li style="display:inline"><a href="/user/login">로그인</a></li> 
+		<li style="display:inline"><a href="/join">회원가입</a></li>  
+	</ul>
   </div>
 <% }  %>
 
@@ -370,33 +498,58 @@ ul.rank-txt > li > a {
 <% if(session.getAttribute("login") != null  && (boolean)session.getAttribute("login"))  { %>
   <div class="topmenu">
 	<ul style="list-style-type: none">
-		<li style="display:inline; color: #fff;"><%=session.getAttribute("loginid") %>님, 환영합니다.</li>
-		<li style="display:inline"><a href="/user/logout">로그아웃</a></li>
-		<li style="display:inline"><a href="/">마이페이지</a></li>
-		<li style="display:inline"><a href="/">고객센터</a></li>
+		<li style="display:inline; color: #fff;"><%=session.getAttribute("username") %>님, 환영합니다.</li>
+		<li style="display:inline"><a href="/user/logout" id="mainOut">로그아웃</a></li>
+		<li style="display:inline"><a href="/mypage">마이페이지</a></li>
+		<li style="display:inline"><a href="/user/update">회원정보수정</a></li>
 	</ul>    
-  </div>
+</div>
 <% }  %>
 </nav>
 
 <div class="all">  
 	<div class="collapse navbar-collapse header1 topcon" id="midmenu">
-		<a href="#"><img src="/resources/img/logo.jpg" style="height:65px;"></a>
+		<a href="/"><img src="/resources/img/logo.jpg" style="height:65px;"></a>
 	</div>
 	<div>
-
+	<header>
 		<div class="header2">
 	      <ul class="nav navbar-nav nav-pills topcon" data-bs-target="#navbarToggleExternalContent">
 	        <li><a href="/musical/mcList">뮤지컬</a></li>
 	        <li><a href="/notice/list">공지사항</a></li>
 	        <li><a href="/review/list">관람후기</a></li>
 	        <li><a href="/">이용안내</a></li>
-	        <li><a href="/">My티켓</a></li>
+	        <!--  비 로그인  --> 
+			<% if(session.getAttribute("login") == null )  { %>
+	        <li class="noLoginTC"><a href="/user/login">My티켓</a></li>
+	      	<% } %>
+	      	
+	      	<!--  로그인  -->
+			<% if(session.getAttribute("login") != null  && (boolean)session.getAttribute("login"))  { %>
+	      		<li class="LoginTC"><a href="/mypage">My티켓</a></li>
+	      	<% } %>
+	      	
 	      </ul>
 		</div>
-
+	</header>
 	</div>
 </div>
+
+<script type="text/javascript"> 
+  $(document).ready(function(){
+	// 로그아웃 버튼 눌렀을 시
+	 $('#mainOut').click(function() {
+	  alert('로그아웃 되었습니다.')
+	 });
+  	
+	// 비회원이 my티켓 버튼 눌렀을 시
+	 $('.noLoginTC').click(function() {
+		  alert('로그인 후 사용하실 수 있습니다.')
+	 });
+	
+  });
+  
+</script>   
 
 </header>
 
@@ -407,15 +560,14 @@ ul.rank-txt > li > a {
 	<div class="slider">
 	
 		<div class="center slick_slider">
-			<div class="slide"><a href='#'><img src="./resources/img/poster/jes.jpg" class="sec1"></a></div>
-			<div class="slide"><a href='#'><img src="./resources/img/poster/hap.jpg" class="sec1"></a></div>
-			<div class="slide"><a href='#'><img src="./resources/img/poster/ale.jpg" class="sec1"></a></div>
-			<div class="slide"><a href='#'><img src="./resources/img/poster/bru.jpg" class="sec1"></a></div>
-			<div class="slide"><a href='#'><img src="./resources/img/poster/hook.jpg" class="sec1"></a></div>
-			<div class="slide"><a href='#'><img src="./resources/img/poster/seo.jpg" class="sec1"></a></div>
-			<div class="slide"><a href='#'><img src="./resources/img/poster/pri.jpg" class="sec1"></a></div>
-			<div class="slide"><a href='#'><img src="./resources/img/poster/per.jpg" class="sec1"></a></div>
-			<div class="slide"><a href='#'><img src="./resources/img/poster/sam.jpg" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=208'><img src="${pageContext.request.contextPath}/resources/img/mc/jes.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=200'><img src="${pageContext.request.contextPath}/resources/img/mc/hap.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=206'><img src="${pageContext.request.contextPath}/resources/img/mc/ale.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=201'><img src="${pageContext.request.contextPath}/resources/img/mc/hook.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=205'><img src="${pageContext.request.contextPath}/resources/img/mc/seo.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=204'><img src="${pageContext.request.contextPath}/resources/img/mc/pri.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=202'><img src="${pageContext.request.contextPath}/resources/img/mc/per.jpg${musical.mcimg}" class="sec1"></a></div>
+			<div class="slide"><a href='/musical/mcView?mcno=207'><img src="${pageContext.request.contextPath}/resources/img/mc/sam.jpg${musical.mcimg}" class="sec1"></a></div>
 		</div>
 
 	</div>
@@ -429,10 +581,10 @@ ul.rank-txt > li > a {
 	<div class="hotmain">
 		<div class="hotitem"></div>
 		<div class="hot-tit">WHAT'S HOT </div>
-		<div class="hotitem"><a href='#'><div class="more"><img src="resources/img/more.png"></div></a></div>
-		<div class="hotitem"><a href='#'><img src="./resources/img/poster/sam.jpg" title="뮤지컬 <삼총사>" style="width:200px; height:260px;"></a></div>
-		<div class="hotitem"><a href='#'><img src="./resources/img/poster/pri.jpg" title="뮤지컬 <프리즌>" style="width:200px; height:260px;"></a></div>
-		<div class="hotitem"><a href='#'><img src="./resources/img/poster/hap.jpg" title="뮤지컬 <우연히 행복해지다>" style="width:200px; height:260px;"></a></div>
+		<div class="hotitem"><a href='/musical/mcLike'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="hotitem"><a href='/musical/mcView?mcno=207'><img src="${pageContext.request.contextPath}/resources/img/mc/sam.jpg${musical.mcimg}" title="뮤지컬 <삼총사>" style="width:200px; height:260px;"></a></div>
+		<div class="hotitem"><a href='/musical/mcView?mcno=204'><img src="${pageContext.request.contextPath}/resources/img/mc/pri.jpg${musical.mcimg}" title="뮤지컬 <프리즌>" style="width:200px; height:260px;"></a></div>
+		<div class="hotitem"><a href='/musical/mcView?mcno=200'><img src="${pageContext.request.contextPath}/resources/img/mc/hap.jpg${musical.mcimg}" title="뮤지컬 <우연히 행복해지다>" style="width:200px; height:260px;"></a></div>
 		<div class="hot-tit-sub">뮤지컬 <삼총사></div>
 		<div class="hot-tit-sub">뮤지컬 <프리즌></div>
 		<div class="hot-tit-sub">뮤지컬 <우연히 행복해지다></div>
@@ -440,15 +592,15 @@ ul.rank-txt > li > a {
 		<div class="hot-tit-sub2">평일 22,000원</div>
 		<div class="hot-tit-sub2">평일 할인 40%</div>
 	</div>
-	
+
 <!-- WHAT'S NEW -->
 	<div class="hotmain">
 		<div class="newitem"></div>
 		<div class="new-tit">WHAT'S NEW </div>
-		<div class="newitem"><a href='#'><div class="more"><img src="resources/img/more.png"></div></a></div>
-		<div class="newitem"><a href='#'><img src="./resources/img/poster/hook.jpg" title="뮤지컬 <더 훅 The Hook>" style="width:200px; height:260px;"></a></div>
-		<div class="newitem"><a href='#'><img src="./resources/img/poster/per.jpg" title="뮤지컬 <사람은 무엇으로 사는가>" style="width:200px; height:260px;"></a></div>
-		<div class="newitem"><a href='#'><img src="./resources/img/poster/dre.jpg" title="뮤지컬 <드리머스 Dreamers>" style="width:200px; height:260px;"></a></div>
+		<div class="newitem"><a href='/musical/mcNew'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="newitem"><a href='/musical/mcView?mcno=201'><img src="${pageContext.request.contextPath}/resources/img/mc/hook.jpg${musical.mcimg}" title="뮤지컬 <더 훅 The Hook>" style="width:200px; height:260px;"></a></div>
+		<div class="newitem"><a href='/musical/mcView?mcno=202'><img src="${pageContext.request.contextPath}/resources/img/mc/per.jpg${musical.mcimg}" title="뮤지컬 <사람은 무엇으로 사는가>" style="width:200px; height:260px;"></a></div>
+		<div class="newitem"><a href='/musical/mcView?mcno=203'><img src="${pageContext.request.contextPath}/resources/img/mc/dre.jpg${musical.mcimg}" title="뮤지컬 <드리머스 Dreamers>" style="width:200px; height:260px;"></a></div>
 		<div class="new-tit-sub">뮤지컬 <더 훅 The Hook></div>
 		<div class="new-tit-sub">뮤지컬 <사람은 무엇으로 사는가></div>
 		<div class="new-tit-sub">뮤지컬 <드리머스 Dreamers></div>
@@ -459,6 +611,7 @@ ul.rank-txt > li > a {
 
 </section>
 
+
 <section class="main-sec3">
 
 <!-- WEEKLY RANKING -->
@@ -466,15 +619,14 @@ ul.rank-txt > li > a {
 	
 		<div class="rank-tit">
 			WEEKLY RANKING
-			<a href='#'><div class="more-rank"><img src="resources/img/more.png"></div></a>
 		</div>
 		
 		<ul class="rank-txt">
-			<li><a href='#'>1위. 뮤지컬 〈킹키부츠〉 - 부산 </li></a><br>
-			<li><a href='#'>2위. 더뮤지컬 콘서트 〈할로윈 더 뮤지컬〉</li></a><br>
-			<li><a href='#'>3위. 뮤지컬 〈서편제〉</li></a><br>
-			<li><a href='#'>4위. 뮤지컬 〈안나, 차이코프스키〉</li></a><br>
-			<li><a href='#'>5위. 뮤지컬 〈삼총사〉</li></a>
+			<li><a href='/musical/mcView?mcno=208'>1위. 뮤지컬  <지저스 크라이스트 수퍼스타> </li></a>
+			<li><a href='/musical/mcView?mcno=206'>2위. 뮤지컬 콘서트 〈엘그리아 Alegria〉</li></a>
+			<li><a href='/musical/mcView?mcno=205'>3위. 뮤지컬 〈서편제〉</li></a>
+			<li><a href='/musical/mcView?mcno=201'>4위. 뮤지컬 〈더 훅 The Hook〉</li></a>
+			<li><a href='/musical/mcView?mcno=207'>5위. 뮤지컬 〈삼총사〉</li></a>
 		</ul>
 		
 	</div>
@@ -483,10 +635,10 @@ ul.rank-txt > li > a {
 	<div class="pickmain">
 		<div class="pickitem"></div>
 		<div class="pick-tit">MD'S PICK</div>
-		<div class="pickitem"><a href='#'><div class="more"><img src="resources/img/more.png"></div></a></div>
-		<div class="pickitem"><a href='#'><img src="./resources/img/poster/ale.jpg" title="뮤지컬 <엘그리아 Alegria>" style="width:200px; height:260px;"></a></div>
-		<div class="pickitem"><a href='#'><img src="./resources/img/poster/seo.jpg" title="뮤지컬 <서편제>" style="width:200px; height:260px;"></a></div>
-		<div class="pickitem"><a href='#'><img src="./resources/img/poster/pri.jpg" title="뮤지컬 <프리즌>" style="width:200px; height:260px;"></a></div>
+		<div class="pickitem"><a href='/musical/mcMd'><div class="more"><img src="resources/img/more.png"></div></a></div>
+		<div class="pickitem"><a href='/musical/mcView?mcno=206'><img src= "${pageContext.request.contextPath}/resources/img/mc/ale.jpg${musical.mcimg}" title="뮤지컬 <엘그리아 Alegria>" style="width:200px; height:260px;"></a></div>
+		<div class="pickitem"><a href='/musical/mcView?mcno=205'><img src="${pageContext.request.contextPath}/resources/img/mc/seo.jpg${musical.mcimg}" title="뮤지컬 <서편제>" style="width:200px; height:260px;"></a></div>
+		<div class="pickitem"><a href='/musical/mcView?mcno=204'><img src="${pageContext.request.contextPath}/resources/img/mc/pri.jpg${musical.mcimg}" title="뮤지컬 <프리즌>" style="width:200px; height:260px;"></a></div>
 		<div class="pick-tit-sub">뮤지컬 <엘그리아 Alegria></div>
 		<div class="pick-tit-sub">뮤지컬 <서편제></div>
 		<div class="pick-tit-sub">뮤지컬 <프리즌></div>
@@ -519,4 +671,3 @@ ul.rank-txt > li > a {
 		</div>
 	</div>	
 </footer> <!-- Footer end -->
-
