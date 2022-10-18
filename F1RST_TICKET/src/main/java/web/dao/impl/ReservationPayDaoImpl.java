@@ -103,100 +103,11 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 		}
 		return nextScheduleInfono;
 	}
-
-
-	@Override
-	public int writeReservation(Connection conn, ReservationPay rvpay, User user) {
-		String sql = "";
-		sql = "INSERT INTO reservation (resno,scheduleinfoid,userid,resdate,ticketcount,payment,paymoney)";
-		sql += " VALUES( reservation_seq.nextval, ?, ?, ?, ?, ?, ?)";
-		int res = 0;
-		
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			
-			ps.setInt(1, rvpay.getScheduleInfoId());
-			ps.setString(2, user.getUserid());
-			ps.setTimestamp(3, rvpay.getResdate());
-			ps.setInt(4, rvpay.getTicketcount());
-			ps.setString(5, rvpay.getPayment());
-			ps.setInt(6, rvpay.getPaymoney());
-			
-			
-			res = ps.executeUpdate();
-
-		
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-
-			JDBCTemplate.close(ps);
-		}
-		return res;
 	
-	
-	}
 
 
-	@Override
-	public int writeScheduleInfo(Connection conn, ReservationPay rvpay) {
-		String sql = "";
-		sql = "INSERT INTO scheduleinfo (scheduleinfoid, mcno, scheduledate, scheduletime)";
-		sql += " VALUES( ?, ?, ?, ?)";
-		int res = 0;
-		
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			
-			ps.setInt(1, rvpay.getScheduleInfoId());
-			ps.setInt(2, rvpay.getMcno());
-			ps.setDate(3, (Date)rvpay.getScheduledate());
-			ps.setString(4, rvpay.getScheduletime());
-			
-			res = ps.executeUpdate();
 
-		
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-
-			JDBCTemplate.close(ps);
-		}
-		return res;
-	
-	
-	}
-
-
-	@Override
-	public int writeSeat(Connection conn, ReservationPay rvpay) {
-		String sql = "";
-		sql = "INSERT INTO seat (seatno, scheduleinfoid)";
-		sql += " VALUES( ?, ?)";
-		int res = 0;
-		
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			
-			ps.setInt(1, rvpay.getSeatno());
-			ps.setInt(2, rvpay.getScheduleInfoId());
-
-			res = ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-
-			JDBCTemplate.close(ps);
-		}
-		return res;
-	
-	}
+	//------------------------
 	@Override
 	public int selectCntAll(Connection conn, User user) {
 		
@@ -264,10 +175,10 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 				
 				rsp.setMrno(rs.getInt("mrno"));
 				rsp.setResno(rs.getInt("resno"));
-				rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
+				rsp.setScheduleInfoId(rs.getInt("scheduleinfoid"));
 				rsp.setMcno(rs.getInt("mcno"));
 				rsp.setMcname(rs.getString("mcname"));
-				rsp.setScheduledate(rs.getDate("scheduledate"));
+				rsp.setScheduledate(rs.getString("scheduledate"));
 				rsp.setScheduletime(rs.getString("scheduletime"));
 				rsp.setUserid(rs.getString("userid"));
 				rsp.setResdate(rs.getTimestamp("resdate"));
@@ -353,7 +264,7 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 					rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
 					rsp.setMcno(rs.getInt("mcno"));
 					rsp.setMcname(rs.getString("mcname"));
-					rsp.setScheduledate(rs.getDate("scheduledate"));
+					rsp.setScheduledate(rs.getString("scheduledate"));
 					rsp.setScheduletime(rs.getString("scheduletime"));
 					rsp.setUserid(rs.getString("userid"));
 					rsp.setResdate(rs.getTimestamp("resdate"));
@@ -361,7 +272,6 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 					rsp.setPayno(rs.getInt("payno"));
 					rsp.setPayment(rs.getString("payment"));
 					rsp.setPaymoney(rs.getInt("paymoney"));
-//					rsp.setSeatno(rs.getInt("seaseatnotno"));
 					
 				}
 			} catch (SQLException e) {
@@ -406,7 +316,7 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 				rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
 				rsp.setMcno(rs.getInt("mcno"));
 				rsp.setMcname(rs.getString("mcname"));
-				rsp.setScheduledate(rs.getDate("scheduledate"));
+				rsp.setScheduledate(rs.getString("scheduledate"));
 				rsp.setScheduletime(rs.getString("scheduletime"));
 				rsp.setUserid(rs.getString("userid"));
 				rsp.setResdate(rs.getTimestamp("resdate"));
@@ -428,54 +338,6 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 	}
 	
 	@Override
-	public ReservationPay getMrno(Connection conn, User user) {
-		String sql = "";
-		sql += "SELECT *";
-		sql += " FROM reservation R, Musical M, usertable U, scheduleinfo S, reservationPay P";
-		sql += " WHERE S.mcno = M.MCNO";
-		sql += " AND P.resno = R.resno";
-		sql += " AND R.userid = U.userid";
-		sql += " AND S.SCHEDULEINFOID  = R.SCHEDULEINFOID";
-		sql += " AND P.userid = ? " ;
-		
-		
-		ReservationPay rsp = new ReservationPay();
-		
-			try {
-				ps=conn.prepareStatement(sql);
-				ps.setString(1, user.getUserid());
-
-				rs=ps.executeQuery();
-				
-				while(rs.next()) {
-					
-					rsp.setMrno(rs.getInt("mrno"));
-					rsp.setResno(rs.getInt("resno"));
-					rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
-					rsp.setMcno(rs.getInt("mcno"));
-					rsp.setMcname(rs.getString("mcname"));
-					rsp.setScheduledate(rs.getDate("scheduledate"));
-					rsp.setScheduletime(rs.getString("scheduletime"));
-					rsp.setUserid(rs.getString("userid"));
-					rsp.setResdate(rs.getTimestamp("resdate"));
-					rsp.setTicketcount(rs.getInt("ticketcount"));
-					rsp.setPayno(rs.getInt("payno"));
-					rsp.setPayment(rs.getString("payment"));
-					rsp.setPaymoney(rs.getInt("paymoney"));
-					rsp.setSeatno(rs.getInt("seatno"));
-					
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				JDBCTemplate.close(rs);
-				JDBCTemplate.close(ps);
-			}
-	
-		return rsp;
-	}
-	
-	@Override
 	public List<ReservationPay> selectAllRspMain(Connection conn, Paging paging, User user) {
 		String sql="";
 		
@@ -493,7 +355,7 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 		sql += " order by scheduledate DESC";
 		
 		List<ReservationPay> rsPay = new ArrayList<>();
-				
+		
 		try {
 			ps=conn.prepareStatement(sql);
 			
@@ -510,7 +372,7 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 				rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
 				rsp.setMcno(rs.getInt("mcno"));
 				rsp.setMcname(rs.getString("mcname"));
-				rsp.setScheduledate(rs.getDate("scheduledate"));
+				rsp.setScheduledate(rs.getString("scheduledate"));
 				rsp.setScheduletime(rs.getString("scheduletime"));
 				rsp.setUserid(rs.getString("userid"));
 				rsp.setResdate(rs.getTimestamp("resdate"));
@@ -535,148 +397,337 @@ public class ReservationPayDaoImpl implements ReservationPayDao {
 	}
 	
 	@Override
-	public List<ReservationPay> searchMc(Connection conn, String keyword, User user) {
-
+	public int insert(Connection conn, ReservationPay rpay, User user) {
 		String sql = "";
+
+		sql+= "INSERT INTO reservationpay ("
+				+ "    mrno,  resno, scheduleinfoid,"
+				+ "    mcno, mcname, scheduledate, scheduletime,"
+				+ "    userid, resdate, ticketcount,"
+				+ "    payno, payment, paymoney)"
+				+ "  VALUES ("
+				+ "   reservationPay_seq.nextval , Reservation_seq.nextval, ScheduleInfo_seq.nextval,"
+				+ "   musical_seq.nextval , ? , ? , ? , "
+				+ "   ?, (CURRENT_TIMESTAMP), ?,  paytype_seq.nextval, ? , ?)";
 		
-		sql+= "SELECT *";
-		sql += " FROM reservation R, Musical M, usertable U, scheduleinfo S, reservationPay P";
-		sql += " WHERE S.mcno = M.MCNO";
-		sql += " AND P.resno = R.resno";
-		sql += " AND R.userid = U.userid";
-		sql += " AND S.SCHEDULEINFOID  = R.SCHEDULEINFOID";
-		sql += " AND P.userid = ?";
-		sql += " AND M.mcname LIKE '%"+keyword.trim()+"%'";
-		sql += " order by S.scheduledate DESC"; 
-		
-		List<ReservationPay> rspList = new ArrayList<>();
-		
+		int res = 0;
+			
 		try {
-			ps=conn.prepareStatement(sql);
-			ps.setString(1, user.getUserid());
-			ps.setString(2, keyword);
-			rs=ps.executeQuery();
+
 			
-			while (rs.next()) {
-				
-				ReservationPay rsp = new ReservationPay();
-				
-				rsp.setMrno(rs.getInt("mrno"));
-				rsp.setResno(rs.getInt("resno"));
-				rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
-				rsp.setMcno(rs.getInt("mcno"));
-				rsp.setMcname(rs.getString("mcname"));
-				rsp.setScheduledate(rs.getDate("scheduledate"));
-				rsp.setScheduletime(rs.getString("scheduletime"));
-				rsp.setUserid(rs.getString("userid"));
-				rsp.setResdate(rs.getTimestamp("resdate"));
-				rsp.setTicketcount(rs.getInt("ticketcount"));
-				rsp.setPayno(rs.getInt("payno"));
-				rsp.setPayment(rs.getString("payment"));
-				rsp.setPaymoney(rs.getInt("paymoney"));
-				rsp.setSeatno(rs.getInt("seatno"));
-				
-				rspList.add(rsp);
-			}
-			
-		} catch (SQLException e) {
+		ps = conn.prepareStatement(sql);
+		
+		ps.setString(1, rpay.getMcname());
+		ps.setString(2, rpay.getScheduledate());
+		ps.setString(3, rpay.getScheduletime());
+		ps.setString(4, user.getUserid());
+		ps.setInt(5, rpay.getTicketcount());
+		ps.setString(6, rpay.getPayment());
+		ps.setInt(7, rpay.getPaymoney());
+		
+		res = ps.executeUpdate();
+		
+		if(res ==1) {
+			JDBCTemplate.commit(conn);
+		}
+			JDBCTemplate.rollback(conn);
+		
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
+			
 		}
-				
-		return rspList;
+		return res;
 	}
 	
-	@Override
-	public int selectCntRpBySearchMc(Connection conn, String keyword, User user) {
-		
-		String sql = "";
-		
-		sql+= "SELECT count(*) cnt";
-		sql += " FROM reservation R, Musical M, usertable U, scheduleinfo S, reservationPay P";
-		sql += " WHERE S.mcno = M.MCNO";
-		sql += " AND P.resno = R.resno";
-		sql += " AND R.userid = U.userid";
-		sql += " AND S.SCHEDULEINFOID  = R.SCHEDULEINFOID";
-		sql += " AND P.userid = ?";
-		sql += " AND M.mcname LIKE '%"+keyword.trim()+"%'";
-		sql += " order by S.scheduledate DESC"; 
-		
-		int cnt = 0;
-		
-		try {
-		ps=conn.prepareStatement(sql);
-		ps.setString(1, user.getUserid());
-		ps.setString(2, keyword);
-		
-		rs = ps.executeQuery();
-		
-		while(rs.next()) {
-			cnt=rs.getInt("cnt");
-		}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rs);
-		JDBCTemplate.close(ps);
-		}
-		System.out.println(cnt);
-		return cnt;
-	}
-	
-	@Override
-	public ReservationPay selectRpBySearchMc(Connection conn, User user, String keyword) {
-
-		String sql = "";
-		
-		sql+= "SELECT *";
-		sql += " FROM reservation R, Musical M, usertable U, scheduleinfo S, reservationPay P";
-		sql += " WHERE S.mcno = M.MCNO";
-		sql += " AND P.resno = R.resno";
-		sql += " AND R.userid = U.userid";
-		sql += " AND S.SCHEDULEINFOID  = R.SCHEDULEINFOID";
-		sql += " AND P.userid = ?";
-		sql += " AND M.mcname LIKE '%"+keyword.trim()+"%'";
-		sql += " order by S.scheduledate DESC"; 
-		
-		ReservationPay rsp = new ReservationPay();
-		
-		try {
-			ps=conn.prepareStatement(sql);
-			
-			ps.setString(1, user.getUserid());
-			
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				
-				rsp.setMrno(rs.getInt("mrno"));
-				rsp.setResno(rs.getInt("resno"));
-				rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
-				rsp.setMcno(rs.getInt("mcno"));
-				rsp.setMcname(rs.getString("mcname"));
-				rsp.setScheduledate(rs.getDate("scheduledate"));
-				rsp.setScheduletime(rs.getString("scheduletime"));
-				rsp.setUserid(rs.getString("userid"));
-				rsp.setResdate(rs.getTimestamp("resdate"));
-				rsp.setTicketcount(rs.getInt("ticketcount"));
-				rsp.setPayno(rs.getInt("payno"));
-				rsp.setPayment(rs.getString("payment"));
-				rsp.setPaymoney(rs.getInt("paymoney"));
-//				rsp.setSeatno(rs.getInt("seatno"));
-				
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
-		}
-		
-		return rsp;
-	}
 }
+
+
+//@Override
+//public int writeReservation(Connection conn, ReservationPay rvpay, User user) {
+//	String sql = "";
+//	sql = "INSERT INTO reservation (resno,scheduleinfoid,userid,resdate,ticketcount,payment,paymoney)";
+//	sql += " VALUES( reservation_seq.nextval, ?, ?, ?, ?, ?, ?)";
+//	int res = 0;
+//	
+//	
+//	try {
+//		ps = conn.prepareStatement(sql);
+//		
+//		ps.setInt(1, rvpay.getScheduleInfoId());
+//		ps.setString(2, user.getUserid());
+//		ps.setTimestamp(3, rvpay.getResdate());
+//		ps.setInt(4, rvpay.getTicketcount());
+//		ps.setString(5, rvpay.getPayment());
+//		ps.setInt(6, rvpay.getPaymoney());
+//		
+//		
+//		res = ps.executeUpdate();
+//
+//	
+//		
+//	} catch (SQLException e) {
+//		e.printStackTrace();
+//	} finally {
+//
+//		JDBCTemplate.close(ps);
+//	}
+//	return res;
+//
+//
+//}
+//
+//
+//@Override
+//public int writeScheduleInfo(Connection conn, ReservationPay rvpay) {
+//	String sql = "";
+//	sql = "INSERT INTO scheduleinfo (scheduleinfoid, mcno, scheduledate, scheduletime)";
+//	sql += " VALUES( ?, ?, ?, ?)";
+//	int res = 0;
+//	
+//	
+//	try {
+//		ps = conn.prepareStatement(sql);
+//		
+//		ps.setInt(1, rvpay.getScheduleInfoId());
+//		ps.setInt(2, rvpay.getMcno());
+//		ps.setDate(3, (Date)rvpay.getScheduledate());
+//		ps.setString(4, rvpay.getScheduletime());
+//		
+//		res = ps.executeUpdate();
+//
+//	
+//		
+//	} catch (SQLException e) {
+//		e.printStackTrace();
+//	} finally {
+//
+//		JDBCTemplate.close(ps);
+//	}
+//	return res;
+//
+//
+//}
+//
+//
+//@Override
+//public int writeSeat(Connection conn, ReservationPay rvpay) {
+//	String sql = "";
+//	sql = "INSERT INTO seat (seatno, scheduleinfoid)";
+//	sql += " VALUES( ?, ?)";
+//	int res = 0;
+//	
+//	
+//	try {
+//		ps = conn.prepareStatement(sql);
+//		
+//		ps.setInt(1, rvpay.getSeatno());
+//		ps.setInt(2, rvpay.getScheduleInfoId());
+//
+//		res = ps.executeUpdate();
+//		
+//	} catch (SQLException e) {
+//		e.printStackTrace();
+//	} finally {
+//
+//		JDBCTemplate.close(ps);
+//	}
+//	return res;
+//
+//}
+
+//	@Override
+//	public ReservationPay getMrno(Connection conn, User user) {
+//		String sql = "";
+//		sql += "SELECT *";
+//		sql += " FROM reservation R, Musical M, usertable U, scheduleinfo S, reservationPay P";
+//		sql += " WHERE S.mcno = M.MCNO";
+//		sql += " AND P.resno = R.resno";
+//		sql += " AND R.userid = U.userid";
+//		sql += " AND S.SCHEDULEINFOID  = R.SCHEDULEINFOID";
+//		sql += " AND P.userid = ? " ;
+//		
+//		
+//		ReservationPay rsp = new ReservationPay();
+//		
+//			try {
+//				ps=conn.prepareStatement(sql);
+//				ps.setString(1, user.getUserid());
+//
+//				rs=ps.executeQuery();
+//				
+//				while(rs.next()) {
+//					
+//					rsp.setMrno(rs.getInt("mrno"));
+//					rsp.setResno(rs.getInt("resno"));
+//					rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
+//					rsp.setMcno(rs.getInt("mcno"));
+//					rsp.setMcname(rs.getString("mcname"));
+//					rsp.setScheduledate(rs.getString("scheduledate"));
+//					rsp.setScheduletime(rs.getString("scheduletime"));
+//					rsp.setUserid(rs.getString("userid"));
+//					rsp.setResdate(rs.getTimestamp("resdate"));
+//					rsp.setTicketcount(rs.getInt("ticketcount"));
+//					rsp.setPayno(rs.getInt("payno"));
+//					rsp.setPayment(rs.getString("payment"));
+//					rsp.setPaymoney(rs.getInt("paymoney"));
+//					
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			} finally {
+//				JDBCTemplate.close(rs);
+//				JDBCTemplate.close(ps);
+//			}
+//	
+//		return rsp;
+//	}
+//	
+//	
+//	@Override
+//	public List<ReservationPay> searchMc(Connection conn, String keyword, User user) {
+//
+//		String sql = "";
+//		
+//		sql+= "SELECT *";
+//		sql += " FROM reservation R, Musical M, usertable U, scheduleinfo S, reservationPay P";
+//		sql += " WHERE S.mcno = M.MCNO";
+//		sql += " AND P.resno = R.resno";
+//		sql += " AND R.userid = U.userid";
+//		sql += " AND S.SCHEDULEINFOID  = R.SCHEDULEINFOID";
+//		sql += " AND P.userid = ?";
+//		sql += " AND M.mcname LIKE '%"+keyword.trim()+"%'";
+//		sql += " order by S.scheduledate DESC"; 
+//		
+//		List<ReservationPay> rspList = new ArrayList<>();
+//		
+//		try {
+//			ps=conn.prepareStatement(sql);
+//			ps.setString(1, user.getUserid());
+//			ps.setString(2, keyword);
+//			rs=ps.executeQuery();
+//			
+//			while (rs.next()) {
+//				
+//				ReservationPay rsp = new ReservationPay();
+//				
+//				rsp.setMrno(rs.getInt("mrno"));
+//				rsp.setResno(rs.getInt("resno"));
+//				rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
+//				rsp.setMcno(rs.getInt("mcno"));
+//				rsp.setMcname(rs.getString("mcname"));
+//				rsp.setScheduledate(rs.getString("scheduledate"));
+//				rsp.setScheduletime(rs.getString("scheduletime"));
+//				rsp.setUserid(rs.getString("userid"));
+//				rsp.setResdate(rs.getTimestamp("resdate"));
+//				rsp.setTicketcount(rs.getInt("ticketcount"));
+//				rsp.setPayno(rs.getInt("payno"));
+//				rsp.setPayment(rs.getString("payment"));
+//				rsp.setPaymoney(rs.getInt("paymoney"));
+//				
+//				rspList.add(rsp);
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(ps);
+//		}
+//				
+//		return rspList;
+//	}
+//	
+//	@Override
+//	public int selectCntRpBySearchMc(Connection conn, String keyword, User user) {
+//		
+//		String sql = "";
+//		
+//		sql+= "SELECT count(*) cnt";
+//		sql += " FROM reservation R, Musical M, usertable U, scheduleinfo S, reservationPay P";
+//		sql += " WHERE S.mcno = M.MCNO";
+//		sql += " AND P.resno = R.resno";
+//		sql += " AND R.userid = U.userid";
+//		sql += " AND S.SCHEDULEINFOID  = R.SCHEDULEINFOID";
+//		sql += " AND P.userid = ?";
+//		sql += " AND M.mcname LIKE '%"+keyword.trim()+"%'";
+//		sql += " order by S.scheduledate DESC"; 
+//		
+//		int cnt = 0;
+//		
+//		try {
+//		ps=conn.prepareStatement(sql);
+//		ps.setString(1, user.getUserid());
+//		ps.setString(2, keyword);
+//		
+//		rs = ps.executeQuery();
+//		
+//		while(rs.next()) {
+//			cnt=rs.getInt("cnt");
+//		}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(rs);
+//		JDBCTemplate.close(ps);
+//		}
+//		System.out.println(cnt);
+//		return cnt;
+//	}
+//	
+//	@Override
+//	public ReservationPay selectRpBySearchMc(Connection conn, User user, String keyword) {
+//
+//		String sql = "";
+//		
+//		sql+= "SELECT *";
+//		sql += " FROM reservation R, Musical M, usertable U, scheduleinfo S, reservationPay P";
+//		sql += " WHERE S.mcno = M.MCNO";
+//		sql += " AND P.resno = R.resno";
+//		sql += " AND R.userid = U.userid";
+//		sql += " AND S.SCHEDULEINFOID  = R.SCHEDULEINFOID";
+//		sql += " AND P.userid = ?";
+//		sql += " AND M.mcname LIKE '%"+keyword.trim()+"%'";
+//		sql += " order by S.scheduledate DESC"; 
+//		
+//		ReservationPay rsp = new ReservationPay();
+//		
+//		try {
+//			ps=conn.prepareStatement(sql);
+//			
+//			ps.setString(1, user.getUserid());
+//			
+//			rs = ps.executeQuery();
+//			
+//			while(rs.next()) {
+//				
+//				rsp.setMrno(rs.getInt("mrno"));
+//				rsp.setResno(rs.getInt("resno"));
+//				rsp.setScheduleInfoId(rs.getInt("scheduleInfoId"));
+//				rsp.setMcno(rs.getInt("mcno"));
+//				rsp.setMcname(rs.getString("mcname"));
+//				rsp.setScheduledate(rs.getString("scheduledate"));
+//				rsp.setScheduletime(rs.getString("scheduletime"));
+//				rsp.setUserid(rs.getString("userid"));
+//				rsp.setResdate(rs.getTimestamp("resdate"));
+//				rsp.setTicketcount(rs.getInt("ticketcount"));
+//				rsp.setPayno(rs.getInt("payno"));
+//				rsp.setPayment(rs.getString("payment"));
+//				rsp.setPaymoney(rs.getInt("paymoney"));
+////				rsp.setSeatno(rs.getInt("seatno"));
+//				
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(ps);
+//		}
+//		
+//		return rsp;
+//	}

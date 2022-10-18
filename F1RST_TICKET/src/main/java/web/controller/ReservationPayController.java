@@ -2,6 +2,7 @@ package web.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import util.Paging;
 import web.dto.ReservationPay;
 import web.dto.User;
 import web.service.face.ReservationPayService;
@@ -26,12 +26,11 @@ public class ReservationPayController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
 		List<ReservationPay> reservationpay = reservationpayService.selectedMusical();
 		System.out.println(reservationpay);
 		
 		req.setAttribute("mlist", reservationpay);
-//		req.getRequestDispatcher("/WEB-INF/views/reservation/reservationpay.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/reservation/reservationpay.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -40,31 +39,18 @@ public class ReservationPayController extends HttpServlet {
 		
 		resp.setContentType("text/html;charset = utf-8");
 		req.setCharacterEncoding("utf-8");
-	
+		HttpSession session = req.getSession();
+		
+
+		User user = new User();
+		System.out.println(req.getParameter("ticketcount"));
 		
 		
-		reservationpayService.write(req);
+		user.setUserid((String)req.getSession().getAttribute("loginid"));
+		ReservationPay rpay = reservationpayService.getpush(req);
+		reservationpayService.join(rpay, user);
 		
 		resp.sendRedirect("/");
-
-//		String mcname = req.getParameter("mcname"); 
-//		System.out.println(mcname);
-//		String scheduleDate = req.getParameter("scheduleDate"); 
-//		System.out.println(scheduleDate);
-//		String scheduleTime = req.getParameter("scheduleTime"); 
-//		System.out.println(scheduleTime);
-//		int ticketcount = Integer.parseInt(req.getParameter("ticketcount")); 
-//		System.out.println(ticketcount);
-//		int paymoney = Integer.parseInt(req.getParameter("paymoney")); 
-//		System.out.println(paymoney);
-//		String[] seatno = req.getParameterValues("seatno"); 
-//		System.out.println(seatno);
-//		String resdate = req.getParameter("resdate");
-//		System.out.println(resdate);
-//		String payment = req.getParameter("payment");
-//		System.out.println(payment);
-		
-		
 	}
 
 	
