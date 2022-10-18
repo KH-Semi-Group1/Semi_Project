@@ -138,7 +138,11 @@ $(document).ready(function(){
 						<%for(int i=0; i<musicalList.size(); i++) { %>
 							<tr>
 								<td><%=musicalList.get(i).getMcno() %></td>
-								<td style="text-align: left;"><%=musicalList.get(i).getMcname() %></td>
+								<td style="text-align: left;">
+								<a style="text-decoration: none;color:black;"
+									 href="/musical/mcView?mcno=<%=musicalList.get(i).getMcno() %>">
+								<%=musicalList.get(i).getMcname() %></a>
+								</td>
 								<td><%=musicalList.get(i).getMcstart() %></td>
 								<td><%=musicalList.get(i).getMcend() %></td>
 								<td><%=musicalList.get(i).getMcloc() %></td>
