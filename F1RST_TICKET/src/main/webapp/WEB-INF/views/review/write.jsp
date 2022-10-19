@@ -21,7 +21,7 @@
 $(document).ready(function() {
 	
 	//작성버튼
-	$("#btnUpdate").click(function() {
+	$("#btnWrite").click(function() {
 		
 		//작성된 내용을 <textarea>에 적용하기
 		updateContents()
@@ -133,7 +133,8 @@ function updateContents() {
 		class="btn btn-outline-success">로그인</a>
 </div>
 <%	}  else { %>
-	<button id="btnUpdate" class="btn btn-md">작성하기</button>
+	<button id="btnWrite" class="btn btn-md">작성하기</button>
+	<button id="btnCancel" class="btn btn-md">취소하기</button>
 <%	} %>
 
 <script type="text/javascript">

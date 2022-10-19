@@ -72,7 +72,7 @@ $(document).ready(function() {
 		<div class="thumbnail">
 			<img alt="포스터" src="/resources/img/mc/<%=reviewList.get(i).getMcimg() %>"
 				onerror="this.src='/resources/img/mc/noImg.jpg'">
-			<div class="caption"> 
+			<div class="caption">
 				<h3><%=reviewList.get(i).getReviewtitle() %></h3>
 				
 				<p><%	for( int j=0; j < reviewList.get(i).getReviewscope(); j++ ) { %>
